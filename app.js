@@ -5,14 +5,14 @@ var app = express();
 var server = require('http').createServer(app);
 
 app.set('port', process.env.PORT || 5700);
-app.set('views', __dirname + 'app/views');
+app.set('views', __dirname + '/app');
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html'); //替换文件扩展名ejs为html
 
 app.use(express.static(path.join(__dirname, 'app')));
 
-app.get('/*', function(req, res) {
-	res.sendfile('app/index.html');
+app.get('*', function(req, res) {
+	res.render('index.html');
 });
 
 server.listen(app.get('port'), function() {
