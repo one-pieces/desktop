@@ -1,0 +1,18 @@
+<div id="{{row.id}}">
+    受益人姓名：<input type="text" name="userName" ng-model="row.user.name"/>&nbsp;
+    受益人性别：<select name="sex" value="男" ng-model="row.user.sex">
+        <option value="男">男</option>
+        <option value="女">女</option>
+    </select>&nbsp;
+    年龄：<input type="text" name="age" id="age" ng-model="row.user.age"/>&nbsp;
+    出生年月：<input type="text" name="birthdate" ng-model="row.user.birthdate" />&nbsp;
+    <!-- 受益人顺位：<select name="sort" value="1">
+    <option value="1">第一顺位</option>
+    <option value="2">第二顺位</option>
+    <option value="3">第三顺位</option>
+    <option value="4">第四顺位</option>
+    </select>&nbsp; -->
+    受益人分配比例：<input type="text" name="abortion" width="20%" ng-model="row.user.abortion"/>（单位：%）
+    <input type="button" value="保存受益人" ng-click="save()"/>
+    <input type="button" value="删除受益人" ng-click="delete()"/>
+</div>

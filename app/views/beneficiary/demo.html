@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th width="200">受益人信息（{{counter}}人）</th>
+    </tr>
+    </thead>
+    <tbody>
+    <input type="button" value="增加受益人" ng-click="addRow()"/>最大人数：<input type="text" ng-model="maxCount" >
+    <tr ng-repeat="rowContent in rows track by $index">顺位组分配比例：<input type="text" ng-model="groupAbortion" >
+    <tr ng-repeat="rowContent in rows track by $index">
+        <td><demo-beneficiary save-beneficiary="saveBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" row-content="rowContent"></demo-beneficiary></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

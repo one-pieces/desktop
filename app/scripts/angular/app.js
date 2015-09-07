@@ -26,6 +26,11 @@ app.config(['$urlRouterProvider', '$stateProvider', '$locationProvider', functio
 					templateUrl: 'views/desktop/pages/settings.html'
 				}
 			}
+		})
+		.state("demo", {
+				url: "/desktop/demo",
+				templateUrl: 'views/beneficiary/demo.html',
+				controller: 'beneficiaryCtrl'
 		});
 	$locationProvider.html5Mode(true);
 }]);
