@@ -5,7 +5,7 @@ app
 	$scope.username = 'Xiaolong';
 })
 .controller('LoginCtrl', function($scope){
-	$.get('/users', function(res, status, xhr) {
+	$.get('/api/users', function(res, status, xhr) {
 		console.log(res);
 	});
 })

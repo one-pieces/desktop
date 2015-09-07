@@ -20,11 +20,11 @@ app.set('view engine', 'html'); //替换文件扩展名ejs为html
 
 app.use(express.static(path.join(__dirname, 'app')));
 
-app.get('/', function(req, res) {
+app.get('/desktop/*', function(req, res) {
 	res.render('index.html');
 });
 
-app.get('/users', function(req, res) {
+app.get('/api/users', function(req, res) {
 	var _user = new User({"name" : "xiaolonglin", "password" : "123456"});
 	_user.save(function(err, user) {
 		User.fetch(function(err, users) {

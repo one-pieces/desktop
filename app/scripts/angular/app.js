@@ -4,23 +4,23 @@ var app = angular.module('app', ['ui.router']);
 
 app.config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function($urlRouterProvider, $stateProvider, $locationProvider) {
 	$urlRouterProvider
-		.when('/', '/welcome')
-		.otherwise('/welcome');
+		.when('/', '/desktop/welcome')
+		.otherwise('/desktop/welcome');
 	$stateProvider
 		.state("welcome", {
-			url: "/welcome",
+			url: "/desktop/welcome",
 			templateUrl: 'views/tpl/welcome.html',
 			controller: 'WelcomeCtrl'})
 		.state("login", {
-			url: "/login",
+			url: "/desktop/login",
 			templateUrl: 'views/desktop/login.html',
 			controller: 'LoginCtrl'})
 		.state("desktop", {
-			url: "/desktop",
+			url: "/desktop/index",
 			templateUrl: 'views/desktop/desktop.html',
 			controller: 'DesktopCtrl'})
 		.state("desktop.window", {
-			url: "/window",
+			url: "/desktop/window",
 			views: {
 				'windowContent@': {
 					templateUrl: 'views/desktop/pages/settings.html'
