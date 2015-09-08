@@ -5,30 +5,30 @@ app
     .controller('demoCtrl', function($scope){
     	$scope.beneficiaryGroups = [{
     		name: "第一顺位",
-    		groupAbortion: "40%",
+    		proportion: "40%",
     		maxCount: 3
     	},{
     		name: "第二顺位",
-    		groupAbortion: "30%",
+    		proportion: "30%",
     		maxCount: 2
     	},{
     		name: "第三顺位",
-    		groupAbortion: "20%",
+    		proportion: "20%",
     		maxCount: 2
     	},{
     		name: "第四顺位",
-    		groupAbortion: "10%",
+    		proportion: "10%",
     		maxCount: 2
     	}];
 
     	$scope.$watch('beneficiaryGroups', function(newValue) {
-    		var groupAbortionSum = 0;
+    		var proportionSum = 0;
     		for (var i = 0; i < $scope.beneficiaryGroups.length; i++) {
-    			groupAbortionSum += parseInt($scope.beneficiaryGroups[i].groupAbortion);
+    			proportionSum += parseInt($scope.beneficiaryGroups[i].proportion);
     		};
 
-    		if (groupAbortionSum > 100) {
-    			alert('The max sum of groups\' abortion is 100%!');
+    		if (proportionSum > 100) {
+    			alert('The max sum of groups\' proportion is 100%!');
                 return;
     		};
     	}, true);

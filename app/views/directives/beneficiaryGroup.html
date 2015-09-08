@@ -10,7 +10,7 @@
 	    </thead>
 	    <tbody>
 	    <input type="button" value="增加受益人" ng-click="addRow()"/>最大人数：<input type="text" ng-model="group.maxCount" >
-	    <tr ng-repeat="rowContent in rows track by $index">顺位组分配比例：<input type="text" ng-model="group.groupAbortion" >
+	    <tr ng-repeat="rowContent in rows track by $index">顺位组分配比例：<input type="text" ng-model="group.proportion" >
 	    <tr ng-repeat="rowContent in rows track by $index">
 	        <td><beneficiary save-beneficiary="saveBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" row-content="rowContent"></beneficiary></td>
 	    </tr>
