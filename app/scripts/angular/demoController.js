@@ -31,6 +31,7 @@ app
             }
             var group = {
                 id: $scope.index++,
+                apportion: 1,
                 proportion: (100).toFixed(2)
             };
             $scope.beneficiaryGroups.push(group);
@@ -39,4 +40,24 @@ app
         $scope.removeGroup = function(index) {
             $scope.beneficiaryGroups.splice(index,1);
         }
+
+        $scope.$on('move-group-desc', function(event, data) {
+            $scope.moveGroupDesc(data.isDesc, data.index);
+        });
+
+        $scope.moveGroupDesc = function(isDesc, index) {
+            if(isDesc) {
+                var templVal =  $scope.beneficiaryGroups[index + 1];
+                $scope.beneficiaryGroups[index + 1] = $scope.beneficiaryGroups[index];
+                $scope.beneficiaryGroups[index] = templVal;
+            }else {
+                var templVal =  $scope.beneficiaryGroups[index - 1];
+                $scope.beneficiaryGroups[index - 1] = $scope.beneficiaryGroups[index];
+                $scope.beneficiaryGroups[index] = templVal;
+            }
+        }
+
+        // $scope.$watch('beneficiaryGroups', function(newv){
+        //     console.log(newv);
+        // }, true);
     });

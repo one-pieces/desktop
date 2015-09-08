@@ -31,10 +31,10 @@ app
                 for (var i = 0; i < $scope.beneficiaries.length; i++) {
                   proportionSum += parseInt($scope.beneficiaries[i].proportion);
                 };
-               if (proportionSum >= parseInt($scope.group.proportion)) {
-                   alert('同组所有受益人分配比例之和不得超过100%，请调整受益人分配比例！');
-                   return;
-               };
+               // if (proportionSum >= parseInt($scope.group.proportion)) {
+               //     alert('同组所有受益人分配比例之和不得超过100%，请调整受益人分配比例！');
+               //     return;
+               // };
                var beneficiary = {
                 // name: '',
                 // sex: '',
@@ -45,7 +45,7 @@ app
                if (!$scope.counter) {
                 beneficiary.proportion = $scope.group.proportion;
               } else {
-                beneficiary.proportion = parseInt($scope.group.proportion) - proportionSum;
+                beneficiary.proportion = (parseInt($scope.group.proportion) - proportionSum).toFixed(2);
               };
                $scope.beneficiaries.push(beneficiary);
                var row = {
@@ -53,6 +53,7 @@ app
                 beneficiary: $scope.beneficiaries[$scope.counter]
                };
                $scope.rows.push(row);
+               $scope.group.rows = $scope.rows;
                $scope.counter++;
            }
 
@@ -66,5 +67,12 @@ app
                $.post('/api/beneficiary', beneficiary, function(data){
                 console.log(data);
                });
+           }
+
+           $scope.moveDesc = function(isDesc, index) {
+              $scope.$emit('move-group-desc', {
+                isDesc: isDesc,
+                index: index
+              });
            }
     });

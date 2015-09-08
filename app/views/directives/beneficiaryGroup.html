@@ -1,10 +1,19 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>第{{index}}顺位受益人信息（共{{rows.length}}人）总受益比例：
-            <input type="text" id="proportion{{index}}" ng-model="group.proportion"/>（单位：%）注：小数后保留2位
-            <input type="button" value="删除第{{index}}顺为受益人组" ng-click="deleteGroup()"/>
+      <th>第{{index+1}}顺位受益人信息
+      			<span ng-if="rows.length > 0">
+                （共{{rows.length}}人）
+                </span>
+            <input ng-if="index == groupsLength-1" type="button" value="删除受益人组" ng-click="deleteGroup()"/>
             <input type="button" value="增加受益人" ng-click="addRow()"/>
+            <span ng-if="index !== (groupsLength-1)">
+                <input type="button" value="↓" ng-click="moveDesc(true, index)">
+            </span>
+            <span ng-if="index !== 0">
+                <input type="button" value="↑" ng-click="moveDesc(false, index)">
+            </span>
+            分摊方式：<input type="checkbox" name="dividePattern" ng-model="group.apportion" ng-true-value="1" ng-false-value="0" />均分
         </th>
     </tr>
   </thead>
