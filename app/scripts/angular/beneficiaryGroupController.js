@@ -4,8 +4,8 @@
 app
     .controller('beneficiaryGroupCtrl', function($scope){
            $scope.rows = [];
-           $scope.users = [];
-           // $scope.users = [{
+           $scope.beneficiaries = [];
+           // $scope.beneficiaries = [{
            //  name: 'xiaolong',
            //  sex: '男',
            //  age: '24',
@@ -28,18 +28,18 @@ app
            $scope.counter = 0;
            $scope.addRow = function () {
               var proportionSum = 0;
-                for (var i = 0; i < $scope.users.length; i++) {
-                  proportionSum += parseInt($scope.users[i].proportion);
+                for (var i = 0; i < $scope.beneficiaries.length; i++) {
+                  proportionSum += parseInt($scope.beneficiaries[i].proportion);
                 };
                if ($scope.counter >= $scope.group.maxCount) {
                    alert('Given number exceeds the limitation!');
                    return;
                }
                if (proportionSum >= parseInt($scope.group.proportion)) {
-                   alert('The sum of each user\'s proportion exceeds the max!');
+                   alert('The sum of each beneficiary\'s proportion exceeds the max!');
                    return;
                };
-               var user = {
+               var beneficiary = {
                 // name: '',
                 // sex: '',
                 // age: '',
@@ -47,27 +47,27 @@ app
                 // proportion: ''
                };
                if (!$scope.counter) {
-                user.proportion = $scope.group.proportion;
+                beneficiary.proportion = $scope.group.proportion;
               } else {
-                user.proportion = parseInt($scope.group.proportion) - proportionSum + '%';
+                beneficiary.proportion = parseInt($scope.group.proportion) - proportionSum + '%';
               };
-               $scope.users.push(user);
+               $scope.beneficiaries.push(beneficiary);
                var row = {
                 id: 'Row ' + $scope.counter,
-                user: $scope.users[$scope.counter]
+                beneficiary: $scope.beneficiaries[$scope.counter]
                };
                $scope.rows.push(row);
                $scope.counter++;
            }
 
            $scope.removeBeneficiary = function(index) {
-               $scope.users.splice(index, 1);
+               $scope.beneficiaries.splice(index, 1);
                $scope.rows.splice(index,1);
                $scope.counter--;
            }
 
            $scope.saveBeneficiary = function(index) {
-               $.post('/api/beneficiary', user, function(data){
+               $.post('/api/beneficiary', beneficiary, function(data){
                 console.log(data);
                });
            }
