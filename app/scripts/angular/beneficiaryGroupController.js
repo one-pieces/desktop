@@ -24,20 +24,18 @@ app
            //  birthdate: '1991-5',
            //  abortion: '10%'
            // }];
-           $scope.groupAbortion = $scope.group.groupAbortion;
            $scope.groupAbortionMax = 100;
            $scope.counter = 0;
-           $scope.maxCount = $scope.group.maxCount;
            $scope.addRow = function () {
               var abortionSum = 0;
                 for (var i = 0; i < $scope.users.length; i++) {
                   abortionSum += parseInt($scope.users[i].abortion);
                 };
-               if ($scope.counter >= $scope.maxCount) {
+               if ($scope.counter >= $scope.group.maxCount) {
                    alert('Given number exceeds the limitation!');
                    return;
                }
-               if (abortionSum >= parseInt($scope.groupAbortion)) {
+               if (abortionSum >= parseInt($scope.group.groupAbortion)) {
                    alert('The sum of each user\'s abortion exceeds the max!');
                    return;
                };
@@ -49,9 +47,9 @@ app
                 // abortion: ''
                };
                if (!$scope.counter) {
-                user.abortion = $scope.groupAbortion;
+                user.abortion = $scope.group.groupAbortion;
               } else {
-                user.abortion = parseInt($scope.groupAbortion) - abortionSum + '%';
+                user.abortion = parseInt($scope.group.groupAbortion) - abortionSum + '%';
               };
                $scope.users.push(user);
                var row = {
@@ -73,13 +71,6 @@ app
                 console.log(data);
                });
            }
-
-           $scope.$watch('groupAbortion', function(newValue) {
-            if (parseInt(newValue) > $scope.groupAbortionMax) {
-              alert('The max of group\'s abortion is ' + $scope.groupAbortionMax + '%!');
-              return;
-            };
-           });
 
           //  $scope.$watch('users', function(newValue, oldValue) {
           //   // console.log(newValue,oldValue);

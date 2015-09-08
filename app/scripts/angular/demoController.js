@@ -23,15 +23,13 @@ app
 
     	$scope.$watch('beneficiaryGroups', function(newValue) {
     		var groupAbortionSum = 0;
-    		console.log('longlong');
-    		console.log(newValue);
     		for (var i = 0; i < $scope.beneficiaryGroups.length; i++) {
     			groupAbortionSum += parseInt($scope.beneficiaryGroups[i].groupAbortion);
     		};
 
     		if (groupAbortionSum > 100) {
     			alert('The max sum of groups\' abortion is 100%!');
-          return;
+                return;
     		};
     	}, true);
     });
