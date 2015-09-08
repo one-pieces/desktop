@@ -13,8 +13,16 @@ app
             scope : {
                 save: '&saveBeneficiary',
                 delete: '&deleteBeneficiary',
-                row: '=rowContent'
+                row: '=rowContent',
+                rest: '=proportionRest'
             },
-            templateUrl: "views/directives/beneficiaryTpl.html"
+            templateUrl: "views/directives/beneficiaryTpl.html",
+            controller: function($scope) {
+                $scope.add = function() {
+                    $scope.row.beneficiary.proportion = 
+                        (parseInt($scope.row.beneficiary.proportion)
+                         + parseInt($scope.rest)).toFixed(2);
+                }
+            }
         };
     });

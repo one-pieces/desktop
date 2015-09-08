@@ -25,12 +25,13 @@ app
            //  proportion: '10%'
            // }];
            $scope.proportionMax = 100;
+           $scope.proportionSum = 0;
+           $scope.proportionRest = 0;
            $scope.counter = 0;
            $scope.addRow = function () {
-              var proportionSum = 0;
-                for (var i = 0; i < $scope.beneficiaries.length; i++) {
-                  proportionSum += parseInt($scope.beneficiaries[i].proportion);
-                };
+                // for (var i = 0; i < $scope.beneficiaries.length; i++) {
+                //   proportionSum += parseInt($scope.beneficiaries[i].proportion);
+                // };
                // if (proportionSum >= parseInt($scope.group.proportion)) {
                //     alert('同组所有受益人分配比例之和不得超过100%，请调整受益人分配比例！');
                //     return;
@@ -40,13 +41,13 @@ app
                 // sex: '',
                 // age: '',
                 // birthdate: '',
-                // proportion: ''
+                proportion: ($scope.group.proportion - $scope.proportionSum).toFixed(2)
                };
-               if (!$scope.counter) {
-                beneficiary.proportion = $scope.group.proportion;
-              } else {
-                beneficiary.proportion = (parseInt($scope.group.proportion) - proportionSum).toFixed(2);
-              };
+              //  if (!$scope.counter) {
+              //   beneficiary.proportion = $scope.group.proportion;
+              // } else {
+              //   beneficiary.proportion = ($scope.group.proportion - $scope.proportionSum).toFixed(2);
+              // };
                $scope.beneficiaries.push(beneficiary);
                var row = {
                 id: 'Row ' + $scope.counter,
@@ -75,4 +76,16 @@ app
                 index: index
               });
            }
+
+           $scope.$watch('beneficiaries', function(newValue, oldValue) {
+              // for (var i = 0; i < newValue.length; i++) {
+                // if(newValue[i].proportion !== oldValue[i].proportion) {
+                  $scope.proportionSum = 0;
+                  for (var j = 0; j < newValue.length; j++) {
+                    $scope.proportionSum += parseInt(newValue[j].proportion);
+                  };
+                  $scope.proportionRest = $scope.proportionMax - $scope.proportionSum;
+                // }
+              // };
+           }, true);
     });

@@ -12,7 +12,7 @@
     <option value="3">第三顺位</option>
     <option value="4">第四顺位</option>
     </select>&nbsp; -->
-    受益人分配比例：<input type="text" name="proportion" width="20%" ng-model="row.beneficiary.proportion"/>（单位：%）
+    受益人分配比例：<input type="text" name="proportion" width="20%" ng-model="row.beneficiary.proportion"/><input ng-show="rest !== 0" ng-click="add()" type="button" value="+{{rest}}"/>（单位：%）
     <!-- <input type="button" value="保存受益人" ng-click="save()"/> -->
     <input type="button" value="↓" >
     <input type="button" value="↑" >
