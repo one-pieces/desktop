@@ -11,7 +11,7 @@ app
 
             },
             scope : {
-                save: '&saveBeneficiary'
+                save: '&saveBeneficiary',
                 delete: '&deleteBeneficiary',
                 row: '=rowContent'
             },
