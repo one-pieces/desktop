@@ -11,7 +11,9 @@ app
 
             },
             scope : {
-                group: "="
+                index: "=",
+                group: "=",
+                deleteGroup: "&removeGroup"
             },
             templateUrl: "views/directives/beneficiaryGroup.html",
             controller: "beneficiaryGroupCtrl"

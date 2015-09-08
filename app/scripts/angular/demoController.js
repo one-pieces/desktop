@@ -3,33 +3,40 @@
  */
 app
     .controller('demoCtrl', function($scope){
-    	$scope.beneficiaryGroups = [{
-    		name: "第一顺位",
-    		proportion: "40%",
-    		maxCount: 3
-    	},{
-    		name: "第二顺位",
-    		proportion: "30%",
-    		maxCount: 2
-    	},{
-    		name: "第三顺位",
-    		proportion: "20%",
-    		maxCount: 2
-    	},{
-    		name: "第四顺位",
-    		proportion: "10%",
-    		maxCount: 2
-    	}];
+        $scope.index = 0;
+        $scope.maxGroupCount = 4;
+        $scope.beneficiaryGroups = [];
+    	// $scope.beneficiaryGroups = [{
+    	// 	name: "第一顺位",
+    	// 	proportion: "40%",
+    	// 	maxCount: 3
+    	// },{
+    	// 	name: "第二顺位",
+    	// 	proportion: "30%",
+    	// 	maxCount: 2
+    	// },{
+    	// 	name: "第三顺位",
+    	// 	proportion: "20%",
+    	// 	maxCount: 2
+    	// },{
+    	// 	name: "第四顺位",
+    	// 	proportion: "10%",
+    	// 	maxCount: 2
+    	// }];
 
-    	$scope.$watch('beneficiaryGroups', function(newValue) {
-    		var proportionSum = 0;
-    		for (var i = 0; i < $scope.beneficiaryGroups.length; i++) {
-    			proportionSum += parseInt($scope.beneficiaryGroups[i].proportion);
-    		};
-
-    		if (proportionSum > 100) {
-    			alert('The max sum of groups\' proportion is 100%!');
+        $scope.addGroup = function() {
+            if ($scope.beneficiaryGroups.length >= $scope.maxGroupCount) {
+                alert('超过设置的最大组别!');
                 return;
-    		};
-    	}, true);
+            }
+            var group = {
+                id: $scope.index++,
+                proportion: (100).toFixed(2)
+            };
+            $scope.beneficiaryGroups.push(group);
+        }
+
+        $scope.removeGroup = function(index) {
+            $scope.beneficiaryGroups.splice(index,1);
+        }
     });
