@@ -4,7 +4,7 @@
 'use strict';
 
 app
-    .directive('demoBeneficiary', function() {
+    .directive('beneficiaryGroup', function() {
         return {
             restrict: 'E',
             link : function(scope, element, attrs, ctrl) {
