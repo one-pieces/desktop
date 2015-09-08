@@ -3,100 +3,35 @@
  */
 app
     .controller('demoCtrl', function($scope){
-           $scope.rows = [];
-           $scope.users = [];
-           // $scope.users = [{
-           //  name: 'xiaolong',
-           //  sex: '男',
-           //  age: '24',
-           //  birthdate: '1991-9',
-           //  abortion: '20%'
-           // },{
-           //  name: 'xiaohong',
-           //  sex: '女',
-           //  age: '22',
-           //  birthdate: '1993-9',
-           //  abortion: '15%'
-           // },{
-           //  name: 'xiaoming',
-           //  sex: '男',
-           //  age: '24',
-           //  birthdate: '1991-5',
-           //  abortion: '10%'
-           // }];
-           $scope.groupAbortion = '60%';
-           $scope.groupAbortionMax = 100;
-           $scope.counter = 0;
-           $scope.maxCount = 3;
-           $scope.addRow = function () {
-              var abortionSum = 0;
-                for (var i = 0; i < $scope.users.length; i++) {
-                  abortionSum += parseInt($scope.users[i].abortion);
-                };
-               if ($scope.counter >= $scope.maxCount) {
-                   alert('Given number exceeds the limitation!');
-                   return;
-               }
-               if (abortionSum >= parseInt($scope.groupAbortion)) {
-                   alert('The sum of each user\'s abortion exceeds the max!');
-                   return;
-               };
-               var user = {
-                // name: '',
-                // sex: '',
-                // age: '',
-                // birthdate: '',
-                // abortion: ''
-               };
-               if (!$scope.counter) {
-                user.abortion = $scope.groupAbortion;
-              } else {
-                user.abortion = parseInt($scope.groupAbortion) - abortionSum + '%';
-              };
-               $scope.users.push(user);
-               var row = {
-                id: 'Row ' + $scope.counter,
-                user: $scope.users[$scope.counter]
-               };
-               $scope.rows.push(row);
-               $scope.counter++;
-           }
+    	$scope.beneficiaryGroups = [{
+    		name: "第一顺位",
+    		groupAbortion: "40%",
+    		maxCount: 3
+    	},{
+    		name: "第二顺位",
+    		groupAbortion: "30%",
+    		maxCount: 2
+    	},{
+    		name: "第三顺位",
+    		groupAbortion: "20%",
+    		maxCount: 2
+    	},{
+    		name: "第四顺位",
+    		groupAbortion: "10%",
+    		maxCount: 2
+    	}];
 
-           $scope.removeBeneficiary = function(index) {
-               $scope.users.splice(index, 1);
-               $scope.rows.splice(index,1);
-               $scope.counter--;
-           }
+    	$scope.$watch('beneficiaryGroups', function(newValue) {
+    		var groupAbortionSum = 0;
+    		console.log('longlong');
+    		console.log(newValue);
+    		for (var i = 0; i < $scope.beneficiaryGroups.length; i++) {
+    			groupAbortionSum += parseInt($scope.beneficiaryGroups[i].groupAbortion);
+    		};
 
-           $scope.saveBeneficiary = function(index) {
-               $.post('/api/beneficiary', user, function(data){
-                console.log(data);
-               });
-           }
-
-           $scope.$watch('groupAbortion', function(newValue) {
-            if (parseInt(newValue) > $scope.groupAbortionMax) {
-              alert('The max of group\'s abortion is ' + $scope.groupAbortionMax + '%!');
-              return;
-            };
-           });
-
-          //  $scope.$watch('users', function(newValue, oldValue) {
-          //   // console.log(newValue,oldValue);
-          //   for (var i = 0; i < newValue.length; i++) {
-          //     if (newValue[i].abortion != oldValue[i].abortion) {
-          //       for (var i = 0; i < newValue.length; i++) {
-
-          //       }
-          //     };
-          //   };
-          // }, true);
-
-          // $scope.$watch(function($scope) {
-          //   return users.map(function(user) {
-          //     return user.abortion;
-          //   });
-          // }, function(newValue, oldValue) {
-          //   console.log(newValue,oldValue);
-          // });
+    		if (groupAbortionSum > 100) {
+    			alert('The max sum of groups\' abortion is 100%!');
+          return;
+    		};
+    	}, true);
     });

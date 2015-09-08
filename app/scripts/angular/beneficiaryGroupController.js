@@ -24,10 +24,10 @@ app
            //  birthdate: '1991-5',
            //  abortion: '10%'
            // }];
-           $scope.groupAbortion = '60%';
+           $scope.groupAbortion = $scope.group.groupAbortion;
            $scope.groupAbortionMax = 100;
            $scope.counter = 0;
-           $scope.maxCount = 3;
+           $scope.maxCount = $scope.group.maxCount;
            $scope.addRow = function () {
               var abortionSum = 0;
                 for (var i = 0; i < $scope.users.length; i++) {

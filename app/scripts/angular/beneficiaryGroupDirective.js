@@ -11,7 +11,7 @@ app
 
             },
             scope : {
-                
+                group: "="
             },
             templateUrl: "views/directives/beneficiaryGroup.html",
             controller: "beneficiaryGroupCtrl"
