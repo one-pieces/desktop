@@ -1,10 +1,10 @@
 <form id="{{row.id}}">
     <div class="row">
-        <div class="col-md-2 form-group">
+        <div class="col-md-3 form-group">
             <label>受益人姓名</label>
-            <input class="form-control" type="text" name="beneficiaryName" ng-model="row.beneficiary.name"/>
+            <input class="form-control" type="text" name="beneficiaryName" ng-model="row.beneficiary.name" ng-required="true"/>
         </div>
-        <div class="col-md-2 form-group">
+        <div class="col-md-1 form-group">
             <label>性别</label>
             <select class="form-control" name="sex" value="男" ng-model="row.beneficiary.sex">
                 <option value="男">男</option>
@@ -13,13 +13,13 @@
         </div>
         <div class="col-md-2 form-group">
             <label>年龄</label>
-            <input class="form-control" type="number" min="0" max="100" name="age" id="age" ng-model="row.beneficiary.age" required/>
+            <input class="form-control" type="number" min="0" max="100" name="age" id="age" ng-model="row.beneficiary.age" ng-required="true"/>
         </div>
     <!-- </div>
     <div class="row"> -->
         <div class="col-md-2 form-group">
             <label>出生年月</label>
-            <input class="form-control" type="date" name="birthdate" placeholder="yyyy-MM-dd" ng-model="row.beneficiary.birthdate" ng-required="true"/>
+            <input class="form-control" type="date" name="birthdate" ng-model="row.beneficiary.birthdate" ng-required="true"/>
         </div>
         <div class="col-md-2 form-group">
             <label>受益人分配比例</label>
