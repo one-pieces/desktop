@@ -32,7 +32,8 @@ app
             var group = {
                 id: $scope.index++,
                 apportion: 1,
-                proportion: (100).toFixed(2)
+                proportion: (100).toFixed(2),
+                rows: []
             };
             $scope.beneficiaryGroups.push(group);
         }
@@ -44,6 +45,33 @@ app
         $scope.$on('move-group-desc', function(event, data) {
             $scope.moveGroupDesc(data.isDesc, data.index);
         });
+
+        $scope.$on('move-row-desc-cross-group', function(event, data) {
+            $scope.moveGroupDescCrossGroup(data.isDesc, data.rowIndex, data.groupIndex);
+        });
+
+        $scope.moveGroupDescCrossGroup = function(isDesc, rowIndex, groupIndex) {
+            if(isDesc) {
+                var templVal =  $scope.beneficiaryGroups[groupIndex + 1].rows[0];
+                if (templVal) {
+                    $scope.beneficiaryGroups[groupIndex + 1].rows[0] = $scope.beneficiaryGroups[groupIndex].rows[$scope.beneficiaryGroups[groupIndex].rows.length - 1];
+                    $scope.beneficiaryGroups[groupIndex].rows[$scope.beneficiaryGroups[groupIndex].rows.length - 1] = templVal;
+                } else{
+                    $scope.beneficiaryGroups[groupIndex + 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[$scope.beneficiaryGroups[groupIndex].rows.length - 1]);
+                    $scope.beneficiaryGroups[groupIndex].rows.splice($scope.beneficiaryGroups[groupIndex].rows.length - 1);
+                };
+            }else {
+                var templVal =  $scope.beneficiaryGroups[groupIndex - 1].rows[$scope.beneficiaryGroups[groupIndex - 1].rows.length - 1];
+                if (templVal) {
+                    $scope.beneficiaryGroups[groupIndex - 1].rows[$scope.beneficiaryGroups[groupIndex - 1].rows.length - 1] = $scope.beneficiaryGroups[groupIndex].rows[0];
+                    $scope.beneficiaryGroups[groupIndex].rows[0] = templVal;
+                } else{
+                    $scope.beneficiaryGroups[groupIndex - 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[0]);
+                    $scope.beneficiaryGroups[groupIndex].rows.splice(0, 1);
+                
+                };
+            }
+        }
 
         $scope.moveGroupDesc = function(isDesc, index) {
             if(isDesc) {

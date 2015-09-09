@@ -58,6 +58,14 @@ app
                $scope.counter++;
            }
 
+          //  $scope.$on('add-row', function(event, data) {
+          //   $scope.$addRow();
+          // });
+
+          //  $scope.$on('remove-row', function(event, data) {
+          //   $scope.$removeBeneficiary();
+          // });
+
            $scope.removeBeneficiary = function(index) {
                $scope.beneficiaries.splice(index, 1);
                $scope.rows.splice(index,1);
@@ -83,13 +91,36 @@ app
 
           $scope.moveRowDesc = function(isDesc, index) {
               if(isDesc) {
-                  var templVal =  $scope.rows[index + 1];
-                  $scope.rows[index + 1] = $scope.rows[index];
-                  $scope.rows[index] = templVal;
+                  // 跨组向下移动
+                  if (index == $scope.rows.length - 1) {
+                    console.log('跨组向下移动');
+                    $scope.$emit('move-row-desc-cross-group', {
+                      isDesc: isDesc,
+                      rowIndex: index,
+                      groupIndex: $scope.index
+                    });
+                    // var templVal =  $scope.rows[index + 1];
+                    // $scope.rows[index + 1] = $scope.group.rows[index];
+                    // $scope.rows[index] = templVal;
+                  } else{
+                    var templVal =  $scope.rows[index + 1];
+                    $scope.rows[index + 1] = $scope.rows[index];
+                    $scope.rows[index] = templVal;
+                  };
               }else {
-                  var templVal =  $scope.rows[index - 1];
-                  $scope.rows[index - 1] = $scope.rows[index];
-                  $scope.rows[index] = templVal;
+                  // 跨组向上移动
+                  if (index == 0) {
+                    console.log('跨组向上移动');
+                    $scope.$emit('move-row-desc-cross-group', {
+                      isDesc: isDesc,
+                      rowIndex: index,
+                      groupIndex: $scope.index
+                    });
+                  } else{
+                    var templVal =  $scope.rows[index - 1];
+                    $scope.rows[index - 1] = $scope.rows[index];
+                    $scope.rows[index] = templVal;
+                  };
               }
           }
 
