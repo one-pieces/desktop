@@ -94,10 +94,9 @@ app
                   $scope.proportionSum += parseInt($scope.group.rows[i].beneficiary.proportion);
               };
               if ($scope.proportionSum > $scope.proportionMax) {
-                  alert('同组所有受益人分配比例之和不得超过100%，请调整受益人分配比例！');
                   // 出现错误，把数据回滚
                   for (var i = 0; i < newValue.length; i++) {
-                    $scope.group.rows[i].beneficiary.proportion = parseInt(oldValue[i].proportion);
+                    $scope.group.rows[i].beneficiary.proportion = parseInt(oldValue[i] ? oldValue[i].proportion : 0);
                   }
                   $scope.proportionRest = 0;
                   return;
