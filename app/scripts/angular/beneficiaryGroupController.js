@@ -80,6 +80,12 @@ app
               }
           }
 
+          $scope.average = function () {
+              for (var i = 0; i < $scope.group.rows.length; i++) {
+                  $scope.group.rows[i].beneficiary.proportion = parseInt( 100 / $scope.group.rows.length );
+              }
+          }
+
           $scope.$watch(function() {
               var beneficiaries = [];
                   for (var i = 0; i < $scope.group.rows.length; i++) {
