@@ -2,8 +2,8 @@
   <thead>
     <tr>
       <th>第{{index+1}}顺位受益人信息
-      			<span ng-if="rows.length > 0">
-                （共{{rows.length}}人）
+      			<span ng-if="group.rows.length > 0">
+                （共{{group.rows.length}}人）
                 </span>
             <input type="button" value="增加受益人" ng-click="addRow()"/>
             <span ng-if="index !== (groupsLength-1)">
@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="rowContent in rows">
+    <tr ng-repeat="rowContent in group.rows">
         <td><beneficiary index="$index" save-beneficiary="saveBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" rows-length="rows.length" groups-length="groupsLength" group-index="index" row-content="rowContent" proportion-rest="proportionRest"></beneficiary></td>
     </tr>
   </tbody>

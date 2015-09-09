@@ -3,7 +3,7 @@
  */
 app
     .controller('beneficiaryGroupCtrl', function($scope){
-           $scope.rows = [];
+           // $scope.rows = [];
            // $scope.beneficiaries = [];
            // $scope.beneficiaries = [{
            //  name: 'xiaolong',
@@ -40,8 +40,8 @@ app
                 id: 'Row ' + $scope.counter,
                 beneficiary: beneficiary
                };
-               $scope.rows.push(row);
-               $scope.group.rows = $scope.rows;
+               // $scope.rows.push(row);
+               $scope.group.rows.push(row);
                $scope.counter++;
            }
 
@@ -54,7 +54,7 @@ app
           // });
 
            $scope.removeBeneficiary = function(index) {
-               $scope.rows.splice(index,1);
+               $scope.group.rows.splice(index,1);
                $scope.counter--;
            }
 
@@ -78,7 +78,7 @@ app
           $scope.moveRowDesc = function(isDesc, index) {
               if(isDesc) {
                   // 向下移动
-                  if (index == $scope.rows.length - 1) {
+                  if (index == $scope.group.rows.length - 1) {
                     // 跨组
                     console.log('跨组向下移动');
                     $scope.$emit('move-row-desc-cross-group', {
@@ -88,9 +88,9 @@ app
                     });
                   } else{
                     // 不跨组
-                    var templVal =  $scope.rows[index + 1];
-                    $scope.rows[index + 1] = $scope.rows[index];
-                    $scope.rows[index] = templVal;
+                    var templVal =  $scope.group.rows[index + 1];
+                    $scope.group.rows[index + 1] = $scope.group.rows[index];
+                    $scope.group.rows[index] = templVal;
                   };
               }else {
                   // 跨组向上移动
@@ -104,9 +104,9 @@ app
                     });
                   } else{
                     // 不跨组
-                    var templVal =  $scope.rows[index - 1];
-                    $scope.rows[index - 1] = $scope.rows[index];
-                    $scope.rows[index] = templVal;
+                    var templVal =  $scope.group.rows[index - 1];
+                    $scope.group.rows[index - 1] = $scope.group.rows[index];
+                    $scope.group.rows[index] = templVal;
                   };
               }
           }
@@ -114,28 +114,28 @@ app
 
           // });
 
-           $scope.$watch(function() {
+          $scope.$watch(function() {
             var beneficiaries = [];
-            for (var i = 0; i < $scope.rows.length; i++) {
-              beneficiaries.push($scope.rows[i].beneficiary);
+            for (var i = 0; i < $scope.group.rows.length; i++) {
+              beneficiaries.push($scope.group.rows[i].beneficiary);
             };
             return beneficiaries;
-           }, function(newValue, oldValue) {
+          }, function(newValue, oldValue) {
             $scope.proportionSum = 0;
             for (var i = 0; i < newValue.length; i++) {
               // 判断是否为数字，如非数字则为0
-              $scope.rows[i].beneficiary.proportion = $scope.rows[i].beneficiary.proportion || 0;
-              $scope.proportionSum += parseInt($scope.rows[i].beneficiary.proportion);
+              $scope.group.rows[i].beneficiary.proportion = $scope.group.rows[i].beneficiary.proportion || 0;
+              $scope.proportionSum += parseInt($scope.group.rows[i].beneficiary.proportion);
             };
             if ($scope.proportionSum > $scope.proportionMax) {
               alert('同组所有受益人分配比例之和不得超过100%，请调整受益人分配比例！');
               // 出现错误，把数据回滚
               for (var i = 0; i < newValue.length; i++) {
-                $scope.rows[i].beneficiary.proportion = parseInt(oldValue[i].proportion);
+                $scope.group.rows[i].beneficiary.proportion = parseInt(oldValue[i].proportion);
               }
               $scope.proportionRest = 0;
               return;
             };
             $scope.proportionRest = $scope.proportionMax - $scope.proportionSum;
-           }, true);
+          }, true);
     });

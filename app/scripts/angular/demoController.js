@@ -52,23 +52,26 @@ app
 
         $scope.moveRowDescCrossGroup = function(isDesc, rowIndex, groupIndex) {
             if(isDesc) {
+                // 当前组的人数
+                var length = $scope.beneficiaryGroups[groupIndex].rows.length;
                 var templVal =  $scope.beneficiaryGroups[groupIndex + 1].rows[0];
                 if (templVal) {
-                    $scope.beneficiaryGroups[groupIndex + 1].rows[0] = $scope.beneficiaryGroups[groupIndex].rows[$scope.beneficiaryGroups[groupIndex].rows.length - 1];
-                    $scope.beneficiaryGroups[groupIndex].rows[$scope.beneficiaryGroups[groupIndex].rows.length - 1] = templVal;
+                    $scope.beneficiaryGroups[groupIndex + 1].rows[0] = $scope.beneficiaryGroups[groupIndex].rows[length - 1];
+                    $scope.beneficiaryGroups[groupIndex].rows[length - 1] = templVal;
                 } else{
-                    $scope.beneficiaryGroups[groupIndex + 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[$scope.beneficiaryGroups[groupIndex].rows.length - 1]);
-                    $scope.beneficiaryGroups[groupIndex].rows.splice($scope.beneficiaryGroups[groupIndex].rows.length - 1);
+                    $scope.beneficiaryGroups[groupIndex + 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[length - 1]);
+                    $scope.beneficiaryGroups[groupIndex].rows.splice(length - 1);
                 };
             }else {
-                var templVal =  $scope.beneficiaryGroups[groupIndex - 1].rows[$scope.beneficiaryGroups[groupIndex - 1].rows.length - 1];
+                // 下个组的人数
+                var length = $scope.beneficiaryGroups[groupIndex - 1].rows.length;
+                var templVal =  $scope.beneficiaryGroups[groupIndex - 1].rows[length - 1];
                 if (templVal) {
-                    $scope.beneficiaryGroups[groupIndex - 1].rows[$scope.beneficiaryGroups[groupIndex - 1].rows.length - 1] = $scope.beneficiaryGroups[groupIndex].rows[0];
+                    $scope.beneficiaryGroups[groupIndex - 1].rows[length - 1] = $scope.beneficiaryGroups[groupIndex].rows[0];
                     $scope.beneficiaryGroups[groupIndex].rows[0] = templVal;
                 } else{
                     $scope.beneficiaryGroups[groupIndex - 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[0]);
                     $scope.beneficiaryGroups[groupIndex].rows.splice(0, 1);
-                
                 };
             }
         }
