@@ -63,4 +63,12 @@ app
 			$(element).datepicker();
 		}
 	}
+})
+.directive('tooltip', function() {
+	return {
+		restrict: 'EA',
+		link: function(scope, element, attrs, ctrl) {
+			$(element).tooltip();
+		}
+	}
 });
