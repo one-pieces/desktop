@@ -1,57 +1,26 @@
-/**
- * Created by Administrator on 2015/9/6 0006.
- */
+'use strict';
+
 app
     .controller('beneficiaryGroupCtrl', function($scope){
-           // $scope.rows = [];
-           // $scope.beneficiaries = [];
-           // $scope.beneficiaries = [{
-           //  name: 'xiaolong',
-           //  sex: '男',
-           //  age: '24',
-           //  birthdate: '1991-9',
-           //  proportion: '20%'
-           // },{
-           //  name: 'xiaohong',
-           //  sex: '女',
-           //  age: '22',
-           //  birthdate: '1993-9',
-           //  proportion: '15%'
-           // },{
-           //  name: 'xiaoming',
-           //  sex: '男',
-           //  age: '24',
-           //  birthdate: '1991-5',
-           //  proportion: '10%'
-           // }];
            $scope.proportionMax = 100;
            $scope.proportionSum = 0;
            $scope.proportionRest = 0;
            $scope.counter = 0;
            $scope.addRow = function () {
-               var beneficiary = {
-                // name: '',
-                // sex: '',
-                // age: '',
-                // birthdate: '',
-                proportion: $scope.group.proportion - $scope.proportionSum
-               };
-               var row = {
-                id: 'Row ' + $scope.counter,
-                beneficiary: beneficiary
-               };
-               // $scope.rows.push(row);
-               $scope.group.rows.push(row);
-               $scope.counter++;
+              var beneficiary = {
+                  // name: '',
+                  // sex: '',
+                  // age: '',
+                  // birthdate: '',
+                  proportion: $scope.group.proportion - $scope.proportionSum
+              };
+              var row = {
+                  id: 'Row ' + $scope.counter,
+                  beneficiary: beneficiary
+              };
+              $scope.group.rows.push(row);
+              $scope.counter++;
            }
-
-          //  $scope.$on('add-row', function(event, data) {
-          //   $scope.$addRow();
-          // });
-
-          //  $scope.$on('remove-row', function(event, data) {
-          //   $scope.$removeBeneficiary();
-          // });
 
            $scope.removeBeneficiary = function(index) {
                $scope.group.rows.splice(index,1);
@@ -93,7 +62,7 @@ app
                     $scope.group.rows[index] = templVal;
                   };
               }else {
-                  // 跨组向上移动
+                  // 向上移动
                   if (index == 0) {
                     // 跨组
                     console.log('跨组向上移动');
@@ -110,32 +79,29 @@ app
                   };
               }
           }
-          // $scope.$watch('rows', function(newValue) {
-
-          // });
 
           $scope.$watch(function() {
-            var beneficiaries = [];
-            for (var i = 0; i < $scope.group.rows.length; i++) {
-              beneficiaries.push($scope.group.rows[i].beneficiary);
-            };
-            return beneficiaries;
+              var beneficiaries = [];
+                  for (var i = 0; i < $scope.group.rows.length; i++) {
+                      beneficiaries.push($scope.group.rows[i].beneficiary);
+                  };
+              return beneficiaries;
           }, function(newValue, oldValue) {
-            $scope.proportionSum = 0;
-            for (var i = 0; i < newValue.length; i++) {
-              // 判断是否为数字，如非数字则为0
-              $scope.group.rows[i].beneficiary.proportion = $scope.group.rows[i].beneficiary.proportion || 0;
-              $scope.proportionSum += parseInt($scope.group.rows[i].beneficiary.proportion);
-            };
-            if ($scope.proportionSum > $scope.proportionMax) {
-              alert('同组所有受益人分配比例之和不得超过100%，请调整受益人分配比例！');
-              // 出现错误，把数据回滚
+              $scope.proportionSum = 0;
               for (var i = 0; i < newValue.length; i++) {
-                $scope.group.rows[i].beneficiary.proportion = parseInt(oldValue[i].proportion);
-              }
-              $scope.proportionRest = 0;
-              return;
-            };
-            $scope.proportionRest = $scope.proportionMax - $scope.proportionSum;
+                  // 判断是否为数字，如非数字则为0
+                  $scope.group.rows[i].beneficiary.proportion = $scope.group.rows[i].beneficiary.proportion || 0;
+                  $scope.proportionSum += parseInt($scope.group.rows[i].beneficiary.proportion);
+              };
+              if ($scope.proportionSum > $scope.proportionMax) {
+                  alert('同组所有受益人分配比例之和不得超过100%，请调整受益人分配比例！');
+                  // 出现错误，把数据回滚
+                  for (var i = 0; i < newValue.length; i++) {
+                    $scope.group.rows[i].beneficiary.proportion = parseInt(oldValue[i].proportion);
+                  }
+                  $scope.proportionRest = 0;
+                  return;
+              };
+              $scope.proportionRest = $scope.proportionMax - $scope.proportionSum;
           }, true);
     });
