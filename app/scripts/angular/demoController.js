@@ -57,8 +57,4 @@ app
                 $scope.beneficiaryGroups[index] = templVal;
             }
         }
-
-        // $scope.$watch('beneficiaryGroups', function(newv){
-        //     console.log(newv);
-        // }, true);
     });
