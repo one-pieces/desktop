@@ -1,6 +1,6 @@
 <input type="button" value="增加受益人分组" ng-click="addGroup()">最大分组数：<input type="text" ng-model="maxGroupCount"/>
 <br/><br/><br/>
-<div ng-repeat="beneficiaryGroup in beneficiaryGroups track by $index">
+<div ng-repeat="beneficiaryGroup in beneficiaryGroups">
   <beneficiary-group index="$index" groups-length="beneficiaryGroups.length" group="beneficiaryGroup" remove-group="removeGroup($index)"></beneficiary-group>
   <br/><br/><br/>
 </div>
