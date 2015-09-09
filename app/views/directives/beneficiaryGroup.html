@@ -1,25 +1,30 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>第{{index+1}}顺位受益人信息
-      			<span ng-if="group.rows.length > 0">
-                （共{{group.rows.length}}人）
-                </span>
-            <input type="button" value="增加受益人" ng-click="addRow()"/>
-            <span ng-if="index !== (groupsLength-1)">
-                <input type="button" value="↓" ng-click="moveDesc(true, index)">
-            </span>
-            <span ng-if="index !== 0">
-                <input type="button" value="↑" ng-click="moveDesc(false, index)">
-            </span>
-            分摊方式：<input type="radio" name="aver{{index}}" id="aver{{index}}"  />均分
-            <input ng-if="index == groupsLength-1" type="button" value="删除受益人组" ng-click="deleteGroup()"/>
-        </th>
+      <th>
+        <span>第{{index+1}}顺位受益人信息</span>
+  			<span ng-if="group.rows.length > 0">
+            （共{{group.rows.length}}人）
+        </span>
+        <input type="button" value="增加受益人" ng-click="addRow()"/>
+        <span ng-if="index !== (groupsLength-1)">
+            <input type="button" value="↓" ng-click="moveDesc(true, index)">
+        </span>
+        <span ng-if="index !== 0">
+            <input type="button" value="↑" ng-click="moveDesc(false, index)">
+        </span>
+        <span>分摊方式：</span>
+        <input type="radio" name="aver{{index}}" id="aver{{index}}"  />
+        <span>均分</span>
+        <input ng-if="index == groupsLength-1" type="button" value="删除受益人组" ng-click="deleteGroup()"/>
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="rowContent in group.rows">
-        <td><beneficiary index="$index" save-beneficiary="saveBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" rows-length="rows.length" groups-length="groupsLength" group-index="index" row-content="rowContent" proportion-rest="proportionRest"></beneficiary></td>
+      <td>
+        <beneficiary index="$index" save-beneficiary="saveBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" rows-length="rows.length" groups-length="groupsLength" group-index="index" row-content="rowContent" proportion-rest="proportionRest"></beneficiary>
+      </td>
     </tr>
   </tbody>
 </table>
