@@ -16,6 +16,8 @@ app
                 delete: '&deleteBeneficiary',
                 row: '=rowContent',
                 rowsLength: '=',
+                groupsLength: '=',
+                groupIndex: '=',
                 rest: '=proportionRest'
             },
             templateUrl: "views/directives/beneficiaryTpl.html",

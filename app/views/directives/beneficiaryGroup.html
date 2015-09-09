@@ -19,7 +19,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="rowContent in rows">
-        <td><beneficiary index="$index" save-beneficiary="saveBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" rows-length="rows.length" row-content="rowContent" proportion-rest="proportionRest"></beneficiary></td>
+        <td><beneficiary index="$index" save-beneficiary="saveBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" rows-length="rows.length" groups-length="groupsLength" group-index="index" row-content="rowContent" proportion-rest="proportionRest"></beneficiary></td>
     </tr>
   </tbody>
 </table>
