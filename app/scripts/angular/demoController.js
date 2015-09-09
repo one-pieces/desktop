@@ -47,10 +47,10 @@ app
         });
 
         $scope.$on('move-row-desc-cross-group', function(event, data) {
-            $scope.moveGroupDescCrossGroup(data.isDesc, data.rowIndex, data.groupIndex);
+            $scope.moveRowDescCrossGroup(data.isDesc, data.rowIndex, data.groupIndex);
         });
 
-        $scope.moveGroupDescCrossGroup = function(isDesc, rowIndex, groupIndex) {
+        $scope.moveRowDescCrossGroup = function(isDesc, rowIndex, groupIndex) {
             if(isDesc) {
                 var templVal =  $scope.beneficiaryGroups[groupIndex + 1].rows[0];
                 if (templVal) {
