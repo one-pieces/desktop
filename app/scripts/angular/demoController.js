@@ -36,25 +36,13 @@ app
             if(isDesc) {
                 // 当前组的人数
                 var length = $scope.beneficiaryGroups[groupIndex].rows.length;
-                var templVal =  $scope.beneficiaryGroups[groupIndex + 1].rows[0];
-                if (templVal) {
-                    $scope.beneficiaryGroups[groupIndex + 1].rows[0] = $scope.beneficiaryGroups[groupIndex].rows[length - 1];
-                    $scope.beneficiaryGroups[groupIndex].rows[length - 1] = templVal;
-                } else{
-                    $scope.beneficiaryGroups[groupIndex + 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[length - 1]);
-                    $scope.beneficiaryGroups[groupIndex].rows.splice(length - 1);
-                };
+                $scope.beneficiaryGroups[groupIndex + 1].rows.unshift($scope.beneficiaryGroups[groupIndex].rows[length - 1]);
+                $scope.beneficiaryGroups[groupIndex].rows.pop();
             }else {
                 // 下个组的人数
                 var length = $scope.beneficiaryGroups[groupIndex - 1].rows.length;
-                var templVal =  $scope.beneficiaryGroups[groupIndex - 1].rows[length - 1];
-                if (templVal) {
-                    $scope.beneficiaryGroups[groupIndex - 1].rows[length - 1] = $scope.beneficiaryGroups[groupIndex].rows[0];
-                    $scope.beneficiaryGroups[groupIndex].rows[0] = templVal;
-                } else{
-                    $scope.beneficiaryGroups[groupIndex - 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[0]);
-                    $scope.beneficiaryGroups[groupIndex].rows.splice(0, 1);
-                };
+                $scope.beneficiaryGroups[groupIndex - 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[0]);
+                $scope.beneficiaryGroups[groupIndex].rows.shift();
             }
         }
 
