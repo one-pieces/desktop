@@ -55,4 +55,12 @@ app
 			});
 		}
 	}
+})
+.directive('datepicker', function() {
+	return {
+		restrict: 'EA',
+		link: function(scope, element, attrs, ctrl) {
+			$(element).datepicker();
+		}
+	}
 });
