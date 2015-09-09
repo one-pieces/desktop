@@ -77,12 +77,35 @@ app
               });
            }
 
+          $scope.$on('move-row-desc', function(event, data) {
+              $scope.moveRowDesc(data.isDesc, data.index);
+          });
+
+          $scope.moveRowDesc = function(isDesc, index) {
+              if(isDesc) {
+                  var templVal =  $scope.rows[index + 1];
+                  $scope.rows[index + 1] = $scope.rows[index];
+                  $scope.rows[index] = templVal;
+              }else {
+                  var templVal =  $scope.rows[index - 1];
+                  $scope.rows[index - 1] = $scope.rows[index];
+                  $scope.rows[index] = templVal;
+              }
+          }
+
            $scope.$watch('beneficiaries', function(newValue, oldValue) {
               // for (var i = 0; i < newValue.length; i++) {
                 // if(newValue[i].proportion !== oldValue[i].proportion) {
                   $scope.proportionSum = 0;
-                  for (var j = 0; j < newValue.length; j++) {
-                    $scope.proportionSum += parseInt(newValue[j].proportion);
+                  for (var i = 0; i < newValue.length; i++) {
+                    $scope.proportionSum += parseInt(newValue[i].proportion);
+                  };
+                  if ($scope.proportionSum > $scope.proportionMax) {
+                    alert('同组所有受益人分配比例之和不得超过100%，请调整受益人分配比例！');
+                    for (var i = 0; i < newValue.length; i++) {
+                      $scope.beneficiaries[i].proportion = oldValue[i].proportion;
+                    }
+                    return;
                   };
                   $scope.proportionRest = $scope.proportionMax - $scope.proportionSum;
                 // }

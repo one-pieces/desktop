@@ -14,7 +14,13 @@
     </select>&nbsp; -->
     受益人分配比例：<input type="text" name="proportion" width="20%" ng-model="row.beneficiary.proportion"/><input ng-show="rest !== 0" ng-click="add()" type="button" value="+{{rest}}"/>（单位：%）
     <!-- <input type="button" value="保存受益人" ng-click="save()"/> -->
-    <input type="button" value="↓" >
-    <input type="button" value="↑" >
+    <!-- <input type="button" value="↓" >
+    <input type="button" value="↑" > -->
+    <span ng-if="index !== (rowsLength-1)">
+        <input type="button" value="↓" ng-click="moveDesc(true, index)">
+    </span>
+    <span ng-if="index !== 0">
+        <input type="button" value="↑" ng-click="moveDesc(false, index)">
+    </span>
     <input type="button" value="删除受益人" ng-click="delete()"/>
 </div>
