@@ -19,19 +19,6 @@ app
                 rest: '=proportionRest'
             },
             templateUrl: "views/directives/beneficiaryTpl.html",
-            controller: function($scope) {
-                $scope.add = function() {
-                    $scope.row.beneficiary.proportion = 
-                        (parseInt($scope.row.beneficiary.proportion)
-                         + parseInt($scope.rest)).toFixed(2);
-                }
-
-                $scope.moveDesc = function(isDesc, index) {
-                    $scope.$emit('move-row-desc', {
-                        isDesc: isDesc,
-                        index: index
-                    });
-                }
-            }
+            controller: "deneficiaryCtrl"
         };
     });
