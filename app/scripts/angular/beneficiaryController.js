@@ -4,7 +4,7 @@ app.controller('deneficiaryCtrl', function($scope) {
   $scope.add = function() {
     $scope.row.beneficiary.proportion = 
         (parseInt($scope.row.beneficiary.proportion)
-         + parseInt($scope.rest)).toFixed(2);
+         + parseInt($scope.rest));
   }
 
   $scope.moveDesc = function(isDesc, index) {

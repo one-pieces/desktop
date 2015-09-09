@@ -34,7 +34,7 @@ app
                 // sex: '',
                 // age: '',
                 // birthdate: '',
-                proportion: ($scope.group.proportion - $scope.proportionSum).toFixed(2)
+                proportion: $scope.group.proportion - $scope.proportionSum
                };
                var row = {
                 id: 'Row ' + $scope.counter,
@@ -123,13 +123,14 @@ app
            }, function(newValue, oldValue) {
             $scope.proportionSum = 0;
             for (var i = 0; i < newValue.length; i++) {
-              $scope.proportionSum += parseInt(newValue[i].proportion);
             };
             if ($scope.proportionSum > $scope.proportionMax) {
               alert('同组所有受益人分配比例之和不得超过100%，请调整受益人分配比例！');
+              // 出现错误，把数据回滚
               for (var i = 0; i < newValue.length; i++) {
-                $scope.rows[i].beneficiary.proportion = parseInt(oldValue[i].proportion).toFixed(2);
+                $scope.rows[i].beneficiary.proportion = parseInt(oldValue[i].proportion);
               }
+              $scope.proportionRest = 0;
               return;
             };
             $scope.proportionRest = $scope.proportionMax - $scope.proportionSum;

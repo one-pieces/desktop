@@ -32,7 +32,7 @@ app
             var group = {
                 id: $scope.index++,
                 apportion: 1,
-                proportion: (100).toFixed(2),
+                proportion: 100,
                 rows: []
             };
             $scope.beneficiaryGroups.push(group);

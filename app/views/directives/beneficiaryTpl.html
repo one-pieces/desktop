@@ -1,11 +1,11 @@
-<div id="{{row.id}}">
+<form id="{{row.id}}">
     受益人姓名：<input type="text" name="beneficiaryName" ng-model="row.beneficiary.name"/>&nbsp;
     受益人性别：<select name="sex" value="男" ng-model="row.beneficiary.sex">
         <option value="男">男</option>
         <option value="女">女</option>
     </select>&nbsp;
-    年龄：<input type="text" name="age" id="age" ng-model="row.beneficiary.age"/>&nbsp;
-    出生年月：<input type="text" name="birthdate" ng-model="row.beneficiary.birthdate" datepicker/>&nbsp;
+    年龄：<input type="number" min="0" max="100" name="age" id="age" ng-model="row.beneficiary.age" required/>&nbsp;
+    出生年月：<input type="date" name="birthdate" placeholder="yyyy-MM-dd" ng-model="row.beneficiary.birthdate" ng-required="true"/>&nbsp;
     <!-- 受益人顺位：<select name="sort" value="1">
     <option value="1">第一顺位</option>
     <option value="2">第二顺位</option>
@@ -23,4 +23,4 @@
         <input type="button" value="↑" ng-click="moveDesc(false, index)">
     </span>
     <input type="button" value="删除受益人" ng-click="delete()"/>
-</div>
+</form>

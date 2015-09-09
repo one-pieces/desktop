@@ -12,7 +12,7 @@
             <span ng-if="index !== 0">
                 <input type="button" value="↑" ng-click="moveDesc(false, index)">
             </span>
-            分摊方式：<input type="checkbox" name="dividePattern" ng-model="group.apportion" ng-true-value="1" ng-false-value="0" />均分
+            分摊方式：<input type="radio" name="aver{{index}}" id="aver{{index}}"  />均分
             <input ng-if="index == groupsLength-1" type="button" value="删除受益人组" ng-click="deleteGroup()"/>
         </th>
     </tr>
