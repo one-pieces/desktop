@@ -123,7 +123,9 @@ app
            }, function(newValue, oldValue) {
             $scope.proportionSum = 0;
             for (var i = 0; i < newValue.length; i++) {
-              $scope.proportionSum += parseInt(newValue[i].proportion) || 0;
+              // 判断是否为数字，如非数字则为0
+              $scope.rows[i].beneficiary.proportion = $scope.rows[i].beneficiary.proportion || 0;
+              $scope.proportionSum += parseInt($scope.rows[i].beneficiary.proportion);
             };
             if ($scope.proportionSum > $scope.proportionMax) {
               alert('同组所有受益人分配比例之和不得超过100%，请调整受益人分配比例！');
