@@ -1,24 +1,39 @@
 <form id="{{row.id}}">
-    <span>受益人姓名：</span>
-    <input type="text" name="beneficiaryName" ng-model="row.beneficiary.name"/>&nbsp;
-    <span>受益人性别：</span>
-    <select name="sex" value="男" ng-model="row.beneficiary.sex">
-        <option value="男">男</option>
-        <option value="女">女</option>
-    </select>&nbsp;
-    <span>年龄：</span>
-    <input type="number" min="0" max="100" name="age" id="age" ng-model="row.beneficiary.age" required/>&nbsp;
-    <span>出生年月：</span>
-    <input type="date" name="birthdate" placeholder="yyyy-MM-dd" ng-model="row.beneficiary.birthdate" ng-required="true"/>&nbsp;
-    <span>受益人分配比例：</span>
-    <input type="number" min="0" max="100" name="proportion" width="20%" ng-model="row.beneficiary.proportion"/><input ng-show="rest !== 0" ng-click="add()" type="button" value="+{{rest}}"/>
-    <span>（单位：%）</span>
-    <!-- <input type="button" value="保存受益人" ng-click="save()"/> -->
-    <span ng-if="!(index == (rowsLength-1) && groupIndex == (groupsLength-1))">
-        <input type="button" value="↓" ng-click="moveDesc(true, index)">
-    </span>
-    <span ng-if="!(index == 0 && groupIndex == 0)">
-        <input type="button" value="↑" ng-click="moveDesc(false, index)">
-    </span>
-    <input type="button" value="删除受益人" ng-click="delete()"/>
+    <div class="row">
+        <div class="col-md-2 form-group">
+            <label>受益人姓名</label>
+            <input class="form-control" type="text" name="beneficiaryName" ng-model="row.beneficiary.name"/>
+        </div>
+        <div class="col-md-2 form-group">
+            <label>性别</label>
+            <select class="form-control" name="sex" value="男" ng-model="row.beneficiary.sex">
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+        </div>
+        <div class="col-md-2 form-group">
+            <label>年龄</label>
+            <input class="form-control" type="number" min="0" max="100" name="age" id="age" ng-model="row.beneficiary.age" required/>
+        </div>
+    <!-- </div>
+    <div class="row"> -->
+        <div class="col-md-2 form-group">
+            <label>出生年月</label>
+            <input class="form-control" type="date" name="birthdate" placeholder="yyyy-MM-dd" ng-model="row.beneficiary.birthdate" ng-required="true"/>
+        </div>
+        <div class="col-md-2 form-group">
+            <label>受益人分配比例</label>
+            <div class="input-group"> 
+                <input class="form-control" type="number" min="0" max="100" name="proportion" ng-model="row.beneficiary.proportion"/>
+                <span class="input-group-addon">%</span>
+            </div>
+            <button class="btn btn-warning btn-xs" ng-show="rest !== 0" ng-click="add()">+{{rest}}</button>
+        </div>
+        <div class="col-md-2 form-group">
+            <!-- <input type="button" value="保存受益人" ng-click="save()"/> -->
+            <button class="btn btn-danger btn-xs" ng-click="delete()">删除受益人</button>
+            <button class="btn btn-success btn-xs" ng-click="moveDesc(true, index)" ng-if="!(index == (rowsLength-1) && groupIndex == (groupsLength-1))">↓</button>
+            <button class="btn btn-success btn-xs" ng-click="moveDesc(false, index)" ng-if="!(index == 0 && groupIndex == 0)">↑</button>
+        </div>
+    </div>
 </form>
