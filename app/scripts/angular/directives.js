@@ -66,9 +66,21 @@ app
 })
 .directive('tooltip', function() {
 	return {
-		restrict: 'EA',
+		restrict: 'A',
 		link: function(scope, element, attrs, ctrl) {
-			$(element).tooltip();
+			if (attrs.tooltip == 'NOT_ALWAY_SHOW') {
+				scope.$watch(function() {
+					return $(element).val();
+				}, function(newValue) {
+					if (!!newValue) {
+						$(element).tooltip('destroy');
+					} else {
+						$(element).tooltip();
+					};
+				});
+			} else{
+				$(element).tooltip();
+			};
 		}
 	}
 });

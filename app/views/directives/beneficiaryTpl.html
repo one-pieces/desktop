@@ -1,25 +1,26 @@
 <form id="{{row.id}}">
     <div class="row">
-        <div class="col-md-3 form-group">
+        <div class="col-md-2 form-group">
             <label>受益人姓名</label>
-            <input class="form-control" type="text" name="beneficiaryName" ng-model="row.beneficiary.name" ng-required="true" data-toggle="tooltip" title="请填写姓名，不能为空" tooltip/>
+            <input class="form-control" type="text" name="beneficiaryName" ng-model="row.beneficiary.name" ng-required="true" data-toggle="tooltip" title="请填写姓名，不能为空" tooltip="NOT_ALWAY_SHOW"/>
         </div>
         <div class="col-md-1 form-group">
             <label>性别</label>
-            <select class="form-control" name="sex" value="男" ng-model="row.beneficiary.sex" data-toggle="tooltip" title="请选择性别" tooltip>
+            <select class="form-control" name="sex" ng-model="row.beneficiary.sex" data-toggle="tooltip" title="请选择性别" tooltip="NOT_ALWAY_SHOW">
+                <option value=""></option>
                 <option value="男">男</option>
                 <option value="女">女</option>
             </select>
         </div>
         <div class="col-md-2 form-group">
             <label>年龄</label>
-            <input class="form-control" type="number" min="0" max="100" name="age" id="age" ng-model="row.beneficiary.age" data-toggle="tooltip" title="请填写年龄" tooltip/>
+            <input class="form-control" type="number" min="0" max="100" name="age" id="age" ng-model="row.beneficiary.age" data-toggle="tooltip" title="请填写年龄" tooltip="NOT_ALWAY_SHOW"/>
         </div>
     <!-- </div>
     <div class="row"> -->
-        <div class="col-md-2 form-group">
+        <div class="col-md-3 form-group">
             <label>出生年月</label>
-            <input class="form-control" type="date" name="birthdate" ng-model="row.beneficiary.birthdate" data-toggle="tooltip" title="请选择出生年月" tooltip/>
+            <input class="form-control" type="date" name="birthdate" ng-model="row.beneficiary.birthdate" data-toggle="tooltip" title="请选择出生年月" tooltip="NOT_ALWAY_SHOW"/>
         </div>
         <div class="col-md-2 form-group">
             <label>受益人分配比例</label>
