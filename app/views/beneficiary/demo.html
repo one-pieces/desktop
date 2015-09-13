@@ -1,0 +1,18 @@
+<div class="container">
+	<div class="jumbotron" style="margin-top: 10px; height: 150px;"contentsditable="true">
+		<h2>你好</h2>
+		<p>欢迎您的到来！</p>
+	</div>
+	<div class="row">
+		<div class="col-md-6">		
+			<button class="btn btn-primary" ng-click="addGroup()">增加受益人分组</button>
+			<label>最大分组数</label>
+			<input type="text" ng-model="maxGroupCount"/>
+		</div>
+	</div>
+	<br/></br>
+	<div ng-repeat="beneficiaryGroup in beneficiaryGroups">
+	  <beneficiary-group index="$index" groups-length="beneficiaryGroups.length" group="beneficiaryGroup" remove-group="removeGroup($index)"></beneficiary-group>
+	  <br/>
+	</div>
+</div>

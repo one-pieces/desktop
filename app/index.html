@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="styles/default/default.css">
 		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="styles/desktop/avivo.css">
+		<!-- <link rel="stylesheet" type="text/css" href="styles/desktop/avivo.css"> -->
 		<!-- <link rel="stylesheet" type="text/css" href="styles/main.css"> -->
 	</head>
 	<body ng-app="app">
@@ -24,5 +24,26 @@
 		<script src="scripts/angular/app.js" type="text/javascript"></script>
 		<script src="scripts/angular/controllers.js" type="text/javascript"></script>
 		<script src="scripts/angular/directives.js" type="text/javascript"></script>
+		<script src="scripts/angular/demoController.js" type="text/javascript"></script>
+
+		<!-- beneficiaryGroup directive -->
+		<script src="scripts/angular/beneficiaryGroupController.js" type="text/javascript"></script>
+		<script src="scripts/angular/beneficiaryGroupDirective.js" type="text/javascript"></script>
+
+		<!-- beneficiary directive -->
+		<script src="scripts/angular/beneficiaryController.js" type="text/javascript"></script>
+		<script src="scripts/angular/beneficiaryDirective.js" type="text/javascript"></script>
 	</body>
+	<style>
+		.full button span {
+			background-color: limegreen;
+			border-radius: 32px;
+			color: black;
+		}
+		.partially button span {
+			background-color: orange;
+			border-radius: 32px;
+			color: black;
+		}
+	</style>
 </html>
