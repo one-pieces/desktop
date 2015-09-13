@@ -8,6 +8,9 @@ app
 	$.get('/api/users', function(res, status, xhr) {
 		console.log(res);
 	});
+	$.get('/api/beneficiaries', function(res, status, xhr) {
+		console.log(res);
+	});
 })
 .controller('DesktopCtrl', function($scope){
 	$scope.subMenuItems = [{
