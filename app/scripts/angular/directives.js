@@ -9,7 +9,7 @@ app
 				$(attrs.toggle).toggle(attrs.toggleSpeed);
 			});
 		}
-	}
+	};
 })
 .directive('hide', function() {
 	return {
@@ -19,7 +19,7 @@ app
 				$(attrs.hide).hide(attrs.hideSpeed);
 			});
 		}
-	}
+	};
 })
 .directive('sortable', function() {
 	return {
@@ -30,7 +30,7 @@ app
 			});
 			$(element.parent).disableSelection();
 		}
-	}
+	};
 })
 .directive('draggableIn', function() {
 	return {
@@ -40,7 +40,7 @@ app
 				containment: attrs.draggableIn
 			});
 		}
-	}
+	};
 })
 .directive('firstWindows', function() {
 	return {
@@ -54,5 +54,33 @@ app
 				// $('.app-' + id).addClass('selected');
 			});
 		}
-	}
+	};
+})
+.directive('datepicker', function() {
+	return {
+		restrict: 'EA',
+		link: function(scope, element, attrs, ctrl) {
+			$(element).datepicker();
+		}
+	};
+})
+.directive('tooltip', function() {
+	return {
+		restrict: 'A',
+		link: function(scope, element, attrs, ctrl) {
+			if (attrs.tooltip === 'NOT_ALWAY_SHOW') {
+				scope.$watch(function() {
+					return $(element).val();
+				}, function(newValue) {
+					if (!!newValue) {
+						$(element).tooltip('destroy');
+					} else {
+						$(element).tooltip();
+					}
+				});
+			} else{
+				$(element).tooltip();
+			}
+		}
+	};
 });
