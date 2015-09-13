@@ -46,7 +46,7 @@ app
 			isSelected: true
 		};
 		var test = $scope.navApps.some(function(item) {
-			return item.id == app.id;
+			return item.id === app.id;
 		});
 		if (test) {
 			$('#'+id).effect('bounce', {times:3}, 300);
@@ -58,12 +58,12 @@ app
 
 	$scope.tocApp = function(index, value) {
 		for (var i=0; i < $scope.navApps.length; i++) {
-			if (i != index) {
+			if (i !== index) {
 				$scope.navApps[i].isSelected = false;
 			}
 		}
 		$scope.navApps[index].isSelected = value || !$scope.navApps[index].isSelected;
-	}
+	};
 
 	$scope.createWindows = function(id, title, page, icon, width, height, resizable) { 
     $('#'+id).css("width", width);
@@ -73,7 +73,7 @@ app
     
     //alert(resizable);
     
-    if(resizable == true){
+    if(resizable === true){
     	$( ".window" ).resizable();
     }
     $( "#"+id ).position({
@@ -87,7 +87,7 @@ app
 		var id = $scope.navApps[index].id;
 		$('#'+id).hide(300, function(){$(this).detach();});
 		$('.app-'+id).hide(300, function(){$(this).detach();$scope.navApps.splice(index, 1);});
-	}
+	};
 
 	$scope.minWindows = function(id) {
 		$('.app-'+id).removeClass('selected');
@@ -99,7 +99,7 @@ app
             });
             
             $('#'+id).hide(300);
-	}
+	};
 
 	$scope.maxWindows = function (id){
 		$('#'+id).css("top", "");
@@ -112,5 +112,5 @@ app
                at: "center center",
                of: ".content"
             });
-	}
+	};
 });

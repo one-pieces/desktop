@@ -1,3 +1,4 @@
+// var app = require('app.js');
 'use strict';
 
 app
@@ -18,11 +19,11 @@ app
                 rows: []
             };
             $scope.beneficiaryGroups.push(group);
-        }
+        };
 
         $scope.removeGroup = function(index) {
             $scope.beneficiaryGroups.splice(index,1);
-        }
+        };
 
         $scope.$on('move-group-desc', function(event, data) {
             $scope.moveGroupDesc(data.isDesc, data.index);
@@ -33,28 +34,30 @@ app
         });
 
         $scope.moveRowDescCrossGroup = function(isDesc, rowIndex, groupIndex) {
+            var length;
             if(isDesc) {
                 // 当前组的人数
-                var length = $scope.beneficiaryGroups[groupIndex].rows.length;
+                length = $scope.beneficiaryGroups[groupIndex].rows.length;
                 $scope.beneficiaryGroups[groupIndex + 1].rows.unshift($scope.beneficiaryGroups[groupIndex].rows[length - 1]);
                 $scope.beneficiaryGroups[groupIndex].rows.pop();
             }else {
                 // 下个组的人数
-                var length = $scope.beneficiaryGroups[groupIndex - 1].rows.length;
+                length = $scope.beneficiaryGroups[groupIndex - 1].rows.length;
                 $scope.beneficiaryGroups[groupIndex - 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[0]);
                 $scope.beneficiaryGroups[groupIndex].rows.shift();
             }
-        }
+        };
 
         $scope.moveGroupDesc = function(isDesc, index) {
+            var templVal;
             if(isDesc) {
-                var templVal =  $scope.beneficiaryGroups[index + 1];
+                templVal =  $scope.beneficiaryGroups[index + 1];
                 $scope.beneficiaryGroups[index + 1] = $scope.beneficiaryGroups[index];
                 $scope.beneficiaryGroups[index] = templVal;
             }else {
-                var templVal =  $scope.beneficiaryGroups[index - 1];
+                templVal =  $scope.beneficiaryGroups[index - 1];
                 $scope.beneficiaryGroups[index - 1] = $scope.beneficiaryGroups[index];
                 $scope.beneficiaryGroups[index] = templVal;
             }
-        }
+        };
     });

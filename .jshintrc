@@ -13,5 +13,10 @@
 
 	"browser": true,
 	"devel": true,
-	"node": true
+	"node": true,
+	"jquery": true,
+	"globals": {
+    "angular": false,
+    "app": true
+	}
 }

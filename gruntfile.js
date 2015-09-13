@@ -73,7 +73,7 @@ module.exports = function(grunt) {
 				}
 			},
 			js: {
-				files: ['app/scripts/**/*.js', 'server/models/**/*.js', 'server/models/**/*.js'],
+				files: ['app.js', 'app/scripts/**/*.js', 'server/models/**/*.js', 'server/models/**/*.js'],
 				tasks: ['jshint'],
 				options: {
 					livereload: true
