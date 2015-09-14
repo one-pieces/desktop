@@ -19,7 +19,7 @@ app
         $scope.$on('check-all-items', function(event, data) {
             $scope.isChecked = true;
         });
-        
+
         $scope.checkIdentification = function(cardNo, birthdate) {
             var givenYear = birthdate.getFullYear();
             var givenMonth =birthdate.getMonth()+1;
