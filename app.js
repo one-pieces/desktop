@@ -69,11 +69,11 @@ app.post('/api/beneficiarytable', function(req, res) {
 				// 所有beneficiary都保存到数据库后，再保存beneficiarytable
 				if (beneficiary.groupIndex === groups.length - 1 && beneficiary.rowIndex === rows.length - 1) {	
 					var beneficiarytable = new Beneficiarytable(_beneficiarytable);
-					beneficiarytable.save(function(err, table) {
+					beneficiarytable.save(function(err, beneficiarytable) {
 						if (err) {
 							console.log(err);
 						}
-						res.send(table);
+						res.send({ table: beneficiarytable });
 					});
 				}
 			});
@@ -83,10 +83,23 @@ app.post('/api/beneficiarytable', function(req, res) {
 
 app.get('/api/beneficiarytable/:id', function(req, res) {
 	var id = req.params.id;
+	Beneficiarytable.findById(id, function(err, beneficiarytable) {
+		if (err) {
+			console.log(err);
+		}
+		res.send({ table: beneficiarytable });
+	});
 });
 
 app.post('/api/beneficiary', function(req, res) {
 	
+});
+
+app.get('/api/beneficiary/:id', function(req, res) {
+	var id = req.params.id;
+	Beneficiary.findById(id, function(err, beneficiary) {
+		res.send({ beneficiary: beneficiary });
+	});
 });
 
 app.get('/api/beneficiaries', function(req, res) {
@@ -94,7 +107,7 @@ app.get('/api/beneficiaries', function(req, res) {
 		if (err) {
 			console.log(err);
 		}
-		res.send(beneficiaries);
+		res.send({ beneficiaries: beneficiaries });
 	});
 });
 

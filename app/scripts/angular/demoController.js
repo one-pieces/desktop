@@ -3,9 +3,28 @@
 
 app
     .controller('demoCtrl', function($scope){
-        // $scope.index = 0;
         $scope.maxGroupCount = 4;
         $scope.beneficiaryGroups = [];
+        
+        $.get('/api/beneficiarytable/55f689e1e04c5a8c115c21dc', function(res, status, xhr) {
+            console.log(res);
+            var table = res.table;
+            var groups = table.groups;
+            for (var i = 0; i < groups.length; i++) {
+                var rows = groups[i].rows;
+                for (var j = 0; j < rows.length; j++) {
+                    $.get('/api/beneficiary/' + rows[j].beneficiary, function(res, status, xhr) {
+                        var beneficiary = res.beneficiary;
+                        groups[beneficiary.groupIndex].rows[beneficiary.rowIndex].beneficiary = beneficiary;
+
+                        if (beneficiary.groupIndex === groups.length - 1 && beneficiary.rowIndex === rows.length - 1) {
+                            $scope.beneficiaryGroups = groups;
+                            console.log($scope.beneficiaryGroups);
+                        }
+                    });
+                }
+            }
+        });
 
         $scope.addGroup = function() {
             if ($scope.beneficiaryGroups.length >= $scope.maxGroupCount) {
@@ -33,8 +52,8 @@ app
             };
             $.post('/api/beneficiarytable', { 
                 beneficiarytable: beneficiarytable 
-            }, function(data){
-                console.log(data);
+            }, function(res){
+                console.log(res);
             });
         };
 
