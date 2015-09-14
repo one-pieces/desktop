@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-2 form-group">
             <label>出生年月</label>
-            <input class="form-control" type="date" name="birthdate" ng-model="row.beneficiary.birthdate" required="true" data-toggle="tooltip" title="请选择出生年月" tooltip="NOT_ALWAY_SHOW"/>
+            <input class="form-control" type="date" name="birthdate"  ng-model="row.beneficiary.birthdate" required="true" data-toggle="tooltip" title="请选择出生年月" tooltip="NOT_ALWAY_SHOW"/>
             <span class="alert-danger" ng-show="isChecked &&myForm.birthdate.$error.required">请填写出生年月</span>
         </div>
         <div class="col-md-2 form-group">
@@ -37,6 +37,7 @@
             <label>&nbsp;</label>
             <input class="form-control" type="text" name="identification" ng-model="row.beneficiary.identification" required="true" data-toggle="tooltip" title="请填写证件信息" tooltip="NOT_ALWAY_SHOW"/>
             <span class="alert-danger" ng-show="isChecked && myForm.identification.$error.required">请填写证件信息</span>
+            <span class="alert-danger" ng-show="isChecked && !myForm.birthdate.$error.required && !checkIdentification(row.beneficiary.identification, row.beneficiary.birthdate)">身份证错误</span>
         </div>
 
     <!-- </div>
