@@ -2,6 +2,7 @@
 
 app
     .controller('deneficiaryCtrl', function($scope) {
+        $scope.isChecked = false;
         $scope.add = function() {
             $scope.row.beneficiary.proportion = 
                 (parseInt($scope.row.beneficiary.proportion) +
@@ -14,4 +15,9 @@ app
                 index: index
             });
         };
+
+        $scope.$on('check-all-items', function(event, data) {
+            $scope.isChecked = true;
+        });
+
     });

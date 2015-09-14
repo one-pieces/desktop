@@ -60,4 +60,21 @@ app
                 $scope.beneficiaryGroups[index] = templVal;
             }
         };
+
+        $scope.checkedAllItems = function(isChecked) {
+            $scope.$broadcast('check-all-items', {
+                isChecked: isChecked
+            });
+        };
+        $scope.saveBeneficiary = function() {
+            for( var i = 0; i < $scope.beneficiaryGroups.length; i++) {
+                if( $scope.beneficiaryGroups[i].rows.length  === 0 ) {
+                    alert("每组受益人至少包含一人。");
+                    return;
+                }
+            }
+            $scope.checkedAllItems(true);
+
+        };
+
     });
