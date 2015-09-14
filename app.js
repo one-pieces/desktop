@@ -15,6 +15,7 @@ mongoose.connect(dbUrl);
 
 var User = require('./server/models/user');
 var Beneficiary = require('./server/models/beneficiary');
+var Beneficiarytable = require('./server/models/beneficiarytable');
 
 app.set('port', process.env.PORT || 5700);
 app.set('views', __dirname + '/app');
@@ -45,6 +46,43 @@ app.get('/api/users', function(req, res) {
 		}
 		res.send(users);
 	});
+});
+
+app.post('/api/beneficiarytable', function(req, res) {
+	var _beneficiarytable = req.body.beneficiarytable;
+	var groups = _beneficiarytable.groups;
+	for (var i = 0; i < groups.length; i++) {
+		var rows = groups[i].rows;
+		for(var j = 0; j < rows.length; j++) {
+			rows[j].beneficiary.groupIndex = i;
+			rows[j].beneficiary.rowIndex = j;
+			var beneficiary = new Beneficiary(rows[j].beneficiary);
+			beneficiary.save(function(err, beneficiary) {
+				if (err) {
+					console.log(err);
+				}
+
+				// 将beneficiarytable里每个beneficiary对象修改为ObjectId
+				_beneficiarytable.groups[beneficiary.groupIndex]
+					.rows[beneficiary.rowIndex].beneficiary = beneficiary;
+
+				// 所有beneficiary都保存到数据库后，再保存beneficiarytable
+				if (beneficiary.groupIndex === groups.length - 1 && beneficiary.rowIndex === rows.length - 1) {	
+					var beneficiarytable = new Beneficiarytable(_beneficiarytable);
+					beneficiarytable.save(function(err, table) {
+						if (err) {
+							console.log(err);
+						}
+						res.send(table);
+					});
+				}
+			});
+		}
+	}
+});
+
+app.get('/api/beneficiarytable/:id', function(req, res) {
+	var id = req.params.id;
 });
 
 app.post('/api/beneficiary', function(req, res) {

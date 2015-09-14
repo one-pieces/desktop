@@ -1,8 +1,4 @@
 <div class="container">
-	<div class="jumbotron" style="margin-top: 10px; height: 150px;"contentsditable="true">
-		<h2>你好</h2>
-		<p>欢迎您的到来！</p>
-	</div>
 	<div class="row">
 		<div class="col-md-6">		
 			<button class="btn btn-primary" ng-click="addGroup()">增加受益人分组</button>
@@ -14,5 +10,10 @@
 	<div ng-repeat="beneficiaryGroup in beneficiaryGroups">
 	  <beneficiary-group index="$index" groups-length="beneficiaryGroups.length" group="beneficiaryGroup" remove-group="removeGroup($index)"></beneficiary-group>
 	  <br/>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<button class="btn btn-success" ng-show="showSaveButton()" ng-click="saveBeneficiarytable()">保存所有收益人</button>
+		</div>
 	</div>
 </div>

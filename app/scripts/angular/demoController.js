@@ -3,7 +3,7 @@
 
 app
     .controller('demoCtrl', function($scope){
-        $scope.index = 0;
+        // $scope.index = 0;
         $scope.maxGroupCount = 4;
         $scope.beneficiaryGroups = [];
 
@@ -13,8 +13,8 @@ app
                 return;
             }
             var group = {
-                id: $scope.index++,
-                apportion: 1,
+                // id: $scope.index++,
+                // apportion: 1,
                 proportion: 100,
                 rows: []
             };
@@ -23,6 +23,24 @@ app
 
         $scope.removeGroup = function(index) {
             $scope.beneficiaryGroups.splice(index,1);
+        };
+
+        $scope.saveBeneficiarytable = function() {
+            var beneficiarytable = {
+                // id: '1',
+                groupNumber: $scope.maxGroupCount,
+                groups: $scope.beneficiaryGroups
+            };
+            $.post('/api/beneficiarytable', { 
+                beneficiarytable: beneficiarytable 
+            }, function(data){
+                console.log(data);
+            });
+        };
+
+        $scope.showSaveButton = function() {
+            var groups = $scope.beneficiaryGroups;
+            return (groups.length ? groups[0].rows.length !== 0 : false);
         };
 
         $scope.$on('move-group-desc', function(event, data) {

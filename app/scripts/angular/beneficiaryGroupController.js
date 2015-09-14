@@ -15,7 +15,7 @@ app
                   proportion: $scope.group.proportion - $scope.proportionSum
               };
               var row = {
-                  id: 'Row ' + $scope.counter,
+                  // id: 'Row ' + $scope.counter,
                   beneficiary: beneficiary
               };
               $scope.group.rows.push(row);
@@ -25,12 +25,6 @@ app
            $scope.removeBeneficiary = function(index) {
                $scope.group.rows.splice(index,1);
                $scope.counter--;
-           };
-
-           $scope.saveBeneficiary = function(index) {
-               $.post('/api/beneficiary', $scope.group.rows[index].beneficiary, function(data){
-                console.log(data);
-               });
            };
 
            $scope.moveDesc = function(isDesc, index) {

@@ -2,14 +2,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var BeneficiarySchema = new Schema({
-	name : {
-		unique: true,
-		type: String
-	},
+	name : String,
 	sex: String,
 	age: Number,
-	birthdate: String,
-	abortion: String
+	birthdate: Date,
+	proportion: Number,
+	groupIndex: Number,
+	rowIndex: Number
 });
 
 BeneficiarySchema.statics = {
