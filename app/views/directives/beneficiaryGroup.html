@@ -1,30 +1,43 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th class="row" style="border-top: 2px solid #e0e0e0">
-        <div class="col-md-2">
-          <button class="btn btn-primary btn-sm" ng-if="index !== (groupsLength-1)" ng-click="moveDesc(true, index)" data-toggle="tooltip" title="向下移动受益人组" tooltip>↓</button>
-          <button class="btn btn-primary btn-sm" ng-if="index !== 0" ng-click="moveDesc(false, index)" data-toggle="tooltip" title="向上移动受益人组" tooltip>↑</button>
-        </div>
-        <div class="col-md-3">
-          <span>第{{index+1}}顺位受益人信息</span>
-          <span ng-if="group.rows.length > 0">
-              (共{{group.rows.length}}人)
-          </span>
-        </div>
-        <div class="col-md-5">
-          <button class="btn btn-info" ng-click="addRow()">增加受益人</button>
-          <button class="btn btn-default" ng-click="average()">平均分配受益比例</button>
-          <button class="btn btn-danger" ng-if="index == groupsLength-1" ng-click="deleteGroup()">删除受益人组</button>
-        </div>
-
-      </th>
-    </tr>
-  </thead>
+<table class="table-striped">
   <tbody>
-    <tr ng-repeat="rowContent in group.rows">
-      <td>
-        <beneficiary index="$index" save-beneficiary="saveBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" rows-length="group.rows.length" groups-length="groupsLength" group-index="index" row-content="rowContent" proportion-rest="proportionRest"></beneficiary>
+    <tr>
+      <td class="col-md-1" valign="top">
+          <table>
+            <tbody>
+            <td valign="top" align="center" rowspan="{{group.rows.length}}">
+              <div class="white-space:nowrap;">
+                <label >第{{index+1}}顺位</label>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-success btn-xs" ng-if="index !== 0" ng-click="moveDesc(false, index)" >↑</button>
+                <button class="btn btn-success btn-xs" ng-if="index !== (groupsLength-1)" ng-click="moveDesc(true, index)">↓</button>
+              </div>
+              <div class="col-md-5">
+                <button class="btn btn-info btn-xs" ng-click="addRow()">新增受益人</button>
+                <button class="btn btn-warning btn-xs" ng-click="average()">均分受益人</button>
+                <button class="btn btn-danger btn-xs" ng-if="index == groupsLength-1" title="删除组" tooltip  ng-click="deleteGroup()">删除受益人</button>
+              </div>
+            </td>
+            </tbody>
+          </table>
+      </td>
+      <td class="col-md-11">
+          <table>
+            <tbody>
+              <tr ng-repeat="rowContent in group.rows">
+                <td>
+                  <beneficiary index="$index" save-beneficiary="saveBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" rows-length="group.rows.length" groups-length="groupsLength" group-index="index" row-content="rowContent" proportion-rest="proportionRest"></beneficiary>
+                </td>
+              </tr>
+              <tr >
+                <td align="center">
+                   <label  ng-if="group.rows.length > 0">
+                         共计：{{group.rows.length}}人
+                   </label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
       </td>
     </tr>
   </tbody>
