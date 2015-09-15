@@ -11,6 +11,7 @@ app
                 index: '=',
                 save: '&saveBeneficiary',
                 delete: '&deleteBeneficiary',
+                addBeneficiary: '&addBeneficiary',
                 row: '=rowContent',
                 rowsLength: '=',
                 groupsLength: '=',

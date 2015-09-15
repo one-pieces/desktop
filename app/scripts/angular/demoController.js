@@ -12,19 +12,36 @@ app
                 alert('超过设置的最大组别!');
                 return;
             }
+            var beneficiary = {
+                // name: '',
+                // sex: '',
+                // age: '',
+                // birthdate: '',
+                proportion: 100
+            };
+            var row = {
+                id: 'Row0',
+                beneficiary: beneficiary
+            };
+
             var group = {
                 id: $scope.index++,
                 apportion: 1,
                 proportion: 100,
                 rows: []
             };
+            group.rows.push(row);
             $scope.beneficiaryGroups.push(group);
+
         };
 
         $scope.removeGroup = function(index) {
             $scope.beneficiaryGroups.splice(index,1);
+            $scope.index--;
         };
-
+        $scope.$on('remove-group',function(event, data) {
+            $scope.removeGroup(data.index);
+        });
         $scope.$on('move-group-desc', function(event, data) {
             $scope.moveGroupDesc(data.isDesc, data.index);
         });

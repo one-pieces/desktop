@@ -5,8 +5,8 @@ app
            $scope.proportionMax = 100;
            $scope.proportionSum = 0;
            $scope.proportionRest = 0;
-           $scope.counter = 0;
-           $scope.addRow = function () {
+           $scope.counter = $scope.group.rows.length;
+           $scope.addBeneficiary = function (index) {
               var beneficiary = {
                   // name: '',
                   // sex: '',
@@ -18,13 +18,19 @@ app
                   id: 'Row ' + $scope.counter,
                   beneficiary: beneficiary
               };
-              $scope.group.rows.push(row);
-              $scope.counter++;
+
+               $scope.group.rows.splice(index,0,row);
+               $scope.counter++;
            };
 
            $scope.removeBeneficiary = function(index) {
                $scope.group.rows.splice(index,1);
                $scope.counter--;
+               if($scope.group.rows.length ===0 ) {
+                   $scope.$emit('remove-group', {
+                       index: $scope.group.id
+                   });
+               }
            };
 
            $scope.saveBeneficiary = function(index) {
