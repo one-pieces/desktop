@@ -24,13 +24,8 @@ app
            };
 
            $scope.removeBeneficiary = function(index) {
-               $scope.group.rows.splice(index,1);
-               $scope.counter--;
-               if($scope.group.rows.length ===0 ) {
-                   $scope.$emit('remove-group', {
-                       index: $scope.group.id
-                   });
-               }
+              $scope.group.rows.splice(index,1);
+              $scope.counter--;
            };
 
            $scope.saveBeneficiary = function(index) {
@@ -92,6 +87,17 @@ app
                   $scope.group.rows[i].beneficiary.proportion = parseInt( 100 / $scope.group.rows.length );
               }
           };
+
+          $scope.$watch('group.rows.length', function(newValue) {
+            if (newValue === 0) {
+              if($scope.group.rows.length === 0 ) {
+                console.log($scope.index);
+                $scope.$emit('remove-group', {
+                  index: $scope.index
+                });
+              }
+            }
+          });
 
           $scope.$watch(function() {
               var beneficiaries = [];
