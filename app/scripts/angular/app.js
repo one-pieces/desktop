@@ -28,7 +28,7 @@ app.config(['$urlRouterProvider', '$stateProvider', '$locationProvider', functio
 			}
 		})
 		.state("demo", {
-				url: "/desktop/demo",
+				url: "/desktop/demo/:id",
 				templateUrl: 'views/beneficiary/demo.html',
 				controller: 'demoCtrl'
 		})

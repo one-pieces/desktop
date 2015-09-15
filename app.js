@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -48,14 +49,40 @@ app.get('/api/users', function(req, res) {
 	});
 });
 
-app.post('/api/beneficiarytable', function(req, res) {
-	var _beneficiarytable = req.body.beneficiarytable;
-	var groups = _beneficiarytable.groups;
+var deleteTable = function(beneficiarytableObj, callback) {
+	var groups = beneficiarytableObj.groups;
+	for (var i = 0; i < groups.length; i++) {
+		var rows = groups[i].rows;
+		for(var j = 0; j < rows.length; j++) {
+			// 删除beneficiary
+			var id = rows[j].beneficiary._id;
+			Beneficiary.remove({_id: id},function(err, beneficiary) {
+				if (err) {
+					console.log(err);
+				}
+
+				// 所有beneficiary都删除后，再删除beneficiarytable
+				// if (i === groups.length - 1 && j === rows.length - 1) {	
+					Beneficiarytable.remove({_id: beneficiarytableObj._id}, function(err, beneficiarytable) {
+						if (err) {
+							console.log(err);
+						}
+						callback();
+					});
+				// }
+			});
+		}
+	}
+};
+
+var saveTable= function(beneficiarytableObj, callback) {
+	var groups = beneficiarytableObj.groups;
 	for (var i = 0; i < groups.length; i++) {
 		var rows = groups[i].rows;
 		for(var j = 0; j < rows.length; j++) {
 			rows[j].beneficiary.groupIndex = i;
 			rows[j].beneficiary.rowIndex = j;
+			// 新建beneficiary
 			var beneficiary = new Beneficiary(rows[j].beneficiary);
 			beneficiary.save(function(err, beneficiary) {
 				if (err) {
@@ -63,22 +90,49 @@ app.post('/api/beneficiarytable', function(req, res) {
 				}
 
 				// 将beneficiarytable里每个beneficiary对象修改为ObjectId
-				_beneficiarytable.groups[beneficiary.groupIndex]
+				beneficiarytableObj.groups[beneficiary.groupIndex]
 					.rows[beneficiary.rowIndex].beneficiary = beneficiary;
 
 				// 所有beneficiary都保存到数据库后，再保存beneficiarytable
 				if (beneficiary.groupIndex === groups.length - 1 && beneficiary.rowIndex === rows.length - 1) {	
-					var beneficiarytable = new Beneficiarytable(_beneficiarytable);
+					var beneficiarytable = new Beneficiarytable(beneficiarytableObj);
 					beneficiarytable.save(function(err, beneficiarytable) {
 						if (err) {
 							console.log(err);
 						}
-						res.send({ table: beneficiarytable });
+						callback();
 					});
 				}
 			});
 		}
 	}
+};
+
+app.delete('/api/beneficiarytable/:id', function(req, res) {
+	var id = req.params.id;
+	Beneficiarytable.findById(id, function(err, beneficiarytable) {
+		deleteTable(beneficiarytable, function(result) {
+			res.json({success: result});
+		});
+	});
+});
+
+app.post('/api/beneficiarytable', function(req, res) {
+	var beneficiarytableObj = req.body.beneficiarytable;
+	saveTable(beneficiarytableObj, function(table) {
+		res.send({beneficiarytable: table});
+	});
+});
+
+app.patch('/api/beneficiarytable/:id', function(req, res) {
+	var id = req.params.id;
+	var newTable = req.body.beneficiarytable;
+	// console.log(newTable.groups[0].rows[0]);
+	Beneficiarytable.findById(id, function(err, beneficiarytable) {
+		deleteTable(beneficiarytable, saveTable(newTable, function(table) {
+			res.send({beneficiarytable: table});
+		}));
+	});
 });
 
 app.get('/api/beneficiarytable/:id', function(req, res) {
@@ -88,6 +142,15 @@ app.get('/api/beneficiarytable/:id', function(req, res) {
 			console.log(err);
 		}
 		res.send({ table: beneficiarytable });
+	});
+});
+
+app.get('/api/beneficiarytables', function(req, res) {
+	Beneficiarytable.fetch(function(err, beneficiarytables) {
+		if (err) {
+			console.log(err);
+		}
+		res.send({ beneficiarytables: beneficiarytables });
 	});
 });
 

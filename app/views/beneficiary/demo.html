@@ -2,6 +2,8 @@
 	<div class="row">
 		<div class="col-md-6">		
 			<button class="btn btn-primary" ng-click="addGroup()">增加受益人分组</button>
+			<label>受益人表名称</label>
+			<input type="text" ng-model="tableName"/>
 			<label>最大分组数</label>
 			<input type="text" ng-model="maxGroupCount"/>
 		</div>
@@ -13,7 +15,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-3">
-			<button class="btn btn-success" ng-show="showSaveButton()" ng-click="saveBeneficiarytable()">保存所有收益人</button>
+			<a class="btn btn-success" ng-show="showSaveButton()" ng-click="saveBeneficiarytable()" href="/desktop/list">保存所有收益人</a>
 		</div>
 	</div>
 </div>

@@ -3,16 +3,11 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
 var BeneficiarytableSchema = new Schema({
-	// id: {
-	// 	unique: true,
-	// 	type: String
-	// },
-	groupNumber: Number,
+	name: String,
+	maxGroupCount: Number,
 	groups: [{
-		// id: String,
 		proportion: Number,
 		rows: [{
-			// id: String,
 			beneficiary: {type: ObjectId, ref: 'Beneficiary'}
 		}]
 	}]

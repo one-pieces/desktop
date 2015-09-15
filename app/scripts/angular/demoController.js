@@ -2,29 +2,35 @@
 'use strict';
 
 app
-    .controller('demoCtrl', function($scope){
+    .controller('demoCtrl', function($scope, $stateParams){
+        var id = $stateParams.id;
+        $scope.tableName = 'Default';
         $scope.maxGroupCount = 4;
         $scope.beneficiaryGroups = [];
         
-        $.get('/api/beneficiarytable/55f689e1e04c5a8c115c21dc', function(res, status, xhr) {
-            console.log(res);
-            var table = res.table;
-            var groups = table.groups;
-            for (var i = 0; i < groups.length; i++) {
-                var rows = groups[i].rows;
-                for (var j = 0; j < rows.length; j++) {
-                    $.get('/api/beneficiary/' + rows[j].beneficiary, function(res, status, xhr) {
-                        var beneficiary = res.beneficiary;
-                        groups[beneficiary.groupIndex].rows[beneficiary.rowIndex].beneficiary = beneficiary;
+        if (id !== 'new') {
+            $.get('/api/beneficiarytable/' + id, function(res, status, xhr) {
+                console.log(res);
+                var table = res.table;
+                $scope.tableName = table.name;
+                $scope.maxGroupCount = table.maxGroupCount;
+                var groups = table.groups;
+                for (var i = 0; i < groups.length; i++) {
+                    var rows = groups[i].rows;
+                    for (var j = 0; j < rows.length; j++) {
+                        $.get('/api/beneficiary/' + rows[j].beneficiary, function(res, status, xhr) {
+                            var beneficiary = res.beneficiary;
+                            groups[beneficiary.groupIndex].rows[beneficiary.rowIndex].beneficiary = beneficiary;
 
-                        if (beneficiary.groupIndex === groups.length - 1 && beneficiary.rowIndex === rows.length - 1) {
-                            $scope.beneficiaryGroups = groups;
-                            console.log($scope.beneficiaryGroups);
-                        }
-                    });
+                            if (beneficiary.groupIndex === groups.length - 1 && beneficiary.rowIndex === rows.length - 1) {
+                                $scope.beneficiaryGroups = groups;
+                                // console.log($scope.beneficiaryGroups);
+                            }
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
 
         $scope.addGroup = function() {
             if ($scope.beneficiaryGroups.length >= $scope.maxGroupCount) {
@@ -46,15 +52,28 @@ app
 
         $scope.saveBeneficiarytable = function() {
             var beneficiarytable = {
-                // id: '1',
-                groupNumber: $scope.maxGroupCount,
+                name: $scope.tableName,
+                maxGroupCount: $scope.maxGroupCount,
                 groups: $scope.beneficiaryGroups
             };
-            $.post('/api/beneficiarytable', { 
-                beneficiarytable: beneficiarytable 
-            }, function(res){
-                console.log(res);
-            });
+            if (id !== 'new') {
+                // $.patch('/api/beneficiarytable' + id, 
+                //     { beneficiarytable: beneficiarytable }, 
+                //     function(res){
+                //     console.log(res);
+                // });
+                $.ajax({
+                    url: '/api/beneficiarytable/' + id,
+                    type: 'patch',
+                    data: { beneficiarytable: beneficiarytable }
+                });
+            } else {
+                $.post('/api/beneficiarytable', 
+                    { beneficiarytable: beneficiarytable }, 
+                    function(res){
+                    console.log(res);
+                });
+            }
         };
 
         $scope.showSaveButton = function() {
