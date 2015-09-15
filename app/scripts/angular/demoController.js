@@ -28,7 +28,7 @@ app
                 id: $scope.index++,
                 apportion: 1,
                 proportion: 100,
-                rows: []
+                rows: [{}]
             };
             group.rows.push(row);
             $scope.beneficiaryGroups.push(group);
