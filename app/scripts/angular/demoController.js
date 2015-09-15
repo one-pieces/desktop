@@ -9,7 +9,6 @@ app
 
         $scope.addGroup = function() {
             if ($scope.beneficiaryGroups.length >= $scope.maxGroupCount) {
-                alert('超过设置的最大组别!');
                 return;
             }
             var beneficiary = {
