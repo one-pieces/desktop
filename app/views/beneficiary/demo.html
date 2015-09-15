@@ -7,17 +7,18 @@
 		</div>
 	</div>
 	<br/></br>
-	<table class="table table-condensed">
+	<!-- <table class="table table-condensed">
 		<tbody  ng-repeat="beneficiaryGroup in beneficiaryGroups">
-
 			<tr class="success">
-				<td>
+				<td> -->
+					<div ng-repeat="beneficiaryGroup in beneficiaryGroups">
 					 <beneficiary-group index="$index" groups-length="beneficiaryGroups.length" group="beneficiaryGroup" remove-group="removeGroup($index)"></beneficiary-group>
-				</td>
+					</div>
+				<!-- </td>
 			</tr>
 		  <br/>
 		</tbody>
-	</table>
+	</table> -->
 	<div>
 		<button ng-if="beneficiaryGroups.length > 0" class="btn btn-success" ng-click="saveBeneficiary()">保存</button>
 	</div>

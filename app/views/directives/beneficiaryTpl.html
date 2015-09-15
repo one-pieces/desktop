@@ -1,14 +1,21 @@
 <form name="myForm" id="{{row.id}}">
-    <div>
-        <div class="col-md-1 form-group">
-            <button class="btn btn-success btn-xs" ng-click="moveDesc(true, index)" ng-if="!(index == (rowsLength-1) && groupIndex == (groupsLength-1))" data-toggle="tooltip" title="向下移动受益人" tooltip>↓</button>
-            <button class="btn btn-success btn-xs" ng-click="moveDesc(false, index)" ng-if="!(index == 0 && groupIndex == 0)" data-toggle="tooltip" title="向上移动受益人" tooltip>↑</button>
-            <button tooltip title="删除受益人" class="btn btn-danger btn-xs" ng-click="delete()">X</button>
-        </div>
-        <div class="col-md-1 form-group">
-            <label>姓名</label>
-            <input class="form-control" type="text" name="beneficiaryName" ng-model="row.beneficiary.name" required="true" data-toggle="tooltip" title="请填写姓名，不能为空" tooltip="NOT_ALWAY_SHOW"/>
-            <span class="alert-danger" ng-show="isChecked && myForm.beneficiaryName.$error.required">请填写姓名</span>
+    <div class="row">
+        <div class="col-md-2 form-group">
+            <!-- <div class="row"> -->
+                <!-- <div class="col-md-2"> -->
+                    <a ng-click="moveDesc(true, index)" ng-if="!(index == (rowsLength-1) && groupIndex == (groupsLength-1))" data-toggle="tooltip" title="向下移动受益人" tooltip>
+                        <i class="fa fa-long-arrow-down fa-1x"></i>
+                    </a>
+                    <a ng-click="moveDesc(false, index)" ng-if="!(index == 0 && groupIndex == 0)" data-toggle="tooltip" title="向上移动受益人" tooltip>
+                        <i class="fa fa-long-arrow-up fa-1x"></i>
+                    </a>
+                <!-- </div>
+                <div class="col-md-10"> -->
+                    <label>姓名</label>
+                    <input class="form-control" type="text" name="beneficiaryName" ng-model="row.beneficiary.name" required="true" data-toggle="tooltip" title="请填写姓名，不能为空" tooltip="NOT_ALWAY_SHOW"/>
+                    <span class="alert-danger" ng-show="isChecked && myForm.beneficiaryName.$error.required">请填写姓名</span>
+                <!-- </div> -->
+            <!-- </div> -->
         </div>
         <div class="col-md-1 form-group">
             <label>性别</label>
@@ -38,7 +45,6 @@
             <span class="alert-danger" ng-show="isChecked && myForm.identification.$error.required">请填写证件信息</span>
             <span class="alert-danger" ng-show="isChecked && !myForm.birthdate.$error.required && !checkIdentification(row.beneficiary.identification, row.beneficiary.birthdate)">身份证错误</span>
         </div>
-
         <div class="col-md-2 form-group">
             <label>受益人分配比例</label>
             <div class="input-group"> 
@@ -46,6 +52,15 @@
                 <span class="input-group-addon"><button class="btn btn-warning btn-xs" ng-show="rest !== 0" ng-click="add()">+{{rest}}</button>%</span>
             </div>
         </div>
-
+        <div class="col-md-1 form-group">
+            <div class="row text-left" style="padding-top: 30px;">
+                <a ng-click="addRow()" title="新增受益人" tooltip>
+                    <i class="fa fa-user-plus fa-2x"></i>
+                </a>
+                <a tooltip title="删除受益人" ng-click="delete()">
+                    <i class="fa fa-user-times fa-2x"></i>
+                </a>
+            </div>
+        </div>
     </div>
 </form>
