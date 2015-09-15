@@ -31,6 +31,11 @@ app.config(['$urlRouterProvider', '$stateProvider', '$locationProvider', functio
 				url: "/desktop/demo",
 				templateUrl: 'views/beneficiary/demo.html',
 				controller: 'demoCtrl'
+		})
+		.state("list", {
+				url: "/desktop/list",
+				templateUrl: 'views/beneficiary/list.html',
+				controller: 'listCtrl'
 		});
 	$locationProvider.html5Mode(true);
 }]);

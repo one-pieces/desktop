@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<a class="btn btn-success" href="/desktop/demo/new">添加受益人表</a>
+		</div>
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>名字</th>
+					<th>分组数</th>
+					<th>更新</th>
+					<th>删除</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in lists track by $index">
+					<td>{{item.name}}</td>
+					<td>{{item.maxGroupCount}}</td>
+					<td><a href="/desktop/demo/{{item._id}}">修改</a></td>
+					<td><a class="btn btn-danger" ng-click="deleteTable(item._id, $index)">删除</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
