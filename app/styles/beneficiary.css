@@ -1,0 +1,30 @@
+.beneficiary-group {
+	
+	border: thin 1px;
+}
+
+.beneficiary-group-action {
+	
+	font-size: xx-large;
+}
+
+.beneficiary-list {
+	
+	margin-top: 20px;
+}
+
+.beneficiary-action.move-toggle {
+
+	display: block;
+	font-size: small;
+}
+
+.id-type-select {
+	
+	width: 120px;
+}
+
+input.form-control.percentage {
+	
+	width: 8em;
+}

@@ -1,15 +1,24 @@
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-10">
-			<button class="btn btn-primary" ng-click="addGroup()"><span class="fa fa-users fa-3x"></span></button>
-			<input type="hidden" value="4" ng-model="maxGroupCount"/>
+		<div class="col-md-1 form-group" >
+			<div class="row">
+				<div class="col-md-12 form-group" >
+				&nbsp;
+				</div>
+			</div>
+		</div>
+		<div class="col-md-11 form-group" >
+
 		</div>
 	</div>
-	<br/></br>
 	<div ng-repeat="beneficiaryGroup in beneficiaryGroups">
 	 <beneficiary-group index="$index" groups-length="beneficiaryGroups.length" group="beneficiaryGroup" remove-group="removeGroup($index)"></beneficiary-group>
 	</div>
-	<div>
-		<button ng-if="beneficiaryGroups.length > 0" class="btn btn-primary" ng-click="saveBeneficiary()">保存</button>
+	<div class="row">
+		<div class="col-md-10">
+			<button  ng-click="addGroup()"> <i class="fa fa-user-plus fa-2x"></i></button>
+			<input type="hidden" value="4" ng-model="maxGroupCount"/>
+			<button ng-if="beneficiaryGroups.length > 0" class="btn btn-primary" ng-click="saveBeneficiary()">保存</button>
+		</div>
 	</div>
 </div>

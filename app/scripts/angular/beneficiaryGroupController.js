@@ -19,7 +19,8 @@ app
                   beneficiary: beneficiary
               };
 
-              $scope.group.rows.splice(index + 1,0,row);
+               $scope.group.rows.push(row);
+            /*  $scope.group.rows.splice(index,0,row);*/
               $scope.counter++;
            };
 

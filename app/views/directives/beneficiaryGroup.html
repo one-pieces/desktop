@@ -1,50 +1,49 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">   
+<div>
+  <div>
+    <!--new start-->
     <div class="row">
-      <div class="col-md-8">
-        <div class="panel-title">
-          <label>第{{index+1}}顺位</label>
-          <a ng-if="index !== 0" ng-click="moveDesc(false, index)" >
-            <i class="fa fa-level-up fa-2x"></i>
-          </a>
-          <a ng-if="index !== (groupsLength-1)" ng-click="moveDesc(true, index)">
-            <i class="fa fa-level-down fa-2x"></i>
-          </a>
+      <div class="col-md-1 form-group">
+        <h3>第{{index+1}}顺位</h3>
+        <div class="beneficiary-group-action">
+          <span ng-if="index === 0"  class="glyphicon glyphicon-triangle-top" ng-class="'text-muted'"></span>
+          <span ng-if="index !== 0" ng-click="moveDesc(false, index)" class="glyphicon glyphicon-triangle-top" ng-class="'text-primary'"></span>
+        </div>
+        <div class="beneficiary-group-action">
+          <span  ng-if="index === (groupsLength-1)"  class="glyphicon glyphicon-triangle-bottom" ng-class="'text-muted'"></span>
+          <span ng-if="index !== (groupsLength-1)"  ng-click="moveDesc(true, index)" class="glyphicon glyphicon-triangle-bottom" ng-class="'text-primary'"></span>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="panel-title text-right" style="font-size: 12px;"> 
-          <!-- <a ng-click="addRow()" title="新增受益人" tooltip>
-            <i class="fa fa-user-plus fa-2x"></i>
-          </a> -->
-
-          <a ng-click="average()" title="均分收益比例" tooltip>
-            <i class="fa fa-adjust fa-2x"></i>
-          </a>
-
-          <a ng-if="index == groupsLength-1" title="删除组" tooltip  ng-click="deleteGroup()">
-            <i class="fa fa-trash-o fa-2x"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-md-12">
-        <div ng-repeat="rowContent in group.rows">
+      <div class="col-md-11 form-group">
+        <div class="row">
+          <div class="col-md-1 form-group" >
+            <label>Action</label>
+            <div style="margin:0;padding:0; width:100%;height:1px;background-color:#EFEFEF;overflow:hidden;margin-top: 10px;"> </div>
+          </div>
+          <div class="col-md-9 form-group">
+            <label>Beneficiary</label>
+            <div style="margin:0;padding:0; width:100%;height:1px;background-color:#EFEFEF;overflow:hidden;margin-top: 10px;"> </div>
+          </div>
+          <div class="col-md-2 form-group">
+            <label>Proportion</label><input type="checkbox" checked>AVG
+            <div style="margin:0;padding:0; width:100%;height:1px;background-color:#EFEFEF;overflow:hidden;margin-top: 8px;"> </div>
+          </div>
+          <div ng-repeat="rowContent in group.rows">
             <beneficiary index="$index" save-beneficiary="saveBeneficiary($index)" add-beneficiary="addBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" rows-length="group.rows.length" groups-length="groupsLength" group-index="index" row-content="rowContent" proportion-rest="proportionRest"></beneficiary>
+          </div>
+        </div>
+        <div class="row">
+          <div style="padding-left: 40px">
+            <a ng-click="addBeneficiary()" title="新增受益人" tooltip>
+              <i class="fa fa-user-plus fa-2x"></i>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div style="margin:0;padding:0; width:100%;height:1px;background-color:#EFEFEF;overflow:hidden;margin-top: 10px;"> </div>
         </div>
       </div>
     </div>
+    <!--new end-->
   </div>
-  <div class="panel-footer">   
-    <div class="row">
-      <div class="col-md-12 text-right">
-        <label ng-if="group.rows.length > 0">
-          共计：{{group.rows.length}}人
-        </label>
-      </div>
-    </div>
-  </div>
+
 </div>
