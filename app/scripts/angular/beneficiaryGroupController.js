@@ -22,6 +22,7 @@ app
                $scope.group.rows.push(row);
             /*  $scope.group.rows.splice(index,0,row);*/
               $scope.counter++;
+               $scope.average();
            };
 
            $scope.removeBeneficiary = function(index) {
@@ -88,7 +89,6 @@ app
                   $scope.group.rows[i].beneficiary.proportion = parseInt( 100 / $scope.group.rows.length );
               }
           };
-
           $scope.$watch('group.rows.length', function(newValue) {
             if (newValue === 0) {
               if($scope.group.rows.length === 0 ) {
