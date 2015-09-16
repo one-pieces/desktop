@@ -28,11 +28,13 @@
             <div style="margin:0;padding:0; width:100%;height:1px;background-color:#EFEFEF;overflow:hidden;margin-top: 8px;"> </div>
           </div>
         </div>
-        <div class="row">
-          <div ng-repeat="rowContent in group.rows">
-            <beneficiary index="$index" save-beneficiary="saveBeneficiary($index)" add-beneficiary="addBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" rows-length="group.rows.length" groups-length="groupsLength" group-index="index" row-content="rowContent" proportion-rest="proportionRest"></beneficiary>
-          </div>
+
+        <div ng-repeat="rowContent in group.rows">
+           <div class="row">
+              <beneficiary index="$index" save-beneficiary="saveBeneficiary($index)" add-beneficiary="addBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" rows-length="group.rows.length" groups-length="groupsLength" group-index="index" row-content="rowContent" proportion-rest="proportionRest"></beneficiary>
+            </div>
         </div>
+
         <div class="row">
           <div class="col-md-1" >
             <div style="padding-left: 40px">
