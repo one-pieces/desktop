@@ -28,6 +28,7 @@ app
            $scope.removeBeneficiary = function(index) {
               $scope.group.rows.splice(index,1);
               $scope.counter--;
+               $scope.average();
            };
 
            $scope.saveBeneficiary = function(index) {
