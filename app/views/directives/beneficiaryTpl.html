@@ -23,12 +23,12 @@
             <span class="alert-danger" ng-show="isChecked && myForm.beneficiaryName.$error.required">请填写姓名</span>
         </div>
         <div class="form-group" >
-            <div class="radio" ng-model="row.beneficiary.sex">
+            <div class="radio">
                 <label>
-                    <input type="radio"  name="gender{{groupIndex+'_'+row.id}}" value="male"> <span class="fa fa-male text-info"></span>
+                    <input type="radio"  name="gender{{groupIndex+'_'+row.id}}" value="male" ng-model="row.beneficiary.sex"> <span class="fa fa-male text-info"></span>
                 </label>
                 <label>
-                    <input type="radio"  name="gender{{groupIndex+'_'+row.id}}" value="female"> <span class="fa fa-female text-danger"></span>
+                    <input type="radio"  name="gender{{groupIndex+'_'+row.id}}" value="female" ng-model="row.beneficiary.sex"> <span class="fa fa-female text-danger"></span>
                 </label>
             </div>
             <span class="alert-danger" ng-show="isChecked &&myForm.sex.$error.required">请选择</span>
