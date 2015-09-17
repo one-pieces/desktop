@@ -9,10 +9,11 @@ app
                     parseInt($scope.rest));
         };
 
-        $scope.moveDesc = function(isDesc, index) {
+        $scope.moveDesc = function(isDesc, index, needToCross) {
             $scope.$emit('move-row-desc', {
                 isDesc: isDesc,
-                index: index
+                index: index,
+                needToCross: needToCross
             });
         };
 

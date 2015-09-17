@@ -9,8 +9,8 @@
         <div class="form-group">
             <label class="sr-only">move</label>
             <p class="form-control-static">
-                <span ng-click="moveDesc(false, index)" ng-if="!(index == 0 && groupIndex == 0)" class="glyphicon glyphicon-menu-up beneficiary-action move-toggle"></span>
-                <span ng-click="moveDesc(true, index)" ng-if="!(index == (rowsLength-1) && groupIndex == (groupsLength-1))"class="glyphicon glyphicon-menu-down beneficiary-action move-toggle"></span>
+                <span ng-click="moveDesc(false, index, true)" ng-if="!(index == 0 && groupIndex == 0)" class="glyphicon glyphicon-menu-up beneficiary-action move-toggle"></span>
+                <span ng-click="moveDesc(true, index, true)" ng-if="!(index == (rowsLength-1) && groupIndex == (groupsLength-1))"class="glyphicon glyphicon-menu-down beneficiary-action move-toggle"></span>
             </p>
         </div>
     </div>
@@ -18,7 +18,7 @@
 <div class="col-md-9">
     <div class="form-inline">
         <div class="form-group">
-            <input class="form-control" type="text" name="beneficiaryName" ng-model="row.beneficiary.name" required="true"  title="请填写姓名，不能为空" tooltip="NOT_SHOW"/>
+            <input class="form-control" placeholder="请填写姓名：" type="text" name="beneficiaryName" ng-model="row.beneficiary.name" required="true"  title="请填写姓名，不能为空" tooltip="NOT_SHOW"/>
             <span class="alert-danger" ng-show="isChecked && myForm.beneficiaryName.$error.required">请填写姓名</span>
         </div>
         <div class="form-group">
@@ -38,7 +38,7 @@
         </div>
         <div class="form-group">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="ID number" name="identification" ng-model="row.beneficiary.identification" required="true" />
+                <input class="form-control" type="text" placeholder="请填写证件号" name="identification" ng-model="row.beneficiary.identification" required="true" />
                 <div dropdown class="input-group-btn">
                     <button id="btn-bene-id-type_1" type="button" class="btn btn-default id-type-select" dropdown-toggle>身份证<span class="caret"></span></button>
                     <ul class="dropdown-menu" >

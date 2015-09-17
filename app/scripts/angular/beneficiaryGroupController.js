@@ -45,14 +45,16 @@ app
            };
 
           $scope.$on('move-row-desc', function(event, data) {
-              $scope.moveRowDesc(data.isDesc, data.index);
+              $scope.moveRowDesc(data.isDesc, data.index, data.needToCross);
           });
-
-          $scope.moveRowDesc = function(isDesc, index) {
+          //isDesc：true下移 false上移动
+          //index:移动序号
+          //needToCross必须跨组 true跨组 false不跨组
+          $scope.moveRowDesc = function(isDesc, index, needToCross) {
               var templVal;
               if(isDesc) {
                   // 向下移动
-                  if (index === $scope.group.rows.length - 1) {
+                  if (needToCross || index === $scope.group.rows.length - 1) {
                     // 跨组
                     console.log('跨组向下移动');
                     $scope.$emit('move-row-desc-cross-group', {
@@ -68,7 +70,7 @@ app
                   }
               } else {
                   // 向上移动
-                  if (index === 0) {
+                  if (needToCross || index === 0) {
                     // 跨组
                     console.log('跨组向上移动');
                     $scope.$emit('move-row-desc-cross-group', {

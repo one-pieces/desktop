@@ -52,15 +52,12 @@ app
         $scope.moveRowDescCrossGroup = function(isDesc, rowIndex, groupIndex) {
             var length;
             if(isDesc) {
-                // 当前组的人数
-                length = $scope.beneficiaryGroups[groupIndex].rows.length;
-                $scope.beneficiaryGroups[groupIndex + 1].rows.unshift($scope.beneficiaryGroups[groupIndex].rows[length - 1]);
-                $scope.beneficiaryGroups[groupIndex].rows.pop();
+                $scope.beneficiaryGroups[groupIndex + 1].rows.unshift($scope.beneficiaryGroups[groupIndex].rows[rowIndex]);//下一组加上受益人
+                $scope.beneficiaryGroups[groupIndex].rows.splice(rowIndex, 1);//当前组去掉受益人
+
             }else {
-                // 下个组的人数
-                length = $scope.beneficiaryGroups[groupIndex - 1].rows.length;
-                $scope.beneficiaryGroups[groupIndex - 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[0]);
-                $scope.beneficiaryGroups[groupIndex].rows.shift();
+                $scope.beneficiaryGroups[groupIndex - 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[rowIndex]);//上一组加上受益人
+                $scope.beneficiaryGroups[groupIndex].rows.splice(rowIndex, 1);//当前组去掉受益人
             }
         };
 
