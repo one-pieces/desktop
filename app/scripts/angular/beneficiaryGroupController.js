@@ -112,16 +112,12 @@ app
               for (var i = 0; i < newValue.length; i++) {
                   // 判断是否为数字，如非数字则为0
                   $scope.group.rows[i].beneficiary.proportion = $scope.group.rows[i].beneficiary.proportion || 0;
+                  if (parseInt($scope.group.rows[i].beneficiary.proportion) < 0){
+                      $scope.group.rows[i].beneficiary.proportion = 0;
+                  }
                   $scope.proportionSum += parseInt($scope.group.rows[i].beneficiary.proportion);
               }
-              if ($scope.proportionSum > $scope.proportionMax) {
-                  // 出现错误，把数据回滚
-                  for (i = 0; i < newValue.length; i++) {
-                    $scope.group.rows[i].beneficiary.proportion = parseInt(oldValue[i] ? oldValue[i].proportion : 0);
-                  }
-                  $scope.proportionRest = 0;
-                  return;
-              }
+
               $scope.proportionRest = $scope.proportionMax - $scope.proportionSum;
           }, true);
     });

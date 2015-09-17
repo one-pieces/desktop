@@ -57,7 +57,7 @@
         <div class="form-group">
             <div class="input-group">
                 <input class="form-control" type="number" min="0" max="100" name="proportion" ng-model="row.beneficiary.proportion"  title="比例范围为0至100" tooltip/>
-                <span class="input-group-addon"><button class="btn btn-primary btn-xs" ng-show="rest !== 0 " ng-click="add()">+{{rest}}</button>%</span>
+                <span class="input-group-addon"><button ng-class="(rest > 0)?'btn btn-primary btn-xs':'btn btn-danger btn-xs'" ng-show="rest !== 0 " ng-click="add()">{{rest>0?'+'+rest: rest}}</button>%</span>
             </div>
         </div>
     </div>
