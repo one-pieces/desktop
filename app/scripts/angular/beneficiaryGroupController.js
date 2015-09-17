@@ -5,30 +5,25 @@ app
            $scope.proportionMax = 100;
            $scope.proportionSum = 0;
            $scope.proportionRest = 0;
+           $scope.group.isAver = true;
            $scope.counter = $scope.group.rows.length;
            $scope.addBeneficiary = function (index) {
               var beneficiary = {
-                  // name: '',
-                  // sex: '',
-                  // age: '',
-                  // birthdate: '',
                   proportion: $scope.group.proportion - $scope.proportionSum
               };
               var row = {
                   id: 'Row ' + $scope.counter,
-                  beneficiary: beneficiary
+                  beneficiary: beneficiary,
+                  idType: '1'
               };
 
                $scope.group.rows.push(row);
-            /*  $scope.group.rows.splice(index,0,row);*/
-              $scope.counter++;
-               $scope.average();
+               $scope.counter++;
            };
 
            $scope.removeBeneficiary = function(index) {
               $scope.group.rows.splice(index,1);
               $scope.counter--;
-               $scope.average();
            };
 
            $scope.saveBeneficiary = function(index) {
@@ -111,6 +106,9 @@ app
               return beneficiaries;
           }, function(newValue, oldValue) {
               $scope.proportionSum = 0;
+              if($scope.group.isAver) {
+                  $scope.average();
+              }
               for (var i = 0; i < newValue.length; i++) {
                   // 判断是否为数字，如非数字则为0
                   $scope.group.rows[i].beneficiary.proportion = $scope.group.rows[i].beneficiary.proportion || 0;

@@ -22,6 +22,9 @@ app
         });
 
         $scope.checkIdentification = function(cardNo, birthdate) {
+            if(!birthdate) {
+                return;
+            }
             var givenYear = birthdate.getFullYear();
             var givenMonth =birthdate.getMonth()+1;
             var givenDay = birthdate.getDate();

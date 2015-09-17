@@ -16,7 +16,8 @@ app
                 // sex: '',
                 // age: '',
                 // birthdate: '',
-                proportion: 100
+                proportion: 100,
+                idType:'1'
             };
             var row = {
                 id: 'Row0',
@@ -89,5 +90,6 @@ app
             $scope.checkedAllItems(true);
 
         };
+
 
     });

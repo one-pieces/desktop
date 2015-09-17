@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 		uglify: {
 			options: {
 				stripBanners: true,
-				banner: '/*! <%=pkg.name%>-<%=pkg.version%>.js <%=gurnt.template.today("yyyy-mm-dd")%> */\n'
+				banner: '/*! <%=pkg.name%>-<%=pkg.version%>.js <%=grunt.template.today("yyyy-mm-dd")%> */\n'
 			},
 			build: {
 				src: 'app/scripts/angular/*.js',
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 		cssmin: {
 			options: {
 				stripBanners: true,
-				banner: '/*! <%=pkg.name%>-<%=pkg.version%>.css <%=gurnt.template.today("yyyy-mm-dd")%> */\n'
+				banner: '/*! <%=pkg.name%>-<%=pkg.version%>.css <%=grunt.template.today("yyyy-mm-dd")%> */\n'
 			},
 			build: {
 				src: 'app/styles/default/default.css',

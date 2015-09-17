@@ -8,7 +8,8 @@
 		</div>
 	</div>
 	<div ng-repeat="beneficiaryGroup in beneficiaryGroups">
-	 <beneficiary-group index="$index" groups-length="beneficiaryGroups.length" group="beneficiaryGroup" remove-group="removeGroup($index)"></beneficiary-group>
+	 <beneficiary-group index="$index" groups-length="beneficiaryGroups.length" group="beneficiaryGroup"
+						remove-group="removeGroup($index)"></beneficiary-group>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
@@ -18,7 +19,8 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12 col-md-offset-5">
-			<button ng-if="beneficiaryGroups.length > 0" class="btn btn-primary" ng-click="saveBeneficiary()">保存</button>
+			<button ng-if="beneficiaryGroups.length > 0" class="btn btn-primary"
+					ng-click="saveBeneficiary()">保存</button>
 		</div>
 	</div>
 </div>

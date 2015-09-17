@@ -2,7 +2,7 @@
   <div>
     <!--new start-->
     <div class="row">
-      <div class="col-md-1">
+      <div class="col-md-1 beneficiary-group-title">
         <h3>第{{index+1}}顺位</h3>
         <div class="beneficiary-group-action">
           <span ng-if="index === 0"  class="glyphicon glyphicon-triangle-top" ng-class="'text-muted'"></span>
@@ -17,38 +17,37 @@
         <div class="row">
           <div class="col-md-1" >
             <label>Action</label>
-            <div style="margin:0;padding:0; width:100%;height:1px;background-color:#EFEFEF;overflow:hidden;margin-top: 10px;"> </div>
           </div>
           <div class="col-md-9">
             <label>Personal Info.</label>
-            <div style="margin:0;padding:0; width:100%;height:1px;background-color:#EFEFEF;overflow:hidden;margin-top: 10px;"> </div>
           </div>
           <div class="col-md-2">
-            <label>Benefit Ratio</label><span class="glyphicon glyphicon-check"></span><button type="button" ng-click="average()" class="btn btn-xs"><span>AVG</span></button>
-            <div style="margin:0;padding:0; width:100%;height:1px;background-color:#EFEFEF;overflow:hidden;margin-top: 8px;"> </div>
+            <label>Benefit Ratio</label>
+              <span ng-model="group.isAver" ng-click="group.isAver = !group.isAver"
+                    ng-class="group.isAver?'glyphicon glyphicon-check':'glyphicon glyphicon-unchecked'"></span>
+              <button type="button" ng-click="average()" class="btn btn-xs"><span>AVG</span></button>
           </div>
         </div>
 
         <div ng-repeat="rowContent in group.rows">
+          <div class="row">
+            <div class="bottom-line"> </div>
+          </div>
            <div class="row">
               <beneficiary index="$index" save-beneficiary="saveBeneficiary($index)" add-beneficiary="addBeneficiary($index)" delete-beneficiary="removeBeneficiary($index)" rows-length="group.rows.length" groups-length="groupsLength" group-index="index" row-content="rowContent" proportion-rest="proportionRest"></beneficiary>
             </div>
         </div>
-
         <div class="row">
-          <div class="col-md-1" >
-            <div style="padding-left: 40px">
+          <div class="col-md-1 add-beneficiary" >
               <a ng-click="addBeneficiary()" title="新增受益人" tooltip>
                 <i class="fa fa-user-plus fa-2x"></i>
               </a>
-            </div>
           </div>
-        </div>
+        </div><br/>
         <div class="row">
-          <div style="margin:0;padding:0; width:100%;height:1px;background-color:#EFEFEF;overflow:hidden;margin-top: 10px;"> </div>
+            <br/>
         </div>
       </div>
-
     </div>
     <!--new end-->
   </div>
