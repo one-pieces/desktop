@@ -9,12 +9,12 @@ app
            $scope.counter = $scope.group.rows.length;
            $scope.addBeneficiary = function (index) {
               var beneficiary = {
-                  proportion: $scope.group.proportion - $scope.proportionSum
+                  proportion: $scope.group.proportion - $scope.proportionSum,
+                  idType: '1'
               };
               var row = {
                   id: 'Row ' + $scope.counter,
-                  beneficiary: beneficiary,
-                  idType: '1'
+                  beneficiary: beneficiary
               };
 
                $scope.group.rows.push(row);
@@ -38,6 +38,7 @@ app
                 index: index
               });
            };
+
 
           $scope.$on('move-row-desc', function(event, data) {
               $scope.moveRowDesc(data.isDesc, data.index, data.needToCross);

@@ -90,6 +90,8 @@ app
             $scope.checkedAllItems(true);
 
         };
-
+        $scope.$on('uncheck-aver', function(event, data) {
+            $scope.beneficiaryGroups[data.groupIndex].isAver = false;
+        });
 
     });

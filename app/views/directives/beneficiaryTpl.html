@@ -13,12 +13,13 @@
                 <span ng-click="moveDesc(true, index, true)" ng-if="!(index == (rowsLength-1) && groupIndex == (groupsLength-1))"class="glyphicon glyphicon-menu-down beneficiary-action move-toggle"></span>
             </p>
         </div>
+
     </div>
 </div>
 <div class="col-md-9">
     <div class="form-inline">
         <div class="form-group">
-            <input class="form-control" placeholder="请填写姓名：" type="text" name="beneficiaryName" ng-model="row.beneficiary.name" required="true"  title="请填写姓名，不能为空" tooltip="NOT_SHOW"/>
+            <input class="form-control" placeholder="请填写姓名：" type="text" name="beneficiaryName" ng-model="row.beneficiary.name" ng-required="true"  title="请填写姓名，不能为空" />
             <span class="alert-danger" ng-show="isChecked && myForm.beneficiaryName.$error.required">请填写姓名</span>
         </div>
         <div class="form-group" >
@@ -39,11 +40,11 @@
         <div class="form-group">
             <div class="input-group">
                 <input class="form-control" type="text" placeholder="请填写证件号" name="identification" ng-model="row.beneficiary.identification" required="true" />
-                <div dropdown class="input-group-btn">
-                    <button id="btn-bene-id-type_1" type="button" class="btn btn-default id-type-select" dropdown-toggle>身份证<span class="caret"></span></button>
-                    <ul class="dropdown-menu" >
-                        <li><a href="#" ng-click="row.beneficiary.idType='身份证'">身份证</a></li>
-                        <li><a href="#" ng-click="row.beneficiary.idType='护照'">护照</a></li>
+                <div class="input-group-btn">
+                    <button id="btn-bene-id-type_1" type="button" class="btn btn-default id-type-select" data-toggle="dropdown">{{row.beneficiary.idType === '1'?'身份证':'护照'}}<span class="caret"></span></button>
+                    <ul class="dropdown-menu"  role="menu" aria-labelledby="menu1">
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" ng-click="row.beneficiary.idType='1'">身份证</a></li>
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" ng-click="row.beneficiary.idType='2'">护照</a></li>
                     </ul>
                 </div>
                 <span class="alert-danger" ng-show="isChecked && myForm.identification.$error.required">请填写证件信息</span>

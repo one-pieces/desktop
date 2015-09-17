@@ -7,8 +7,10 @@ app
             $scope.row.beneficiary.proportion = 
                 (parseInt($scope.row.beneficiary.proportion) +
                     parseInt($scope.rest));
+            $scope.$emit('uncheck-aver', {
+                groupIndex: $scope.groupIndex
+            });
         };
-
         $scope.moveDesc = function(isDesc, index, needToCross) {
             $scope.$emit('move-row-desc', {
                 isDesc: isDesc,
