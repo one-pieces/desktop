@@ -1,7 +1,14 @@
 <div>
   <div>
     <!--new start-->
-    <div class="row">
+    <div  class="row">
+      <div class="col-md-10">
+        <button id="btn_{{index}}"  toggle="#row_{{index}}" toggle-speed="500" >第{{index+1}}顺位</button>
+        <div class="bottom-line"> </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row" id="row_{{index}}">
       <div class="col-md-1 beneficiary-group-title">
         <h3>第{{index+1}}顺位</h3>
         <div class="beneficiary-group-action">

@@ -41,14 +41,14 @@
             <div class="input-group">
                 <input class="form-control" type="text" placeholder="请填写证件号" name="identification" ng-model="row.beneficiary.identification" required="true" />
                 <div class="input-group-btn">
-                    <button id="btn-bene-id-type_1" type="button" class="btn btn-default id-type-select" data-toggle="dropdown">{{row.beneficiary.idType === '1'?'身份证':'护照'}}<span class="caret"></span></button>
+                    <button  class="btn btn-default" data-toggle="dropdown">{{row.beneficiary.idType === '1'?'身份证':'护照'}}</button>
                     <ul class="dropdown-menu"  role="menu" aria-labelledby="menu1">
                         <li role="presentation"><a role="menuitem" href="#" tabindex="-1" ng-click="row.beneficiary.idType='1'">身份证</a></li>
                         <li role="presentation"><a role="menuitem" href="#" tabindex="-1" ng-click="row.beneficiary.idType='2'">护照</a></li>
                     </ul>
                 </div>
                 <span class="alert-danger" ng-show="isChecked && myForm.identification.$error.required">请填写证件信息</span>
-                <span class="alert-danger" ng-show="isChecked && !myForm.birthdate.$error.required && !checkIdentification(row.beneficiary.identification, row.beneficiary.birthdate)">身份证错误</span>
+                <span class="alert-danger" ng-show="isChecked && !myForm.birthdate.$error.required && !checkId(row.beneficiary.identification, row.beneficiary.birthdate)">身份证错误</span>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
     <div class="form-inline">
         <div class="form-group">
             <div class="input-group">
-                <input class="form-control" type="number" min="0" max="100" name="proportion" ng-model="row.beneficiary.proportion"  title="比例范围为0至100" tooltip/>
+                <input class="form-control" type="number" min="0" max="100" ng-change="changeCheckedValue()" name="proportion" ng-model="row.beneficiary.proportion"  title="比例范围为0至100" tooltip/>
                 <span class="input-group-addon"><button ng-class="(rest > 0)?'btn btn-primary btn-xs':'btn btn-danger btn-xs'" ng-show="rest !== 0 " ng-click="add()">{{rest>0?'+'+rest: rest}}</button>%</span>
             </div>
         </div>
