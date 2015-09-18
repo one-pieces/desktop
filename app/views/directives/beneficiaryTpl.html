@@ -41,7 +41,7 @@
             <div class="input-group">
                 <input class="form-control" type="text" placeholder="请填写证件号" name="identification" ng-model="row.beneficiary.identification" required="true" />
                 <div class="input-group-btn">
-                    <button  class="btn btn-default" data-toggle="dropdown">{{row.beneficiary.idType === '1'?'身份证':'护照'}}</button>
+                    <button  class="btn btn-default" data-toggle="dropdown">{{row.beneficiary.idType === '1'?'身份证':'护照'}}<span class="caret"></span></button>
                     <ul class="dropdown-menu"  role="menu" aria-labelledby="menu1">
                         <li role="presentation"><a role="menuitem" href="#" tabindex="-1" ng-click="row.beneficiary.idType='1'">身份证</a></li>
                         <li role="presentation"><a role="menuitem" href="#" tabindex="-1" ng-click="row.beneficiary.idType='2'">护照</a></li>
