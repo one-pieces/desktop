@@ -21,6 +21,24 @@ app
             });
         };
 
+        $scope.$watch('row.beneficiary.identification', function(cardNo) {
+            if (cardNo && (15 === cardNo.length || 18 === cardNo.length)) {
+                var personInfo = checkForm.getIdCardInfo(cardNo);
+                if(!personInfo.isTrue) {
+                    return;
+                }
+                var birthdate = new Date();
+                birthdate.setDate(personInfo.day);
+                birthdate.setFullYear(personInfo.year);
+                birthdate.setMonth(personInfo.month-1);
+                $scope.row.beneficiary.birthdate =birthdate;
+                $scope.row.beneficiary.sex = personInfo.sex;
+            } else {
+                $scope.row.beneficiary.birthdate ='';
+                $scope.row.beneficiary.sex ='';
+            }
+        });
+
         $scope.$on('check-all-items', function(event, data) {
             $scope.isChecked = true;
         });

@@ -2,118 +2,130 @@
  * Created by Administrator on 2015/9/14 0014.
  */
 
-     checkForm = {
-        /**
-         * Éí·İÖ¤ºÅÂëÑéÖ¤
-         *
-         * @param cardNo
-         *            {String} Ö¤¼şºÅÂë
-         * @returns info {Object} Éí·İÖ¤ĞÅÏ¢.
-         *
-         */
-        checkId:function(cardNo, birthday) {
-            var info = {
-                isTrue: false, // Éí·İÖ¤ºÅÊÇ·ñÓĞĞ§¡£Ä¬ÈÏÎª false
-                year: null,// ³öÉúÄê¡£Ä¬ÈÏÎªnull
-                month: null,// ³öÉúÔÂ¡£Ä¬ÈÏÎªnull
-                day: null,// ³öÉúÈÕ¡£Ä¬ÈÏÎªnull
-                isMale: false,// ÊÇ·ñÎªÄĞĞÔ¡£Ä¬ÈÏfalse
-                isFemale: false // ÊÇ·ñÎªÅ®ĞÔ¡£Ä¬ÈÏfalse
-            };
+/**
+ * Created by Administrator on 2015/9/14 0014.
+ */
+/**
+ * èº«ä»½è¯å·ç éªŒè¯
+ *
+ * @param cardNo
+ *            {String} è¯ä»¶å·ç 
+ * @returns info {Object} èº«ä»½è¯ä¿¡æ¯.
+ *
+ */
+'use strict';
+     var checkForm = {
+        // å·¦é‚Šè£œ0
+         padLeft: function(str,lenght) {
+             str = str.toString();
+             if (str.length >= lenght) {
+                 return str;
+             } else {
+                 return this.padLeft("0" + str, lenght);
+             }
+         },
 
-            if (!cardNo || (15 != cardNo.length && 18 != cardNo.length)) {
-                info.isTrue = false;
-                return info;
-            }
 
-            if (15 == cardNo.length) {
-                var givenYear = birthday.substring(0, 4);
-                var givenMonth = birthday.substring(4, 6);
-                var givenDay = birthday.substring(6, 8);
-                var year = cardNo.substring(6, 8);
-                var month = cardNo.substring(8, 10);
-                var day = cardNo.substring(10, 12);
-                if (givenYear !== year || givenMonth !== month || givenDay !== day) {
-                    info.isTrue = false;
-                    return info;
-                }
-                var p = cardNo.substring(14, 15); // ĞÔ±ğÎ»
-                var birthday = new Date(year, parseFloat(month) - 1, parseFloat(day));
-                // ¶ÔÓÚÀÏÉí·İÖ¤ÖĞµÄÄêÁäÔò²»Ğè¿¼ÂÇÇ§Äê³æÎÊÌâ¶øÊ¹ÓÃgetYear()·½·¨
-                if (birthday.getYear() != parseFloat(year)
-                    || birthday.getMonth() != parseFloat(month) - 1
-                    || birthday.getDate() != parseFloat(day)) {
-                    info.isTrue = false;
-                } else {
-                    info.isTrue = true;
-                    info.year = birthday.getFullYear();
-                    info.month = birthday.getMonth() + 1;
-                    info.day = birthday.getDate();
-                    if (p % 2 == 0) {
-                        info.isFemale = true;
-                        info.isMale = false;
-                    } else {
-                        info.isFemale = false;
-                        info.isMale = true;
-                    }
-                }
-                return info;
-            }
+         getIdCardInfo : function(cardNo) {
+             var info = {
+                 isTrue : false, // èº«ä»½è¯å·æ˜¯å¦æœ‰æ•ˆã€‚é»˜è®¤ä¸º false
+                 year : null,// å‡ºç”Ÿå¹´ã€‚é»˜è®¤ä¸ºnull
+                 month : null,// å‡ºç”Ÿæœˆã€‚é»˜è®¤ä¸ºnull
+                 day : null,// å‡ºç”Ÿæ—¥ã€‚é»˜è®¤ä¸ºnull
+                 isMale : false,// æ˜¯å¦ä¸ºç”·æ€§ã€‚é»˜è®¤false
+                 isFemale : false, // æ˜¯å¦ä¸ºå¥³æ€§ã€‚é»˜è®¤false
+                 sex: null //é»˜è®¤ä¸ºç©º
+             };
 
-            if (18 == cardNo.length) {
-                var givenYear = birthday.substring(0, 4);
-                var givenMonth = birthday.substring(4, 6);
-                var givenDay = birthday.substring(6, 8);
-                var year = cardNo.substring(6, 10);
-                var month = cardNo.substring(10, 12);
-                var day = cardNo.substring(12, 14);
-                var p = cardNo.substring(14, 17);
-                var birthday = new Date(year, parseFloat(month) - 1, parseFloat(day));
-                if (givenYear !== year || givenMonth !== month || givenDay !== day) {
-                    info.isTrue = false;
-                    return info;
-                }
-                // ÕâÀïÓÃgetFullYear()»ñÈ¡Äê·İ£¬±ÜÃâÇ§Äê³æÎÊÌâ
-                if (birthday.getFullYear() != parseFloat(year)
-                    || birthday.getMonth() != parseFloat(month) - 1
-                    || birthday.getDate() != parseFloat(day)) {
-                    info.isTrue = false;
-                    return info;
-                }
+             if (!cardNo || (15 != cardNo.length && 18 != cardNo.length) ) {
+                 info.isTrue = false;
+                 return info;
+             }
 
-                var Wi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1];// ¼ÓÈ¨Òò×Ó
-                var Y = [1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2];// Éí·İÖ¤ÑéÖ¤Î»Öµ.10´ú±íX
+             if (15 == cardNo.length) {
+                 var year = cardNo.substring(6, 8);
+                 var month = cardNo.substring(8, 10);
+                 var day = cardNo.substring(10, 12);
+                 var p = cardNo.substring(14, 15); // æ€§åˆ«ä½
+                 var birthday = new Date(year, parseFloat(month) - 1, parseFloat(day));
+                 // å¯¹äºè€èº«ä»½è¯ä¸­çš„å¹´é¾„åˆ™ä¸éœ€è€ƒè™‘åƒå¹´è™«é—®é¢˜è€Œä½¿ç”¨getYear()æ–¹æ³•
+                 if (birthday.getYear() != parseFloat(year)
+                     || birthday.getMonth() != parseFloat(month) - 1
+                     || birthday.getDate() != parseFloat(day)) {
+                     info.isTrue = false;
+                 } else {
+                     info.isTrue = true;
+                     info.year = birthday.getFullYear();
+                     info.month = checkForm.padLeft(birthday.getMonth() + 1, 2);
+                     info.day = checkForm.padLeft(birthday.getDate(), 2);
+                     if (p % 2 == 0) {
+                         info.isFemale = true;
+                         info.isMale = false;
+                     } else {
+                         info.isFemale = false;
+                         info.isMale = true;
+                     }
+                 }
+                 if(info.isFemale) {
+                     info.sex = '0';
+                 } else {
+                     info.sex = '1';
+                 }
+                 return info;
+             }
 
-                // ÑéÖ¤Ğ£ÑéÎ»
-                var sum = 0; // ÉùÃ÷¼ÓÈ¨ÇóºÍ±äÁ¿
-                var _cardNo = cardNo.split("");
+             if (18 == cardNo.length) {
+                 var year = cardNo.substring(6, 10);
+                 var month = cardNo.substring(10, 12);
+                 var day = cardNo.substring(12, 14);
+                 var p = cardNo.substring(14, 17);
+                 var birthday = new Date(year, parseFloat(month) - 1, parseFloat(day));
+                 // è¿™é‡Œç”¨getFullYear()è·å–å¹´ä»½ï¼Œé¿å…åƒå¹´è™«é—®é¢˜
+                 if (birthday.getFullYear() != parseFloat(year)
+                     || birthday.getMonth() != parseFloat(month) - 1
+                     || birthday.getDate() != parseFloat(day)) {
+                     info.isTrue = false;
+                     return info;
+                 }
 
-                if (_cardNo[17].toLowerCase() == 'x') {
-                    _cardNo[17] = 10;// ½«×îºóÎ»ÎªxµÄÑéÖ¤ÂëÌæ»»Îª10·½±ãºóĞø²Ù×÷
-                }
-                for (var i = 0; i < 17; i++) {
-                    sum += Wi[i] * _cardNo[i];// ¼ÓÈ¨ÇóºÍ
-                }
-                var i = sum % 11;// µÃµ½ÑéÖ¤ÂëËùÎ»ÖÃ
+                 var Wi = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1 ];// åŠ æƒå› å­
+                 var Y = [ 1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2 ];// èº«ä»½è¯éªŒè¯ä½å€¼.10ä»£è¡¨X
 
-                if (_cardNo[17] != Y[i]) {
-                    return info.isTrue = false;
-                }
+                 // éªŒè¯æ ¡éªŒä½
+                 var sum = 0; // å£°æ˜åŠ æƒæ±‚å’Œå˜é‡
+                 var _cardNo = cardNo.split("");
 
-                info.isTrue = true;
-                info.year = birthday.getFullYear();
-                info.month = birthday.getMonth() + 1;
-                info.day = birthday.getDate();
+                 if (_cardNo[17].toLowerCase() == 'x') {
+                     _cardNo[17] = 10;// å°†æœ€åä½ä¸ºxçš„éªŒè¯ç æ›¿æ¢ä¸º10æ–¹ä¾¿åç»­æ“ä½œ
+                 }
+                 for ( var i = 0; i < 17; i++) {
+                     sum += Wi[i] * _cardNo[i];// åŠ æƒæ±‚å’Œ
+                 }
+                 var i = sum % 11;// å¾—åˆ°éªŒè¯ç æ‰€ä½ç½®
 
-                if (p % 2 == 0) {
-                    info.isFemale = true;
-                    info.isMale = false;
-                } else {
-                    info.isFemale = false;
-                    info.isMale = true;
-                }
-                return info;
-            }
-            return info;
-        }
+                 if (_cardNo[17] != Y[i]) {
+                     return info.isTrue = false;
+                 }
+
+                 info.isTrue = true;
+                 info.year = birthday.getFullYear();
+                 info.month = checkForm.padLeft(birthday.getMonth() + 1, 2);
+                 info.day = checkForm.padLeft(birthday.getDate(), 2);
+
+                 if (p % 2 == 0) {
+                     info.isFemale = true;
+                     info.isMale = false;
+                 } else {
+                     info.isFemale = false;
+                     info.isMale = true;
+                 }
+                 if(info.isFemale) {
+                     info.sex = '0';
+                 }else {
+                     info.sex = '1';
+                 }
+                 return info;
+             }
+             return info;
+         }
 }
