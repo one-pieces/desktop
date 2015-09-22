@@ -9,6 +9,7 @@ app
         $scope.proportionSum = 0;
         $scope.proportionRest = 0;
         $scope.group.isAver = true;
+        $scope.group.isToggled = false;
         $scope.counter = $scope.group.rows.length;
         //$scopeVariable definition end
 

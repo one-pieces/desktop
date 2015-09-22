@@ -1,25 +1,6 @@
 'use strict';
 
 app
-.directive('groupToggle', function() {
-	return {
-		restrict: 'A',
-		scope: {
-			index: "=",
-			nameList: "=",
-			groupsLength: "="
-		},
-		link : function(scope, element, attrs, ctrl) {
-			element.bind('click', function() {
-				$(attrs.groupToggle).toggle(parseInt(attrs.toggleSpeed));
-			});
-		},
-		templateUrl:"views/directives/groupToggle.html",
-		replace: true,
-		transclude: false,
-		controller:'groupToggleCtrl'
-	};
-})
 .directive('hide', function() {
 	return {
 		restrict: 'A',

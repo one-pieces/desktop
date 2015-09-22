@@ -3,12 +3,25 @@
     <!--new start-->
     <div  class="row">
       <div class="col-md-10">
-        <div disabled group-toggle="#row_{{index}}"  index="index" name-list="nameList()" toggle-speed="100"></div>
+        <span ng-click="group.isToggled = !group.isToggled">
+          <span ng-class="group.isToggled?'glyphicon glyphicon-plus':'glyphicon glyphicon-minus'"/>
+        </span>
+        <span ng-hide="!group.isToggled" class="animate-hide">第{{index+1}}顺位
+          <span ng-repeat="title in group.rows">
+            <span ng-show="title.beneficiary.name && title.beneficiary.name !== ''" class="glyphicon glyphicon-user">
+                {{title.beneficiary.name}} {{title.beneficiary.proportion}}%
+            </span>
+          </span>
+            <span ng-if="index === 0"  class="glyphicon glyphicon-triangle-top" ng-class="'text-muted'"></span>
+            <span ng-if="index !== 0" ng-click="moveDesc(false, index)" class="glyphicon glyphicon-triangle-top" ng-class="'text-primary'"></span>
+            <span  ng-if="index === (group.rows-1)"  class="glyphicon glyphicon-triangle-bottom" ng-class="'text-muted'"></span>
+            <span ng-if="index !== (group.rows-1)"  ng-click="moveDesc(true, index)" class="glyphicon glyphicon-triangle-bottom" ng-class="'text-primary'"></span>
+        </span>
         <div class="bottom-line"></div>
       </div>
       <div class="col-md-2"></div>
     </div>
-    <div class="row" id="row_{{index}}" >
+    <div class="row" id="row_{{index}}" ng-hide="group.isToggled" class="animate-hide">
       <div class="col-md-1 beneficiary-group-title">
         <h3>第{{index+1}}顺位</h3>
         <div class="beneficiary-group-action">
@@ -36,7 +49,7 @@
           </div>
         </div>
 
-        <div ng-repeat="rowContent in group.rows">
+        <div ng-repeat="rowContent in group.rows" class="animate-repeat">
           <div class="row">
             <div class="bottom-line"> </div>
           </div>
