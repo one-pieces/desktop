@@ -5,7 +5,6 @@ app
         return {
             restrict: 'E',
             link : function(scope, element, attrs, ctrl) {
-
             },
             scope : {
                 index: "=",

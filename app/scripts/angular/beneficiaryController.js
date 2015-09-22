@@ -21,7 +21,11 @@ app
             });
         };
 
-        $scope.$watch('row.beneficiary.identification', function(cardNo) {
+        $scope.$watch('row.beneficiary.identification', function(cardNo, oldCardNo) {
+            if (cardNo !== oldCardNo) {
+                $scope.row.beneficiary.birthdate ='';
+                $scope.row.beneficiary.sex ='';
+            }
             if (cardNo && (15 === cardNo.length || 18 === cardNo.length)) {
                 var personInfo = checkForm.getIdCardInfo(cardNo);
                 if(!personInfo.isTrue) {
@@ -33,9 +37,6 @@ app
                 birthdate.setMonth(personInfo.month-1);
                 $scope.row.beneficiary.birthdate =birthdate;
                 $scope.row.beneficiary.sex = personInfo.sex;
-            } else {
-                $scope.row.beneficiary.birthdate ='';
-                $scope.row.beneficiary.sex ='';
             }
         });
 
