@@ -1,0 +1,69 @@
+<div class="col-md-1">
+    <div class="form-inline">
+        <div class="form-group">
+            <label class="sr-only">delete</label>
+            <p class="form-control-static">
+                <span class="glyphicon glyphicon-remove-sign beneficiary-action text-danger" ng-click="delete()"></span>
+            </p>
+        </div>
+        <div class="form-group">
+            <label class="sr-only">move</label>
+            <p class="form-control-static">
+                <span ng-click="moveDesc(false, index, true)" ng-if="!(index == 0 && groupIndex == 0)" class="glyphicon glyphicon-menu-up beneficiary-action move-toggle"></span>
+                <span ng-click="moveDesc(true, index, true)" ng-if="!(index == (rowsLength-1) && groupIndex == (groupsLength-1))"class="glyphicon glyphicon-menu-down beneficiary-action move-toggle"></span>
+            </p>
+        </div>
+
+    </div>
+</div>
+<div class="col-md-9">
+    <div class="form-inline">
+        <div class="form-group">
+            <label class="sr-only"></label>
+            <input class="form-control" placeholder="请填写姓名：" type="text" name="beneficiaryName" ng-model="row.beneficiary.name" ng-required="true"  title="请填写姓名，不能为空" />
+            <span class="alert-danger" ng-show="isChecked && myForm.beneficiaryName.$error.required">请填写姓名</span>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <label class="sr-only"></label>
+                <input class="form-control" type="text" placeholder="请填写证件号" name="identification" ng-model="row.beneficiary.identification" required="true" />
+                <div class="input-group-btn">
+                    <button  class="btn btn-default" data-toggle="dropdown">{{row.beneficiary.idType === '1'?'身份证':'护照'}}<span class="caret"></span></button>
+                    <ul class="dropdown-menu"  role="menu" aria-labelledby="menu1">
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" ng-click="row.beneficiary.idType='1'">身份证</a></li>
+                        <li role="presentation"><a role="menuitem" href="#" tabindex="-1" ng-click="row.beneficiary.idType='2'">护照</a></li>
+                    </ul>
+                </div>
+                <span class="alert-danger" ng-show="isChecked && myForm.identification.$error.required">请填写证件信息</span>
+                <span class="alert-danger" ng-show="isChecked && !myForm.birthdate.$error.required && !checkId(row.beneficiary.identification, row.beneficiary.birthdate)">身份证错误</span>
+            </div>
+        </div>
+        <div class="form-group" >
+            <div class="radio">
+                <label>
+                    <input type="radio"  name="gender{{groupIndex+'_'+row.id}}" value="1" ng-model="row.beneficiary.sex"> <span class="fa fa-male text-info"></span>
+                </label>
+                <label>
+                    <input type="radio"  name="gender{{groupIndex+'_'+row.id}}" value="0" ng-model="row.beneficiary.sex"> <span class="fa fa-female text-danger"></span>
+                </label>
+            </div>
+            <span class="alert-danger" ng-show="isChecked &&myForm.sex.$error.required">请选择</span>
+        </div>
+        <div class="form-group">
+            <label class="sr-only"></label>
+            <input class="form-control" type="date" name="birthdate" ng-model="row.beneficiary.birthdate" required="true" data-toggle="tooltip" title="请选择出生年月" tooltip="NOT_ALWAY_SHOW"/>
+            <span class="alert-danger" ng-show="isChecked &&myForm.birthdate.$error.required">请填写出生年月</span>
+        </div>
+    </div>
+</div>
+<div class="col-md-2">
+    <div class="form-inline">
+        <div class="form-group">
+            <div class="input-group">
+                <label class="sr-only"></label>
+                <input class="form-control" type="number" min="0" max="100" ng-change="changeCheckedValue()" name="proportion" ng-model="row.beneficiary.proportion"  title="比例范围为0至100" tooltip/>
+                <span class="input-group-addon"><button ng-class="(rest > 0)?'btn btn-primary btn-xs':'btn btn-danger btn-xs'" ng-show="rest !== 0 " ng-click="add()">{{rest>0?'+'+rest: rest}}</button>%</span>
+            </div>
+        </div>
+    </div>
+</div>
