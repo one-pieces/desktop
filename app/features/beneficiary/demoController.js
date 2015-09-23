@@ -1,4 +1,3 @@
-// var app = require('app.js');
 'use strict';
 
 app
@@ -12,10 +11,8 @@ app
                 return;
             }
             var beneficiary = {
-                // name: '',
-                // sex: '',
-                // age: '',
-                // birthdate: '',
+                name: '',
+                sex: '',
                 proportion: 100,
                 idType:'1'
             };
@@ -53,13 +50,11 @@ app
         $scope.moveRowDescCrossGroup = function(isDesc, rowIndex, groupIndex) {
             var length;
             if(isDesc) {
-                // hack的方法暂时解决在跨组时性别的input的name会同名的问题，集成数据库后可删掉，直接用数据库_id
                 $scope.beneficiaryGroups[groupIndex].rows[rowIndex].id = $scope.beneficiaryGroups[groupIndex + 1].rows[0].id - 1;
                 $scope.beneficiaryGroups[groupIndex + 1].rows.unshift($scope.beneficiaryGroups[groupIndex].rows[rowIndex]);//下一组加上受益人
                 $scope.beneficiaryGroups[groupIndex].rows.splice(rowIndex, 1);//当前组去掉受益人
 
             }else {
-                // hack的方法暂时解决在跨组时性别的input的name会同名的问题，集成数据库后可删掉，直接用数据库_id
                 $scope.beneficiaryGroups[groupIndex].rows[rowIndex].id = $scope.beneficiaryGroups[groupIndex - 1].rows[$scope.beneficiaryGroups[groupIndex - 1].rows.length - 1].id + 1;
                 $scope.beneficiaryGroups[groupIndex - 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[rowIndex]);//上一组加上受益人
                 $scope.beneficiaryGroups[groupIndex].rows.splice(rowIndex, 1);//当前组去掉受益人
@@ -85,14 +80,7 @@ app
             });
         };
         $scope.saveBeneficiary = function() {
-            for( var i = 0; i < $scope.beneficiaryGroups.length; i++) {
-                if( $scope.beneficiaryGroups[i].rows.length  === 0 ) {
-                    alert("每组受益人至少包含一人。");
-                    return;
-                }
-            }
             $scope.checkedAllItems(true);
-
         };
         $scope.$on('uncheck-aver', function(event, data) {
             $scope.beneficiaryGroups[data.groupIndex].isAver = false;

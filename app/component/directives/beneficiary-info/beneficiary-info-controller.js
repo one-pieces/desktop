@@ -1,18 +1,24 @@
 'use strict';
 app
-    .controller('deneficiaryCtrl', function($scope) {
+    .controller('beneficiaryCtrl', function($scope) {
         $scope.isChecked = false;
+
+        /**
+         * Calc the proportion when adding a beneficiary
+         */
         $scope.add = function() {
             $scope.row.beneficiary.proportion = 
                 (parseInt($scope.row.beneficiary.proportion) +
                     parseInt($scope.rest));
             $scope.changeCheckedValue();
         };
+
         $scope.changeCheckedValue = function() {
             $scope.$emit('uncheck-aver', {
                 groupIndex: $scope.groupIndex
             });
         };
+
         $scope.moveDesc = function(isDesc, index, needToCross) {
             $scope.$emit('move-row-desc', {
                 isDesc: isDesc,
@@ -21,6 +27,10 @@ app
             });
         };
 
+        /**
+         * Call formValidate.js to getIdCardInfo in order to fill in
+         * the birthday and sex according to the id card automatically
+         */
         $scope.$watch('row.beneficiary.identification', function(cardNo, oldCardNo) {
             if (cardNo !== oldCardNo) {
                 $scope.row.beneficiary.birthdate ='';
@@ -39,30 +49,27 @@ app
                 $scope.row.beneficiary.sex = personInfo.sex;
             }
         });
-
+        /**
+         * Checked the items when submitting the form
+         */
         $scope.$on('check-all-items', function(event, data) {
             $scope.isChecked = true;
         });
-
+        /**
+         * Given the birthdate to check if the cardNo exsists
+         * @param cardNo
+         * @param birthdate
+         * @returns {boolean}
+         */
         $scope.checkId = function(cardNo, birthdate) {
             if(!birthdate || !cardNo || $scope.row.beneficiary.idType!=='1') {
                 return true;
             }
-            if ( (15 !== cardNo.length && 18 !== cardNo.length)) {
-                return false;
+            if (cardNo && (15 === cardNo.length || 18 === cardNo.length)) {
+                var personInfo = checkForm.getIdCardInfo(cardNo);
+                return personInfo.isTrue;
             }
-            var givenYear = birthdate.getFullYear();
-            var givenMonth =birthdate.getMonth()+1;
-            var givenDay = birthdate.getDate();
-            var year = cardNo.substring(6, 10);
-            var month = cardNo.substring(10, 12);
-            var day = cardNo.substring(12, 14);
-            if(Number(givenYear) !== Number(year) || Number(givenMonth)!== Number(month) || Number(givenDay)!== Number(day)) {
-                return false;
-            }else {
-                return true;
-            }
-
+            return true;
         };
 
     });

@@ -9,7 +9,7 @@ app.config(['$urlRouterProvider', '$stateProvider', '$locationProvider', functio
 	$stateProvider
 		.state("demo", {
 				url: "/siebre/demo",
-				templateUrl: 'views/beneficiary/demo.html',
+				templateUrl: 'features/beneficiary/demo.html',
 				controller: 'demoCtrl'
 		});
 	$locationProvider.html5Mode(true);

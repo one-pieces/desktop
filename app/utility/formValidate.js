@@ -48,7 +48,6 @@
                  var day = cardNo.substring(10, 12);
                  var p = cardNo.substring(14, 15); // 性别位
                  var birthday = new Date(year, parseFloat(month) - 1, parseFloat(day));
-                 // 对于老身份证中的年龄则不需考虑千年虫问题而使用getYear()方法
                  if (birthday.getYear() != parseFloat(year)
                      || birthday.getMonth() != parseFloat(month) - 1
                      || birthday.getDate() != parseFloat(day)) {
@@ -80,7 +79,6 @@
                  var day = cardNo.substring(12, 14);
                  var p = cardNo.substring(14, 17);
                  var birthday = new Date(year, parseFloat(month) - 1, parseFloat(day));
-                 // 这里用getFullYear()获取年份，避免千年虫问题
                  if (birthday.getFullYear() != parseFloat(year)
                      || birthday.getMonth() != parseFloat(month) - 1
                      || birthday.getDate() != parseFloat(day)) {

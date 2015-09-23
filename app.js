@@ -8,32 +8,20 @@ var mongoose = require('mongoose');
 var app = express();
 var server = require('http').createServer(app);
 
-var dbUrl = 'mongodb://localhost/desktop';
-mongoose.connect(dbUrl);
+/*var dbUrl = 'mongodb://localhost/desktop';
+mongoose.connect(dbUrl);*/
 
 var User = require('./server/models/user');
 
 app.set('port', process.env.PORT || 5700);
 app.set('views', __dirname + '/app');
 app.engine('.html', ejs.__express);
-app.set('view engine', 'html'); //替换文件扩展名ejs为html
+app.set('view engine', 'html');
 
 app.use(express.static(path.join(__dirname, 'app')));
 
 app.get('/siebre/*', function(req, res) {
 	res.render('index.html');
-});
-
-app.get('/api/users', function(req, res) {
-	var _user = new User({"name" : "xiaolonglin", "password" : "123456"});
-	_user.save(function(err, user) {
-		User.fetch(function(err, users) {
-			if (err) {
-				console.log(err);
-			}
-			res.send(users);
-		});
-	});
 });
 
 server.listen(app.get('port'), function() {

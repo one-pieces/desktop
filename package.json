@@ -25,6 +25,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "xiaolong lin",
+  "author": "Siebre",
   "license": "ISC"
 }

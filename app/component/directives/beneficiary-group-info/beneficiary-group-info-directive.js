@@ -1,7 +1,7 @@
 'use strict';
 
 app
-    .directive('beneficiaryGroup', function() {
+    .directive('beneficiaryGroupInfo', function() {
         return {
             restrict: 'E',
             link : function(scope, element, attrs, ctrl) {
@@ -12,7 +12,7 @@ app
                 groupsLength: "=",
                 deleteGroup: "&removeGroup"
             },
-            templateUrl: "views/directives/beneficiaryGroup.html",
+            templateUrl: "component/directives/beneficiary-group-info/beneficiary-group-info.html",
             controller: "beneficiaryGroupCtrl"
         };
     });
