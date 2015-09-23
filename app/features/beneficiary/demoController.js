@@ -48,7 +48,6 @@ app
         });
 
         $scope.moveRowDescCrossGroup = function(isDesc, rowIndex, groupIndex) {
-            var length;
             if(isDesc) {
                 $scope.beneficiaryGroups[groupIndex].rows[rowIndex].id = $scope.beneficiaryGroups[groupIndex + 1].rows[0].id - 1;
                 $scope.beneficiaryGroups[groupIndex + 1].rows.unshift($scope.beneficiaryGroups[groupIndex].rows[rowIndex]);//下一组加上受益人
@@ -62,15 +61,15 @@ app
         };
 
         $scope.moveGroupDesc = function(isDesc, index) {
-            var templVal;
+            var tmpVal;
             if(isDesc) {
-                templVal =  $scope.beneficiaryGroups[index + 1];
+                tmpVal =  $scope.beneficiaryGroups[index + 1];
                 $scope.beneficiaryGroups[index + 1] = $scope.beneficiaryGroups[index];
-                $scope.beneficiaryGroups[index] = templVal;
+                $scope.beneficiaryGroups[index] = tmpVal;
             }else {
-                templVal =  $scope.beneficiaryGroups[index - 1];
+                tmpVal =  $scope.beneficiaryGroups[index - 1];
                 $scope.beneficiaryGroups[index - 1] = $scope.beneficiaryGroups[index];
-                $scope.beneficiaryGroups[index] = templVal;
+                $scope.beneficiaryGroups[index] = tmpVal;
             }
         };
 

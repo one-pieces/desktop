@@ -22,7 +22,7 @@
             <div class="col-md-2"></div>
         </div>
         <!-- When toggled this block won't display otherwise will show the groups' details-->
-        <div class="row" id="row_{{index}}" ng-hide="group.isToggled" class="animate-hide" description="groupInfoArea">
+        <div class="row" id="row_{{index}}" collapse="group.isToggled"  description="groupInfoArea">
             <div class="col-md-1 beneficiary-group-title">
                 <h3>第{{index+1}}顺位</h3>
                 <div class="beneficiary-group-action">
