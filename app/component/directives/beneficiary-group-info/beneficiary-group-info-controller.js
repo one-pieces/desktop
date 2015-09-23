@@ -38,11 +38,14 @@ app
               idType: '1'
             };
             var row = {
-              id: 'Row ' + $scope.counter,
+              id: $scope.group.id + "_" + $scope.counter,
               beneficiary: beneficiary
             };
             $scope.group.rows.push(row);
             $scope.counter++;
+            if($scope.group.isAver) {
+                $scope.average();
+            }
         };
 
         /**
@@ -52,6 +55,9 @@ app
         $scope.removeBeneficiary = function(index) {
             $scope.group.rows.splice(index,1);
             $scope.counter--;
+            if($scope.group.isAver) {
+                $scope.average();
+            }
         };
 
         /**
@@ -142,9 +148,6 @@ app
           return beneficiaries;
         }, function(newValue, oldValue) {
           $scope.proportionSum = 0;
-          if($scope.group.isAver) {
-              $scope.average();
-          }
           for (var i = 0; i < newValue.length; i++) {
               $scope.group.rows[i].beneficiary.proportion = $scope.group.rows[i].beneficiary.proportion || 0;
               if (parseInt($scope.group.rows[i].beneficiary.proportion) < 0){
@@ -152,7 +155,13 @@ app
               }
               $scope.proportionSum += parseInt($scope.group.rows[i].beneficiary.proportion);
           }
-
           $scope.proportionRest = $scope.proportionMax - $scope.proportionSum;
         }, true);
+
+        $scope.averageChecked = function() {
+            $scope.group.isAver = !$scope.group.isAver;
+            if($scope.group.isAver) {
+                $scope.average();
+            }
+        }
     });

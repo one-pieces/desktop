@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-md-2">
                         <label>Benefit Ratio</label>
-                        <span ng-model="group.isAver" ng-click="group.isAver = !group.isAver;average()"
+                        <span ng-model="group.isAver" ng-click="averageChecked()"
                               ng-class="group.isAver?'glyphicon glyphicon-check':'glyphicon glyphicon-unchecked'"></span>
                         <button type="button" ng-click="average()" ng-show="!group.isAver" class="btn btn-xs">
                             <span>AVG</span>

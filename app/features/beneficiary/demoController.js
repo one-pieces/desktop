@@ -17,7 +17,7 @@ app
                 idType:'1'
             };
             var row = {
-                id: 'Row 0',
+                id: $scope.index + "_0",
                 beneficiary: beneficiary
             };
 
@@ -46,17 +46,29 @@ app
         $scope.$on('move-row-desc-cross-group', function(event, data) {
             $scope.moveRowDescCrossGroup(data.isDesc, data.rowIndex, data.groupIndex);
         });
+        /**
+         * To average the proportion of the beneficiaries by groupIds
+         */
+        $scope.average = function (groupIds) {
+            for( var k = 0; k < groupIds.length; k++) {
+                var group = $scope.beneficiaryGroups[groupIds[k]];
+                for (var i = 0; i < group.rows.length; i++) {
+                    if(group.isAver) {
+                        group.rows[i].beneficiary.proportion = parseInt( 100 / group.rows.length );
+                    }
+                }
+            }
+        };
 
         $scope.moveRowDescCrossGroup = function(isDesc, rowIndex, groupIndex) {
             if(isDesc) {
-                $scope.beneficiaryGroups[groupIndex].rows[rowIndex].id = $scope.beneficiaryGroups[groupIndex + 1].rows[0].id - 1;
                 $scope.beneficiaryGroups[groupIndex + 1].rows.unshift($scope.beneficiaryGroups[groupIndex].rows[rowIndex]);//下一组加上受益人
                 $scope.beneficiaryGroups[groupIndex].rows.splice(rowIndex, 1);//当前组去掉受益人
-
+                $scope.average([groupIndex , groupIndex + 1]);
             }else {
-                $scope.beneficiaryGroups[groupIndex].rows[rowIndex].id = $scope.beneficiaryGroups[groupIndex - 1].rows[$scope.beneficiaryGroups[groupIndex - 1].rows.length - 1].id + 1;
                 $scope.beneficiaryGroups[groupIndex - 1].rows.push($scope.beneficiaryGroups[groupIndex].rows[rowIndex]);//上一组加上受益人
                 $scope.beneficiaryGroups[groupIndex].rows.splice(rowIndex, 1);//当前组去掉受益人
+                $scope.average([groupIndex , groupIndex - 1]);
             }
         };
 
@@ -81,8 +93,5 @@ app
         $scope.saveBeneficiary = function() {
             $scope.checkedAllItems(true);
         };
-        $scope.$on('uncheck-aver', function(event, data) {
-            $scope.beneficiaryGroups[data.groupIndex].isAver = false;
-        });
 
     });

@@ -10,13 +10,6 @@ app
             $scope.row.beneficiary.proportion = 
                 (parseInt($scope.row.beneficiary.proportion) +
                     parseInt($scope.rest));
-            $scope.changeCheckedValue();
-        };
-
-        $scope.changeCheckedValue = function() {
-            $scope.$emit('uncheck-aver', {
-                groupIndex: $scope.groupIndex
-            });
         };
 
         $scope.moveDesc = function(isDesc, index, needToCross) {
