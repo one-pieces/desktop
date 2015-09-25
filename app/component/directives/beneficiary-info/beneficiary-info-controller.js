@@ -1,12 +1,16 @@
 'use strict';
 app
     .controller('beneficiaryCtrl', function($scope) {
-        $scope.isChecked = false;
 
+        $scope.row.beneficiary.selfChange = false;
+        $scope.isChecked = false;
+        $scope.row.beneficiary.proportionChangedTrigger = '';//btn:from the button txt: from the text
         /**
          * Calc the proportion when adding a beneficiary
          */
         $scope.add = function() {
+            $scope.row.beneficiary.selfChange = true;
+            $scope.row.beneficiary.proportionChangedTrigger = triggerType.BUTTON;
             $scope.row.beneficiary.proportion = 
                 (parseInt($scope.row.beneficiary.proportion) +
                     parseInt($scope.rest));
@@ -73,6 +77,10 @@ app
             }else {
                 return false;
             }
+        }
+
+        $scope.triggerAction = function(type) {
+            $scope.row.beneficiary.proportionChangedTrigger = type;
         }
 
     });

@@ -148,14 +148,28 @@ app
           return beneficiaries;
         }, function(newValue, oldValue) {
           $scope.group.proportionSum = 0;
+          var triggerByBtn = false;
+          var triggerByText = false;
           for (var i = 0; i < newValue.length; i++) {
               $scope.group.rows[i].beneficiary.proportion = $scope.group.rows[i].beneficiary.proportion || 0;
               if (parseInt($scope.group.rows[i].beneficiary.proportion) < 0){
                   $scope.group.rows[i].beneficiary.proportion = 0;
               }
               $scope.group.proportionSum += parseInt($scope.group.rows[i].beneficiary.proportion);
+              if (!triggerByBtn && $scope.group.rows[i].beneficiary.proportionChangedTrigger === triggerType.BUTTON) {
+                  triggerByBtn = true;
+              }else if(!triggerByText && $scope.group.rows[i].beneficiary.proportionChangedTrigger === triggerType.TEXT) {
+                  triggerByText = true;
+              }
+              if (triggerByBtn &&  $scope.group.isAver) {
+                  $scope.group.isAver = true;
+              } else if(triggerByText && !triggerByBtn){
+                  $scope.group.isAver = false;
+              }
+              $scope.group.rows[i].beneficiary.proportionChangedTrigger = '';
           }
           $scope.group.proportionRest = $scope.group.proportionMax - $scope.group.proportionSum;
+
         }, true);
 
         $scope.averageChecked = function() {
