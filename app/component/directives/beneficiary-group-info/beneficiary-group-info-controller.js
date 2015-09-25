@@ -5,12 +5,12 @@
 app
     .controller('beneficiaryGroupCtrl', function($scope){
         //$scopeVariable definition start
-        $scope.proportionMax = 100;
-        $scope.proportionSum = 0;
-        $scope.proportionRest = 0;
+        $scope.group.proportionMax = 100;
+        $scope.group.proportionSum = 0;
+        $scope.group.proportionRest = 0;
         $scope.group.isAver = true;
         $scope.group.isToggled = false;
-        $scope.counter = $scope.group.rows.length;
+        $scope.group.counter = $scope.group.rows.length;
         //$scopeVariable definition end
 
         /**
@@ -34,7 +34,7 @@ app
          */
         $scope.addBeneficiary = function (index) {
             var beneficiary = {
-              proportion: $scope.group.proportion - $scope.proportionSum,
+              proportion: $scope.group.proportion - $scope.group.proportionSum,
               idType: '1'
             };
             var row = {
@@ -147,15 +147,15 @@ app
               }
           return beneficiaries;
         }, function(newValue, oldValue) {
-          $scope.proportionSum = 0;
+          $scope.group.proportionSum = 0;
           for (var i = 0; i < newValue.length; i++) {
               $scope.group.rows[i].beneficiary.proportion = $scope.group.rows[i].beneficiary.proportion || 0;
               if (parseInt($scope.group.rows[i].beneficiary.proportion) < 0){
                   $scope.group.rows[i].beneficiary.proportion = 0;
               }
-              $scope.proportionSum += parseInt($scope.group.rows[i].beneficiary.proportion);
+              $scope.group.proportionSum += parseInt($scope.group.rows[i].beneficiary.proportion);
           }
-          $scope.proportionRest = $scope.proportionMax - $scope.proportionSum;
+          $scope.group.proportionRest = $scope.group.proportionMax - $scope.group.proportionSum;
         }, true);
 
         $scope.averageChecked = function() {

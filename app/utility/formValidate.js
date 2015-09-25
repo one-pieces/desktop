@@ -102,7 +102,8 @@
                  var i = sum % 11;// 得到验证码所位置
 
                  if (_cardNo[17] != Y[i]) {
-                     return info.isTrue = false;
+                      info.isTrue = false;
+                      return info;
                  }
 
                  info.isTrue = true;

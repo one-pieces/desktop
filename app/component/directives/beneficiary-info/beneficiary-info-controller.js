@@ -54,15 +54,25 @@ app
          * @param birthdate
          * @returns {boolean}
          */
-        $scope.checkId = function(cardNo, birthdate) {
-            if(!birthdate || !cardNo || $scope.row.beneficiary.idType!=='1') {
-                return true;
-            }
-            if (cardNo && (15 === cardNo.length || 18 === cardNo.length)) {
+        $scope.checkId = function(cardNo) {
+            if (cardNo && cardNo!=='' && (15 === cardNo.length || 18 === cardNo.length)) {
                 var personInfo = checkForm.getIdCardInfo(cardNo);
                 return personInfo.isTrue;
             }
             return true;
         };
+
+        /**
+         * check the length of the card
+         * @param cardNo
+         * @returns {boolean}
+         */
+        $scope.checkIdLength = function(cardNo) {
+            if (cardNo && cardNo!=='' && (15 === cardNo.length || 18 === cardNo.length)) {
+                return true;
+            }else {
+                return false;
+            }
+        }
 
     });

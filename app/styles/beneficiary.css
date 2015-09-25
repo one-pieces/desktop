@@ -33,7 +33,6 @@
 .btn.collapsed:after {
 	content: "\e080";
 }*/
-
 .bottom-line {
 	margin:15px;
 	padding:0;
@@ -47,4 +46,10 @@
 }
 .add-beneficiary {
 	padding-left: 40px;
+}
+input.ng-invalid {
+	border: 1px solid red;
+}
+input.ng-valid {
+	border:1px solid green;
 }
