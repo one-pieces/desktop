@@ -1,6 +1,7 @@
 'use strict';
 
-app
+var beneficiaries = angular.module('beneficiaries', [])
+beneficiaries
     .controller('demoCtrl', function($scope){
         $scope.index = 0;
         $scope.maxGroupCount = 4;

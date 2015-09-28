@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('app', ['ngAnimate','ui.bootstrap','ui.router']);
+var app = angular.module('app', ['ngAnimate','ui.bootstrap','ui.router', 'beneficiaryGroupInfo', 'beneficiaryInfo', 'beneficiaries']);
 
 app.config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function($urlRouterProvider, $stateProvider, $locationProvider) {
 	$urlRouterProvider
@@ -9,7 +9,7 @@ app.config(['$urlRouterProvider', '$stateProvider', '$locationProvider', functio
 	$stateProvider
 		.state("demo", {
 				url: "/siebre/demo",
-				templateUrl: 'features/beneficiary/demo.html',
+				templateUrl: 'scripts/js/features/beneficiary/demo.html',
 				controller: 'demoCtrl'
 		});
 	$locationProvider.html5Mode(true);
