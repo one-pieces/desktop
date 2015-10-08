@@ -37,27 +37,27 @@
                  sex: null //默认为空
              };
 
-             if (!cardNo || (15 != cardNo.length && 18 != cardNo.length) ) {
+             if (!cardNo || (15 !== cardNo.length && 18 !== cardNo.length) ) {
                  info.isTrue = false;
                  return info;
              }
-
-             if (15 == cardNo.length) {
-                 var year = cardNo.substring(6, 8);
-                 var month = cardNo.substring(8, 10);
-                 var day = cardNo.substring(10, 12);
-                 var p = cardNo.substring(14, 15); // 性别位
-                 var birthday = new Date(year, parseFloat(month) - 1, parseFloat(day));
-                 if (birthday.getYear() != parseFloat(year)
-                     || birthday.getMonth() != parseFloat(month) - 1
-                     || birthday.getDate() != parseFloat(day)) {
+             var year,month,day, p, birthday;
+             if (15 === cardNo.length) {
+                 year = cardNo.substring(6, 8);
+                 month = cardNo.substring(8, 10);
+                 day = cardNo.substring(10, 12);
+                 p = cardNo.substring(14, 15); // 性别位
+                 birthday = new Date(year, parseFloat(month) - 1, parseFloat(day));
+                 if (birthday.getYear() !== parseFloat(year) ||
+                     birthday.getMonth() !== parseFloat(month) - 1 ||
+                     birthday.getDate() !== parseFloat(day)) {
                      info.isTrue = false;
                  } else {
                      info.isTrue = true;
                      info.year = birthday.getFullYear();
                      info.month = checkForm.padLeft(birthday.getMonth() + 1, 2);
                      info.day = checkForm.padLeft(birthday.getDate(), 2);
-                     if (p % 2 == 0) {
+                     if (p % 2 === 0) {
                          info.isFemale = true;
                          info.isMale = false;
                      } else {
@@ -73,15 +73,14 @@
                  return info;
              }
 
-             if (18 == cardNo.length) {
-                 var year = cardNo.substring(6, 10);
-                 var month = cardNo.substring(10, 12);
-                 var day = cardNo.substring(12, 14);
-                 var p = cardNo.substring(14, 17);
-                 var birthday = new Date(year, parseFloat(month) - 1, parseFloat(day));
-                 if (birthday.getFullYear() != parseFloat(year)
-                     || birthday.getMonth() != parseFloat(month) - 1
-                     || birthday.getDate() != parseFloat(day)) {
+             if (18 === cardNo.length) {
+                 year = cardNo.substring(6, 10);
+                 month = cardNo.substring(10, 12);
+                 day = cardNo.substring(12, 14);
+                 p = cardNo.substring(14, 17);
+                 birthday = new Date(year, parseFloat(month) - 1, parseFloat(day));
+                 if (birthday.getFullYear() !== parseFloat(year) || birthday.getMonth() !== parseFloat(month) - 1 ||
+                      birthday.getDate() !== parseFloat(day)) {
                      info.isTrue = false;
                      return info;
                  }
@@ -93,15 +92,16 @@
                  var sum = 0; // 声明加权求和变量
                  var _cardNo = cardNo.split("");
 
-                 if (_cardNo[17].toLowerCase() == 'x') {
+                 if (_cardNo[17].toLowerCase() === 'x') {
                      _cardNo[17] = 10;// 将最后位为x的验证码替换为10方便后续操作
                  }
-                 for ( var i = 0; i < 17; i++) {
+                 var i;
+                 for ( i = 0; i < 17; i++) {
                      sum += Wi[i] * _cardNo[i];// 加权求和
                  }
-                 var i = sum % 11;// 得到验证码所位置
+                  i = sum % 11;// 得到验证码所位置
 
-                 if (_cardNo[17] != Y[i]) {
+                 if (_cardNo[17] !== Y[i]) {
                       info.isTrue = false;
                       return info;
                  }
@@ -111,7 +111,7 @@
                  info.month = checkForm.padLeft(birthday.getMonth() + 1, 2);
                  info.day = checkForm.padLeft(birthday.getDate(), 2);
 
-                 if (p % 2 == 0) {
+                 if (p % 2 === 0) {
                      info.isFemale = true;
                      info.isMale = false;
                  } else {
@@ -127,4 +127,4 @@
              }
              return info;
          }
-}
+    };

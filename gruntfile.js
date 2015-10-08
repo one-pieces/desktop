@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 				banner: '/*! <%=pkg.name%>-<%=pkg.version%>.js <%=grunt.template.today("yyyy-mm-dd")%> */\n'
 			},
 			build: {
-				src: 'app/scripts/angular/*.js',
+				src: 'app/scripts/js/**/*.js',
 				dest: 'build/<%=pkg.name%>-<%=pkg.version%>.min.js'
 			}
 		},
@@ -45,7 +45,8 @@ module.exports = function(grunt) {
 
 		// 配置jshint插件，js语法
 		jshint: {
-			build: ['gruntfile.js', 'app.js', 'app/scripts/angular/*.js'],
+			build: ['gruntfile.js', 'app.js', 'app/scripts/js/component/*.js', 'app/scripts/js/enum/*.js', 'app/scripts/js/feature/*.js',
+			'app/scripts/js/utilities/*.js'],
 			options: {
 				jshintrc: '.jshintrc'
 			}
@@ -73,7 +74,7 @@ module.exports = function(grunt) {
 				}
 			},
 			js: {
-				files: ['app.js', 'app/scripts/**/*.js', 'server/models/**/*.js', 'server/models/**/*.js'],
+				files: ['app.js', 'app/scripts/js/**/*.js', 'server/models/**/*.js', 'server/models/**/*.js'],
 				tasks: ['jshint'],
 				options: {
 					livereload: true

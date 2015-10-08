@@ -2,7 +2,7 @@
 
 var beneficiaries = angular.module('beneficiaries', [])
 beneficiaries
-    .controller('demoCtrl', function($scope){
+    .controller('beneficiariesController', function($scope){
         $scope.index = 0;
         $scope.maxGroupCount = 4;
         $scope.beneficiaryGroups = [];
