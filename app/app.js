@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('app', ['ngAnimate','ui.bootstrap','ui.router', 'beneficiaryGroupInfo', 'beneficiaryInfo', 'beneficiaries', 'apply', 'applyInfo', 'premiumInfo',
-		'insuredInfo']);
+		'insuredInfo','applyTermConfig']);
 
 app.config(['$urlRouterProvider', '$stateProvider', '$locationProvider', function($urlRouterProvider, $stateProvider, $locationProvider) {
 	$urlRouterProvider

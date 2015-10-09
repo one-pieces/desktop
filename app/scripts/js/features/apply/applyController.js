@@ -3,7 +3,11 @@
 var apply = angular.module('apply', [])
 apply
     .controller('applyController', function($scope){
-
+        $scope.termConfig = {
+            monthConfig: [],
+            yearConfig: [],
+            ageConfig: false
+        };
         $scope.insuredGroup = [
             {
                 name: "",

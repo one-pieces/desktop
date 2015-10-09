@@ -16,11 +16,7 @@
             <apply-info></apply-info>
         </div>
     </div>
-    <div class="row" description="applyHead">
-        <div class="col-md-12">
-            <label>Ext Info</label>
-        </div>
-    </div>
+
     <div class="row" description="insuredTitle">
         <div class="col-md-12">
             <h4>被保人信息</h4>
@@ -49,9 +45,26 @@
     <div class="row" description="premium">
         <!--保费指令-->
         <div class="col-md-12">
-            <h4>保费信息</h4>
+            <h4>保费信息</h4><button type="button" data-toggle="modal" data-target="#configModal">config</button>
             <div class="title-line"></div>
-            <premium-info></premium-info>
+            <premium-info termConfig="termConfig"></premium-info>
+        </div>
+    </div>
+    <div id="configModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">缴费期间配置</h4>
+                </div>
+                <div class="modal-body">
+                    <apply-term-config termConfig="termConfig"></apply-term-config>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="confirmation()" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-6">
+        <label>月缴费期间</label>
+        <div class="title-line"></div>
+        <div ng-repeat="monthTermValue in config.termConfig.monthConfig">
+            <input type="checkbox" name="config.termConfig.monthConfig" value="{{monthTermValue}}"
+                   ng-checked="termConfigTarget.monthConfig.indexOf(monthTermValue) > -1"
+                   ng-click="toggleSelection('1',monthTermValue)">{{monthTermValue}}个月
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label>年缴费期间</label>
+        <div class="title-line"></div>
+        <div ng-repeat="yearTermValue in config.termConfig.yearConfig">
+            <input type="checkbox" name="config.termConfig.yearConfig" value="{{yearTermValue}}"
+                   ng-checked="termConfigTarget.yearConfig.indexOf(yearTermValue) > -1"
+                   ng-click="toggleSelection('0',yearTermValue)">{{yearTermValue}}个月
+        </div>
+        <input type="checkbox" name="ageConfig"  ng-click="toggleSelection('2',termConfigTarget.ageConfig)"
+                ng-checked = "termConfigTarget.ageConfig">缴至周岁
+    </div>
+</div>
