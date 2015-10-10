@@ -45,9 +45,17 @@
     <div class="row" description="premium">
         <!--保费指令-->
         <div class="col-md-12">
-            <h4>保费信息</h4><button type="button" data-toggle="modal" data-target="#configModal">config</button>
+            <h4>保费缴纳</h4>
             <div class="title-line"></div>
-            <premium-info termConfig="termConfig"></premium-info>
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Action</label>
+                    <div><span><button type="button" data-toggle="modal" data-target="#configModal"><i class="fa fa-cog"></i></button></span></div>
+                </div>
+                <div class="col-md-11">
+                    <premium-info term-config="termConfig"></premium-info>
+                </div>
+            </div>
         </div>
     </div>
     <div id="configModal" class="modal fade" role="dialog">
@@ -56,10 +64,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">缴费期间配置</h4>
+                    <h4 class="modal-title">缴费期间配置选项</h4>
                 </div>
                 <div class="modal-body">
-                    <apply-term-config termConfig="termConfig"></apply-term-config>
+                    <apply-term-config term-config="termConfig"></apply-term-config>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" ng-click="confirmation()" data-dismiss="modal">关闭</button>

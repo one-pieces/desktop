@@ -14,7 +14,7 @@ applyTermConfigDirective
         };
     });
 
-var applyTermConfigController = function($scope, $modalInstance){
+var applyTermConfigController = function($scope){
     $scope.config = {};
     var termConfigSource = {
         monthConfig: ['6', '12', '36', '72'],
@@ -38,20 +38,18 @@ var applyTermConfigController = function($scope, $modalInstance){
                 $scope.termConfigTarget.yearConfig.push(termValue);
             }
         }else if(termType === '1') {
-            idx = $scope.termConfigTarget.yearConfig.indexOf(termValue);
+            idx = $scope.termConfigTarget.monthConfig.indexOf(termValue);
             if (idx > -1) {
-                $scope.termConfigTarget.yearConfig.splice(idx, 1);
+                $scope.termConfigTarget.monthConfig.splice(idx, 1);
             } else {
-                $scope.termConfigTarget.yearConfig.push(termValue);
+                $scope.termConfigTarget.monthConfig.push(termValue);
             }
         }else {
              $scope.termConfigTarget.ageConfig = !termValue;
         }
 
     };
-    $scope.confirmation = function () {
-        $modalInstance.dismiss('cancel');
-    };
+
    
 };
 
