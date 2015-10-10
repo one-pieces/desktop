@@ -1,8 +1,6 @@
-'use strict';
-
-var apply = angular.module('apply', [])
-apply
-    .controller('applyController', function($scope){
+define([], function(){
+    'use strict';
+    function applyController($scope){
         $scope.termConfig = {};
         $scope.insuredGroup = [
             {
@@ -26,5 +24,7 @@ apply
         $scope.removeInsured = function(index) {
             $scope.insuredGroup.splice(index, 1);
         }
-
-    });
+    };
+    applyController.$inject = ['$scope'];
+    return applyController;
+});

@@ -1,8 +1,6 @@
-'use strict';
-
-var beneficiaries = angular.module('beneficiaries', [])
-beneficiaries
-    .controller('beneficiariesController', function($scope){
+define([], function(){
+    'use strict';
+    function beneficiaryController($scope){
         $scope.index = 0;
         $scope.maxGroupCount = 4;
         $scope.beneficiaryGroups = [];
@@ -94,5 +92,7 @@ beneficiaries
         $scope.saveBeneficiary = function() {
             $scope.checkedAllItems(true);
         };
-
-    });
+    };
+    beneficiaryController.$inject = ['$scope'];
+    return beneficiaryController;
+});
