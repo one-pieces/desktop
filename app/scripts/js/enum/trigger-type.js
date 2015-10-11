@@ -1,4 +1,10 @@
-var triggerType = {
-    'BUTTON': 'btn',
-    'TEXT': 'txt'
-};
+define([], function() {
+    'use strict';
+    function triggerType() {
+      return  {
+            'BUTTON': 'btn',
+            'TEXT': 'txt'
+        };
+    }
+    return triggerType;
+});

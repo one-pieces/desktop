@@ -16,7 +16,6 @@ define([],function(){
             });
         $locationProvider.html5Mode(true);
     }
-
     config.$inject=['$urlRouterProvider', '$stateProvider', '$locationProvider'];
     return config;
 });

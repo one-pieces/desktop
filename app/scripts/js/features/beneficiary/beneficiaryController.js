@@ -1,6 +1,7 @@
 define([], function(){
     'use strict';
     function beneficiaryController($scope){
+        document.title = "beneficiary";
         $scope.index = 0;
         $scope.maxGroupCount = 4;
         $scope.beneficiaryGroups = [];

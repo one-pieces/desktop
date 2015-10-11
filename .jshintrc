@@ -16,7 +16,7 @@
 	"node": true,
 	"jquery": true,
 	"globals": {
-    "angular": false,
-    "app": true
+	  "angular": false,
+	  "define": true
 	}
 }

@@ -1,9 +1,8 @@
-define(['app/scripts/js/config',
-        'app/scripts/js/component/directives/insured-info/insured-info-directive'],
-    function(config, insuredInfoDirective){
+define([
+        'scripts/js/component/directives/insured-info/insured-info-directive'],
+    function(insuredInfoDirective){
     'use strict';
 
-    var insuredInfo = angular.module('insuredInfoDirective', ['ngAnimate','ui.bootstrap','ui.router']);
-        insuredInfo.config(config);
+    var insuredInfo = angular.module('insuredInfoDirective', []);
         insuredInfo.directive('insuredInfo', insuredInfoDirective);
 });

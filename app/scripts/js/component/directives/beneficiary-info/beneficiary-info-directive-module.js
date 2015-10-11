@@ -1,9 +1,8 @@
-define(['app/scripts/js/config',
-        'app/scripts/js/component/directives/beneficiary-info/beneficiary-info-directive'],
-    function(config, beneficiaryInfoDirective){
+define([
+        'scripts/js/component/directives/beneficiary-info/beneficiary-info-directive'],
+    function(beneficiaryInfoDirective){
     'use strict';
 
-    var beneficiaryInfo = angular.module('beneficiaryInfoDirective', ['ngAnimate','ui.bootstrap','ui.router']);
-        beneficiaryInfo.config(config);
+    var beneficiaryInfo = angular.module('beneficiaryInfoDirective', []);
         beneficiaryInfo.directive('beneficiaryInfo', beneficiaryInfoDirective);
 });

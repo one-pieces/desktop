@@ -1,9 +1,8 @@
-define(['app/scripts/js/config',
-        'app/scripts/js/features/apply/applyController'],
-    function(config, applyController){
+define([
+        'scripts/js/features/apply/applyController'],
+    function(applyController){
     'use strict';
 
-    var apply = angular.module('applyController', ['ngAnimate','ui.bootstrap','ui.router']);
-        apply.config(config);
+    var apply = angular.module('applyController', []);
         apply.controller('applyController', applyController);
 });

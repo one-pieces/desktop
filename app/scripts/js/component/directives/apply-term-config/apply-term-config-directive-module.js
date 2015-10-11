@@ -1,9 +1,7 @@
-define(['app/scripts/js/config',
-        'app/scripts/js/component/directives/apply-term-config/apply-term-config-directive'],
-    function(config, applyTermConfigDirective){
+define(['scripts/js/component/directives/apply-term-config/apply-term-config-directive'],
+    function(applyTermConfigDirective){
     'use strict';
 
-    var applyTermConfig = angular.module('applyTermConfigDirective', ['ngAnimate','ui.bootstrap','ui.router']);
-        applyTermConfig.config(config);
+    var applyTermConfig = angular.module('applyTermConfigDirective', []);
         applyTermConfig.directive('applyTermConfig', applyTermConfigDirective);
 });
