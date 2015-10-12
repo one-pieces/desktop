@@ -1,4 +1,4 @@
-define(['scripts/js/component/directives/apply-term-config/apply-term-config-directive'],
+define(['directives/apply-term-config/apply-term-config-directive'],
     function(applyTermConfigDirective){
     'use strict';
 

@@ -11,7 +11,7 @@ define([], function(){
         //$scopeVariable definition end
 
         /**
-         * Get beneficiaryNames as A String splitted with ¡¢
+         * Get beneficiaryNames as A String splitted with
          * @returns {string}
          */
         $scope.nameList = function () {
@@ -22,7 +22,7 @@ define([], function(){
                     beneficiariesInGroup.push($scope.group.rows[count].beneficiary.name);
                 }
             }
-            return beneficiariesInGroup.join("¡¢");
+            return beneficiariesInGroup.join(" ");
         };
 
         /**
@@ -174,7 +174,7 @@ define([], function(){
             if ($scope.group.isAver) {
                 $scope.average();
             }
-        }
+        };
     }
     beneficiaryGroupController.$inject = ['$scope'];
     function benificiaryGroupInfoDirective() {

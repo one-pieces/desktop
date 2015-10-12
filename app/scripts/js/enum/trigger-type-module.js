@@ -1,5 +1,5 @@
 var triggerType;
-define(['scripts/js/enum/trigger-type'],
+define(['enum/trigger-type'],
     function(trigger){
     'use strict';
         triggerType = trigger;

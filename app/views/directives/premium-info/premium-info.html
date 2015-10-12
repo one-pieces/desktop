@@ -21,15 +21,15 @@
                         <div class="row"></div>
                         <div class="title-line"></div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <label class="label-sm-center">Month</label>
+                            <div class="col-md-12">{{monthConfig.length}}
+                                <label ng-show="termConfig.monthConfig.length > 0" class="label-sm-center">Month</label>
                                 <span ng-repeat="month in termConfig.monthConfig">
                                     <input type="radio" name="premiumPayTerm" value="m_{{month}}" ng-model="premium.payTerm" ng-click="premium.isPayByAge = false;">
                                     <span>{{month}}个月</span>
                                 </span>
                                 <br/>
                                 <br/>
-                                <label class="label-sm-center">Year</label>
+                                <label ng-show="termConfig.yearConfig.length > 0 || termConfig.ageConfig" class="label-sm-center">Year</label>
                                 <span ng-repeat="year in termConfig.yearConfig">
                                       <input type="radio" name="premiumPayTerm" value="y_{{year}}" ng-model="premium.payTerm" ng-click="premium.isPayByAge = false;">
                                     <span>{{year}}年</span>

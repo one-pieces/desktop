@@ -8,8 +8,8 @@ define([], function(){
                 case "2": return "父子";
                 default : return "投被关系";
             }
-        }
-    };
+        };
+    }
     insuredInfoController.$inject = ['$scope'];
     function insuredInfoDirective() {
         return {

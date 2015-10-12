@@ -1,5 +1,5 @@
 define([
-        'scripts/js/features/beneficiary/beneficiaryController'],
+        'features/beneficiary/beneficiaryController'],
     function(beneficiaryController){
     'use strict';
 

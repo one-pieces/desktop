@@ -9,8 +9,8 @@ define([], function(){
             unit: '0',
             age: null,
             isPaidByAge: false
-        }
-    };
+        };
+    }
     premiumInfoController.$inject = ['$scope'];
     function premiumInfoDirective() {
         return {

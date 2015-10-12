@@ -6,12 +6,12 @@ define([], function(){
             monthConfig: ['6', '12', '36', '72'],
             yearConfig: ['3', '5', '10', '15', '20'],
             ageConfig: false
-        }
+        };
         var termConfigTarget = {
             monthConfig: [],
             yearConfig: [],
             ageConfig: false
-        }
+        };
         $scope.config.termConfig = termConfigSource;
         $scope.termConfigTarget = termConfigTarget;
         $scope.toggleSelection = function (termType, termValue) {

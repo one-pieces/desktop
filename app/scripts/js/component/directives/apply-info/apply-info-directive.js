@@ -8,8 +8,8 @@ define([], function(){
             birthday: '',
             cardNo: '',
             cardType: ''
-        }
-    };
+        };
+    }
     applyInfoController.$inject = ['$scope'];
     function applyInfoDirective() {
         return {

@@ -77,11 +77,11 @@ define([], function(){
              } else {
                  return false;
              }
-         }
+         };
 
          $scope.triggerAction = function (type) {
              $scope.row.beneficiary.proportionChangedTrigger = type;
-         }
+         };
      }
     beneficiaryInfoController.$inject = ['$scope'];
     function benificiaryInfoDirective() {

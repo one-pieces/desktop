@@ -2,6 +2,7 @@ define([], function(){
     'use strict';
     function applyController($scope){
         document.title = "apply";
+        $scope.checked = false;
         $scope.termConfig = {};
         $scope.insuredGroup = [
             {

@@ -1,5 +1,5 @@
 define([
-        'scripts/js/component/directives/beneficiary-info/beneficiary-info-directive'],
+        'directives/beneficiary-info/beneficiary-info-directive'],
     function(beneficiaryInfoDirective){
     'use strict';
 

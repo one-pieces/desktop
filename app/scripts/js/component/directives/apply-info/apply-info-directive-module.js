@@ -1,5 +1,5 @@
 define([
-        'scripts/js/component/directives/apply-info/apply-info-directive'],
+        'directives/apply-info/apply-info-directive'],
     function(applyInfoDirective){
     'use strict';
 

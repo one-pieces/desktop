@@ -1,5 +1,5 @@
 var checkForm;
-define(['scripts/js/utilities/formValidate'],
+define(['utilities/formValidate'],
     function(formValidate){
     'use strict';
         checkForm = formValidate;

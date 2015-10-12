@@ -1,5 +1,5 @@
 define([
-        'scripts/js/component/directives/premium-info/premium-info-directive'],
+        'directives/premium-info/premium-info-directive'],
     function(premiumInfoDirective){
     'use strict';
 

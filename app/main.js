@@ -1,14 +1,28 @@
-require([  'scripts/js/app',
-        'scripts/js/enum/trigger-type-module',
-        'scripts/js/utilities/form-validate-module',
-        'scripts/js/features/apply/apply-controller-module',
-    'scripts/js/features/beneficiary/beneficiary-controller-module',
-    'scripts/js/component/directives/apply-info/apply-info-directive-module',
-    'scripts/js/component/directives/apply-term-config/apply-term-config-directive-module',
-    'scripts/js/component/directives/beneficiary-group-info/beneficiary-group-info-directive-module',
-    'scripts/js/component/directives/beneficiary-info/beneficiary-info-directive-module',
-    'scripts/js/component/directives/insured-info/insured-info-directive-module',
-    'scripts/js/component/directives/premium-info/premium-info-directive-module'],
+requirejs.config({
+    //By default load any module IDs from js/lib
+    baseUrl: 'scripts/js',
+    //except, if the module ID starts with "app",
+    //load it from the js/app directory. paths
+    //config is relative to the baseUrl, and
+    //never includes a ".js" extension since
+    //the paths config could be for a directory.
+    paths: {
+        directives: "component/directives",
+        lib: "bower_components"
+    }
+});
+
+require([ 'app',
+        'enum/trigger-type-module',
+        'utilities/form-validate-module',
+        'features/apply/apply-controller-module',
+    'features/beneficiary/beneficiary-controller-module',
+    'directives/apply-info/apply-info-directive-module',
+    'directives/apply-term-config/apply-term-config-directive-module',
+    'directives/beneficiary-group-info/beneficiary-group-info-directive-module',
+    'directives/beneficiary-info/beneficiary-info-directive-module',
+    'directives/insured-info/insured-info-directive-module',
+    'directives/premium-info/premium-info-directive-module'],
     function() {
         'use strict';
 
