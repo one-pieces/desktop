@@ -1,20 +1,26 @@
 <div class="form-inline" id="premium">
     <form name="myForm">
         <div class="row">
-            <div class="col-md-1">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label>缴费方式</label>
                     <div class="row"></div>
                     <div class="title-line"></div>
                     <div class="input-group">
                         <div class="radio">
-                            <label><input type="radio" name="premiumPayMode" value="1" ng-model="premium.payMode" ng-click="initalPay(this)"><span>趸缴</span></label>
-                            <label><input type="radio" name="premiumPayMode" value="0" ng-model="premium.payMode" ng-click="initalPay(this)"><span>期缴</span></label>
+                            <span><input  type="checkbox" switch-on-color="success" switch-off-color="success"  bs-switch ng-model="premium.payMode" switch-on-text="趸交" switch-off-text="期交"
+                                    switch-active = "true" ng-true-value="1" ng-false-value="0">
+                            <span ng-show="premium.payMode === 0 "><input  type="checkbox" switch-on-color="success" switch-off-color="success"  bs-switch ng-model="premium.payType" switch-on-text="月交"
+                                    switch-off-text="年交"
+                                    switch-active = "true" ng-true-value="1" ng-false-value="0"></span></span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2" ng-show="premium.payMode === '0'">
+            <div class="circle">
+
+            </div>
+            <!--<div class="col-md-2" ng-show="premium.payMode === 0">
                 <div class="form-inline">
                     <div class="form-group">
                         <label>缴费期间</label>
@@ -42,26 +48,14 @@
                         </div>
                      </div>
                 </div>
-            </div>
-            <div class="col-md-1" ng-show="premium.payMode === '0'">
-                <div class="form-inline">
-                        <label>缴费频率</label>
-                        <div class="row"></div>
-                        <div class="title-line"></div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label class="label-lg-center"><input type="radio" name="premiumPayType" value="1" ng-model="premium.payType" />月缴</label>
-                                <label class="label-lg-center"><input type="radio" name="premiumPayType" value="0" ng-model="premium.payType" />年缴</label>
-                            </div>
-                        </div>
-                </div>
-            </div>
+            </div>-->
+
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-body right">
-                        <div class="row">缴费方式：{{premium.payMode === "1"?'趸缴':premium.payMode === "0"?'期缴':''}}</div>
-                        <div class="row" ng-show="premium.payMode === '0' && ((premium.isPayByAge && premium.age) || (!premium.isPayByAge && premium.payTerm))">缴费期间：{{premium.isPayByAge ?'缴纳至'+(premium.age || '')+'岁':premium.payTerm + '年'}}</div>
-                        <div class="row"  ng-show="premium.payMode === '0'">缴费频率：{{premium.payType === "1"?'月缴':premium.payType === "0"?'年缴':''}}</div>
+                        <div class="row">缴费方式：{{premium.payMode === 1?'趸缴':'期缴'}}</div>
+                        <div class="row" ng-show="premium.payMode === 0 && ((premium.isPayByAge && premium.age) || (!premium.isPayByAge && premium.payTerm))">缴费期间：{{premium.isPayByAge ?'缴纳至'+(premium.age || '')+'岁':premium.payTerm + '年'}}</div>
+                        <div class="row"  ng-show="premium.payMode ===0">缴费频率：{{premium.payType === 1?'月缴':'年缴'}}</div>
                     </div>
                 </div>
             </div>

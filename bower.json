@@ -21,6 +21,8 @@
     "font-awesome": "~4.4.0",
     "jquery-ui": "~1.11.4",
     "ui-bootstrap-tpls-0.13.4": "http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.4.js",
-    "ng-pageslide": "https://raw.githubusercontent.com/dpiccone/ng-pageslide/master/dist/angular-pageslide-directive.min.js"
+    "ng-pageslide": "https://raw.githubusercontent.com/dpiccone/ng-pageslide/master/dist/angular-pageslide-directive.min.js",
+    "angular-bootstrap-switch": "~0.4.1",
+    "angular-toggle-switch": "angular-bootstrap-toggle-switch#~0.5.5"
   }
 }

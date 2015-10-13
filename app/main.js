@@ -22,7 +22,8 @@ require([ 'app',
     'directives/beneficiary-group-info/beneficiary-group-info-directive-module',
     'directives/beneficiary-info/beneficiary-info-directive-module',
     'directives/insured-info/insured-info-directive-module',
-    'directives/premium-info/premium-info-directive-module'],
+    'directives/premium-info/premium-info-directive-module'
+    ],
     function() {
         'use strict';
 
