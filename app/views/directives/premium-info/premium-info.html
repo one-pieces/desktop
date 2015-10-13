@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div ng-repeat="year in termConfig.yearConfig">
-                                      <input type="radio" name="premiumPayTerm" value="y_{{year}}" ng-model="premium.payTerm" ng-click="premium.isPayByAge = false;">
+                                      <input type="radio" name="premiumPayTerm" value="{{year}}" ng-model="premium.payTerm" ng-click="premium.isPayByAge = false;">
                                     <span>{{year}}年</span>
                                 </div>
                                 <div ng-show="termConfig.ageConfig">
@@ -56,7 +56,16 @@
                         </div>
                 </div>
             </div>
-            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body right">
+                        <div class="row">缴费方式：{{premium.payMode === "1"?'趸缴':premium.payMode === "0"?'期缴':''}}</div>
+                        <div class="row" ng-show="(premium.isPayByAge && premium.age) || (!premium.isPayByAge && premium.payTerm)">缴费期间：{{premium.isPayByAge ?'缴纳至'+(premium.age || '')+'岁':premium.payTerm + '年'}}</div>
+                        <div class="row">缴费频率：{{premium.payType === "1"?'月缴':premium.payType === "0"?'年缴':''}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
         </div>
     </form>
 </div>
