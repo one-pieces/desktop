@@ -60,8 +60,8 @@
                 <div class="panel panel-default">
                     <div class="panel-body right">
                         <div class="row">缴费方式：{{premium.payMode === "1"?'趸缴':premium.payMode === "0"?'期缴':''}}</div>
-                        <div class="row" ng-show="(premium.isPayByAge && premium.age) || (!premium.isPayByAge && premium.payTerm)">缴费期间：{{premium.isPayByAge ?'缴纳至'+(premium.age || '')+'岁':premium.payTerm + '年'}}</div>
-                        <div class="row">缴费频率：{{premium.payType === "1"?'月缴':premium.payType === "0"?'年缴':''}}</div>
+                        <div class="row" ng-show="premium.payMode === '0' && ((premium.isPayByAge && premium.age) || (!premium.isPayByAge && premium.payTerm))">缴费期间：{{premium.isPayByAge ?'缴纳至'+(premium.age || '')+'岁':premium.payTerm + '年'}}</div>
+                        <div class="row"  ng-show="premium.payMode === '0'">缴费频率：{{premium.payType === "1"?'月缴':premium.payType === "0"?'年缴':''}}</div>
                     </div>
                 </div>
             </div>
