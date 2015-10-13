@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="col-md-1">
                     <label>Action</label>
-                    <div><span><button type="button" ng-click="checked=false" data-toggle="modal" data-target="#configModal"><i class="fa fa-cog"></i></button></span>
+                    <div><!--<span><button type="button" ng-click="checked=false" data-toggle="modal" data-target="#configModal"><i class="fa fa-cog"></i></button></span>-->
                     <span><button type="button" ng-click="checked=true" ><i class="fa fa-cog"></i></button></span></div>
                 </div>
                 <div class="col-md-11">
@@ -76,9 +76,11 @@
             </div>
         </div>
     </div>
-    <pageslide ps-open="checked" ps-speed="1">
-        <div style="padding:20px" id="demo-right">
+    <pageslide id="peekpanel" ps-open="checked" ps-speed="1">
+        <div class="right" >
             <apply-term-config term-config="termConfig"></apply-term-config>
+        </div>
+        <div class="btn-center">
             <button type="button" class="btn btn-default" ng-click="checked = false">关闭</button>
         </div>
     </pageslide>

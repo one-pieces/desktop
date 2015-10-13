@@ -3,12 +3,10 @@ define([], function(){
     function applyTermConfigController($scope) {
         $scope.config = {};
         var termConfigSource = {
-            monthConfig: ['6', '12', '36', '72'],
             yearConfig: ['3', '5', '10', '15', '20'],
             ageConfig: false
         };
         var termConfigTarget = {
-            monthConfig: [],
             yearConfig: [],
             ageConfig: false
         };
@@ -23,17 +21,9 @@ define([], function(){
                 } else {
                     $scope.termConfigTarget.yearConfig.push(termValue);
                 }
-            } else if (termType === '1') {
-                idx = $scope.termConfigTarget.monthConfig.indexOf(termValue);
-                if (idx > -1) {
-                    $scope.termConfigTarget.monthConfig.splice(idx, 1);
-                } else {
-                    $scope.termConfigTarget.monthConfig.push(termValue);
-                }
             } else {
                 $scope.termConfigTarget.ageConfig = !termValue;
             }
-
         };
     }
 

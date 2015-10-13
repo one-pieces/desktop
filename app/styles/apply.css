@@ -29,3 +29,12 @@
     font-size:10pt;font-family:Microsoft YaHei;
     display:block;
 }
+
+#peekpanel .btn-center {
+    padding-left: 80px;
+    padding-bottom: 2px;
+}
+
+#peekpanel .right {
+    padding: 20px;
+}

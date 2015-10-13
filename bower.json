@@ -19,6 +19,8 @@
     "angular-ui-router": "~0.2.15",
     "bootstrap": "~3.3.5",
     "font-awesome": "~4.4.0",
-    "jquery-ui": "~1.11.4"
+    "jquery-ui": "~1.11.4",
+    "ui-bootstrap-tpls-0.13.4": "http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.4.js",
+    "ng-pageslide": "https://raw.githubusercontent.com/dpiccone/ng-pageslide/master/dist/angular-pageslide-directive.min.js"
   }
 }

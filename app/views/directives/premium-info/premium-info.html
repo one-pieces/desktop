@@ -8,61 +8,55 @@
                     <div class="title-line"></div>
                     <div class="input-group">
                         <div class="radio">
-                            <label><input type="radio" name="premiumPayMode" value="0" ng-model="premium.payMode" ng-click="initalPay(this)"><span>期缴</span></label>
                             <label><input type="radio" name="premiumPayMode" value="1" ng-model="premium.payMode" ng-click="initalPay(this)"><span>趸缴</span></label>
+                            <label><input type="radio" name="premiumPayMode" value="0" ng-model="premium.payMode" ng-click="initalPay(this)"><span>期缴</span></label>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" ng-show="premium.payMode === '0'">
+            <div class="col-md-2" ng-show="premium.payMode === '0'">
                 <div class="form-inline">
                     <div class="form-group">
                         <label>缴费期间</label>
-                        <div class="row"></div>
-                        <div class="title-line"></div>
                         <div class="row">
-                            <div class="col-md-12">{{monthConfig.length}}
-                                <label ng-show="termConfig.monthConfig.length > 0" class="label-sm-center">Month</label>
-                                <span ng-repeat="month in termConfig.monthConfig">
-                                    <input type="radio" name="premiumPayTerm" value="m_{{month}}" ng-model="premium.payTerm" ng-click="premium.isPayByAge = false;">
-                                    <span>{{month}}个月</span>
-                                </span>
-                                <br/>
-                                <br/>
-                                <label ng-show="termConfig.yearConfig.length > 0 || termConfig.ageConfig" class="label-sm-center">Year</label>
-                                <span ng-repeat="year in termConfig.yearConfig">
+                            <div class="col-md-12">
+                                <div class="title-line">occupied block div for use</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div ng-repeat="year in termConfig.yearConfig">
                                       <input type="radio" name="premiumPayTerm" value="y_{{year}}" ng-model="premium.payTerm" ng-click="premium.isPayByAge = false;">
                                     <span>{{year}}年</span>
-                                </span>
-                                <span ng-show="termConfig.ageConfig">
+                                </div>
+                                <div ng-show="termConfig.ageConfig">
                                     <input type="radio" name="premiumPayTerm" value="age" ng-model="premium.payTerm" ng-click="premium.isPayByAge = true;">
                                         <span>
                                              缴纳至
                                             <input class = "form-control" ng-disabled="!premium.isPayByAge" maxlength="2" min="0" max="100" type="number" placeholder=""
                                                    name="premiumAge" ng-model="premium.age"  />岁
                                         </span>
-                                </span>
+                                </div>
                             </div>
                         </div>
                      </div>
                 </div>
             </div>
-            <div class="col-md-4" ng-show="premium.payMode === '0'">
+            <div class="col-md-1" ng-show="premium.payMode === '0'">
                 <div class="form-inline">
                         <label>缴费频率</label>
                         <div class="row"></div>
                         <div class="title-line"></div>
                         <div class="row">
-                            <div class="col-md-6">
-                                <label class="label-lg-center"><input type="radio" name="premiumPayType" value="1" ng-model="premium.payType" />Paid By Month</label>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="label-lg-center"><input type="radio" name="premiumPayType" value="0" ng-model="premium.payType" />Paid By Year</label>
+                            <div class="col-md-12">
+                                <label class="label-lg-center"><input type="radio" name="premiumPayType" value="1" ng-model="premium.payType" />月缴</label>
+                                <label class="label-lg-center"><input type="radio" name="premiumPayType" value="0" ng-model="premium.payType" />年缴</label>
                             </div>
                         </div>
                 </div>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-8"></div>
         </div>
     </form>
 </div>
