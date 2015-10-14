@@ -4,22 +4,58 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>缴费方式</label>
-                    <div class="row"></div>
-                    <div class="title-line"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="title-line">occupied block div for useoccupied block div for use div for use</div>
+                        </div>
+                    </div>
+                    <div class="row"/>
                     <div class="input-group">
                         <div class="radio">
                             <span><input  type="checkbox" switch-on-color="success" switch-off-color="success"  bs-switch ng-model="premium.payMode" switch-on-text="趸交" switch-off-text="期交"
                                     switch-active = "true" ng-true-value="1" ng-false-value="0">
-                            <span ng-show="premium.payMode === 0 "><input  type="checkbox" switch-on-color="success" switch-off-color="success"  bs-switch ng-model="premium.payType" switch-on-text="月交"
-                                    switch-off-text="年交"
-                                    switch-active = "true" ng-true-value="1" ng-false-value="0"></span></span>
+                            </span>
                         </div>
                     </div>
+                    <div class="title-block"></div>
+                        <div class="input-group" ng-show="premium.payMode === 0 ">
+                            <div class="btn-group" >
+                                <span ng-repeat="year in termConfig.yearConfig">
+                                    <label ng-class="premium.payTerm===year?'btn btn-success':'btn btn-default'" ng-click="premium.isPayByAge = false;" ng-model="premium.payTerm" uncheckable btn-radio="'{{year}}'" >{{year}}年</label>
+                                </span>
+                                <span ng-show="!premium.isPayByAge"><input  type="checkbox" switch-on-color="success" switch-off-color="success"  bs-switch ng-model="premium.payType" switch-on-text="月交"
+                                               switch-off-text="年交"
+                                               switch-active = "true" ng-true-value="1" ng-false-value="0">
+                                </span>
+                            </div>
+                            <div class="title-block"></div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div ng-show="termConfig.ageConfig">
+                                        <input type="radio" name="premiumPayTerm" value="age" ng-model="premium.payTerm" ng-click="premium.isPayByAge = true;">
+                                        缴纳至
+                                        <div class="btn-group" dropdown is-open="status.isopen">
+                                            <button id="single-button" type="button" class="btn btn-success" dropdown-toggle ng-disabled="disabled">
+                                                {{premium.age}} <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+                                                <li role="menuitem"><a href="#" ng-click="premium.age=18">18</a></li>
+                                                <li role="menuitem"><a href="#" ng-click="premium.age=35">35</a></li>
+                                                <li role="menuitem"><a href="#" ng-click="premium.age=65">65</a></li>
+                                            </ul>
+                                        </div>
+                                        岁
+                                <span ng-show="premium.isPayByAge"><input  type="checkbox" switch-on-color="success" switch-off-color="success"  bs-switch ng-model="premium.payType" switch-on-text="月交"
+                                             switch-off-text="年交"
+                                             switch-active = "true" ng-true-value="1" ng-false-value="0">
+                                </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
-            <div class="circle">
 
-            </div>
             <!--<div class="col-md-2" ng-show="premium.payMode === 0">
                 <div class="form-inline">
                     <div class="form-group">

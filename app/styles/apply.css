@@ -14,6 +14,14 @@
     background-color:#b9b9b9;
     overflow:hidden;
 }
+
+#premium .title-block {
+    margin:2px;
+    padding:0;
+    width:100%;
+    height:5px;
+    overflow:hidden;
+}
 #premium .label-lg-center {
     width: 100%;
     height: 30px;

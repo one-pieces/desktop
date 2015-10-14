@@ -7,8 +7,8 @@ define([], function(){
             ageConfig: false
         };
         var termConfigTarget = {
-            yearConfig: [],
-            ageConfig: false
+            yearConfig: ['3', '5', '10', '15', '20'],
+            ageConfig: true
         };
         $scope.config.termConfig = termConfigSource;
         $scope.termConfigTarget = termConfigTarget;
